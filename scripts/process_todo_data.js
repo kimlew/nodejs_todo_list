@@ -116,8 +116,9 @@ function putFormDataInObj(forWho, task) {
   xhr.onload = function () {
     if (xhr.readyState === xhr.DONE) {
       if (xhr.status === 200) {
-          console.log("xhr response is:", xhr.response);
-          console.log("xhr responseText is:", xhr.responseText);
+        display_submitted_msg(responseText);
+        console.log("xhr response is:", xhr.response);
+        console.log("xhr responseText is:", xhr.responseText);
       }
     }
   }; // End of: xhr.onload = function () {
@@ -131,4 +132,8 @@ function putFormDataInObj(forWho, task) {
 
 } // End of: function putFormDataInObj()
 
+function display_submitted_msg(responseText) {
+  var span = document.getElementById("user_msg");
+  span.innerHTML = "The To Do data has been submitted.";
+}
 window.onload = init;
