@@ -52,7 +52,6 @@ function getFormData() {
     // let taskError = "Enter the due date.";
     document.getElementById("dueDate").innerHTML = taskError;
     return;
-    
   }
   document.getElementById("task_error").innerHTML = "";
 
@@ -96,14 +95,13 @@ function putFormDataInObj(forWho, task) {
   xhr.setRequestHeader("Content-type", "application/json");
   console.log('AFTER xhr.open(POST, url, true) AND xhr.setRequestHeader');
   
-  /*
-  // This might be for AJAX request and response.
-  xhr.onreadystatechange = function () { 
+  // Probably for AJAX request and response.
+  /*xhr.onreadystatechange = function () { 
       if (xhr.readyState == 4 && xhr.status == 200) {
-          var json = JSON.parse(xhr.responseText);
+          var todo_object = JSON.parse(xhr.responseText);
           // Data received from server, is in JSON format. Use: JSON.parse
           // - to turn string of JSON text into JavaScript object
-          console.log(json.email + ", " + json.password)
+          console.log(:todo_object is: " + todo_object)
       }
   }
   */
@@ -136,4 +134,5 @@ function display_submitted_msg(responseText) {
   var span = document.getElementById("user_msg");
   span.innerHTML = "The To Do data has been submitted.";
 }
+
 window.onload = init;
