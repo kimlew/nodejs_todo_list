@@ -17,6 +17,11 @@ label {
   
 }
 
+span.user_msg {
+  color: green;
+  font-size: 70%;
+  text-indent: 5px;
+}
 span.error {
   color: red;
   font-size: 70%;
