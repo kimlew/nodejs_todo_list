@@ -30,6 +30,11 @@ function init() {
   submitButton.onclick = getFormData;
 } // End of init()
 
+function display_submitted_msg(responseText) {
+  var span = document.getElementById("user_msg");
+  span.innerHTML = "The To Do data has been submitted.";
+}
+
 function getFormData() {
   var forWho = document.getElementById("forWho").value,
     task = document.getElementById("task").value,
@@ -129,10 +134,5 @@ function putFormDataInObj(forWho, task) {
   console.log("AFTER: xhr.send(aTodoItemAsString)");
 
 } // End of: function putFormDataInObj()
-
-function display_submitted_msg(responseText) {
-  var span = document.getElementById("user_msg");
-  span.innerHTML = "The To Do data has been submitted.";
-}
 
 window.onload = init;
