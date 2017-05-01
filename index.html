@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8"> 
+    <title> Todo List</title>
+    <link rel="stylesheet" type="text/css" href="styles/todo_list.css"/>
+  </head>
+
+  <body>
+    <div id="header">
+      <h2>Todo List</h2>
+    </div>
+  
+    <div id="content">
+      <p>
+        <ul id="todoList"></ul>
+      </p>
+      
+     <fieldset>
+      <form action="/" method="post" id="searchForm">
+        <p>
+          <!-- label for ="searchTerm"></label -->
+          <input id="searchTerm" name="searchTerm" type="search">
+          <input id="searchButton" type="button" value="Search">   
+        </p>     
+      </form>
+      <h5>Search Results</h5>
+        <p>
+          <div id="searchResultsList"></div>
+        </p>
+      </fieldset>
+
+      <fieldset>
+        <form id="taskForm">
+          <p> 
+            <label for ="forWho">For Who: </label>
+              <input type ="text" name="forWho" id="forWho">
+              <span class="error" id="forWho_error"</span>
+           </p>
+           
+          <p>
+            <label for ="task">Task: </label>
+              <input type="text" name="task" id="task">
+              <span class="error" id="task_error"</span>
+          </p>
+          
+          <p>
+            <label for ="dueDate">Due Date:</label>
+            <input type="date" id="dueDate" name="dueDate">
+          </p>
+          <p>
+            <input type="button" id="submitButton" value="Submit">
+          </p>
+        </form>
+    
+        <!-- h5>Submit Result</h5 -->
+        <div id="newTaskResult"></div>
+      </fieldset>
+    
+      <script type="text/javascript" src="scripts/form_validation_helpers.js"></script>
+      <script type="text/javascript" src="scripts/process_todo_data.js"></script>
+    
+    </div><!-- End tag for content -->
+  </body>
+  
+</html>

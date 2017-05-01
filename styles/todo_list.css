@@ -1,0 +1,42 @@
+body {
+  font: sans-serif;
+}
+
+fieldset {
+  max-width: 900px;
+  border: 1px solid #333;
+}
+
+form {
+  max-width: 800px;
+  margin: 0;
+  padding: 0 5px;
+}
+
+label {
+  
+}
+
+span.error {
+  color: red;
+  font-size: 70%;
+  text-indent: 5px;
+}
+
+input:invalid {
+  border: 1px solid red;
+}
+
+/*
+input:valid {
+  border: 1px solid green;
+}
+*/
+
+span.notDone {
+  background-color: #FFFACD;
+}
+
+span.delete {
+  background-color: #FFFACD;
+}
