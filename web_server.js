@@ -132,22 +132,7 @@ http.createServer(function(req, res) {
 
       console.log("IN req.on('end', function()) w body in HTML");
 
-      res.end(`
-        <!DOCTYPE html>
-        <html>
-          <head>
-            <title>Form Results</title>
-          </head>
-          
-          <body>
-            <h1>Your Form Results</h1>
-            <p>${body}</p>
-          </body>
-        </html>
-      `);
-      
-
-      
+      res.end();
       
     }); // End of req.on("end", function() {
   } // End of else if (req.method === "POST") {
