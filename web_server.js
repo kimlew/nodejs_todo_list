@@ -98,7 +98,8 @@ http.createServer(function(req, res) {
     fs.createReadStream(filename, "UTF-8").pipe(res);
     */
     //var SampleJsonData = JSON.stringify([{"ElementName":"ElementValue"}]);
-  }
+  } // End of: if (req.method === "GET") {
+  
   else if (req.method === "POST") {
     console.log("Method is POST?: ", req.method);
     
@@ -106,11 +107,12 @@ http.createServer(function(req, res) {
     
     req.on("data", function(chunk) {
       console.log("IN req.on('data', function(chunk))");
+      // body variable - is a JSON string
+      // To manipulate it and prepare it for insertion into db: turn into object.
+      
       body += chunk;
       console.log("body has: " + body);
-
-    });
-    
+    }); // End of req.on("data", function(chunk) {
      
     req.on("end", function() {
       // parse(body), etc. here.
@@ -123,19 +125,18 @@ http.createServer(function(req, res) {
       // TODO:  Take out HTML stuff and leave body - so just JSON
       // Since web server only knows how to talk to database - Must do
       // database stuff from node.js web server side.
-      // Use body var - since it is the data in JSON format - and get 
-      // parse() - that makes it into an object - need it in object form
-      // to be able to use object's properties to insert it into the db.
-      // 
       
-      res.writeHead(200, {"Content-Type": "text/html"});
+      // TODO:  Use body var - since it is the data in JSON string format.
+      // Use parse() - to make it into an object. Need it in object form
+      // to use its object properties - to INSERT INTO the db.
 
-      console.log("IN req.on('end', function()) w body in HTML");
-
-      res.end();
-      
+      //res.writeHead(200, {"Content-Type": "text/plain"});
+      console.log("IN req.on");
+      //res.send({body});
+      res.end({body});
     }); // End of req.on("end", function() {
-  } // End of else if (req.method === "POST") {
+    
+  } // End of: else if (req.method === "POST") {
   
 }).listen(port, serverUrl);
 
