@@ -34,10 +34,11 @@ var fs = require("fs");
 var path = require("path");
 var checkMimeType = true;
 
-var port = 3001; //8000;
-var serverUrl = "127.0.0.1"; // server IP: localhost
+var port = 3001; //TCP port- e.g. 8000;
+var serverUrl = "127.0.0.1"; // Server address/Server IP: localhost
 
-http.createServer(function(req, res) {
+http.createServer(function(req, res) { // Called with each request. Callback 
+   // function passes HTTP req, HTTP res.
   console.log("Request received-Am IN http.createServer(function(req, res) ");
 	
   if (req.method === "GET") {
@@ -115,30 +116,35 @@ http.createServer(function(req, res) {
     }); // End of req.on("data", function(chunk) {
      
     req.on("end", function() {
-      // parse(body), etc. here.
-      // Do validations on the resulting object BEFORE it is INSERT into db
-      // Do the database INSERT stuff here.
-      // There might be a Date class in standard JavaScript library with 
-      // parse date or date validation thing in Look up: JavaScript date class.
-      // I should set status code 400 if the date format is incorrect.
-      
-      // TODO:  Take out HTML stuff and leave body - so just JSON
-      // Since web server only knows how to talk to database - Must do
-      // database stuff from node.js web server side.
-      
+      // TODO: parse(body), etc. here.
       // TODO:  Use body var - since it is the data in JSON string format.
       // Use parse() - to make it into an object. Need it in object form
       // to use its object properties - to INSERT INTO the db.
+      
+      // TODO: Remove HTML stuff and leave body - so just JSON
+      // TODO: Validations on the resulting object BEFORE it is INSERT into db
+      // TODO: database INSERT stuff here.
+      // Since web server only knows how to talk to database - Must do
+      // database stuff from node.js web server side.
+      
+      // TODO: For date: There might be a Date class in standard JavaScript library 
+      // with parse date or date validation. Look up: JavaScript date class.
+      // TODO: Set status code to 400 - if the date format is NOT correct.
 
-      //res.writeHead(200, {"Content-Type": "text/plain"});
+      // HTTP header specifying the content type of the response
+      res.writeHead(200, {"Content-Type": "text/plain"});
+      // Write the message with response.write and end the HTTP server response 
+      // object to render message to the browser. 
+      // i.e., response.end - sends the message to browser 
+
       console.log("IN req.on");
-      //res.send({body});
-      res.end({body});
+      res.write(body);
+      res.end(); // Tells HTTP Protocol to end the response.
     }); // End of req.on("end", function() {
     
   } // End of: else if (req.method === "POST") {
   
-}).listen(port, serverUrl);
+}).listen(port, serverUrl); // TCP port and server address
 
 //console.log("Web Server running at http://localhost:3000");
 //console.log("There is now a server running on http localhost.");
