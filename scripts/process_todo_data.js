@@ -45,33 +45,31 @@ function getFormData() {
     dueDateError = "Enter the due date.";
 
   if (isFormFieldFilledIn(forWho) === false) {
-    // let taskError = "Enter who the task is for."; 
+    // Assign taskError = "Enter who the task is for."; 
     document.getElementById("forWho_error").innerHTML = forWhoError;
     return; // Stops execution of isFormFieldEmpty() function.
   }
-  document.getElementById("forWho_error").innerHTML = "";
 
   if (isFormFieldFilledIn(task) === false) {
-    // let taskError = "Enter the task.";
+    // Assign taskError = "Enter the task.";
     document.getElementById("task_error").innerHTML = taskError;
     return;
   }
   
   if (isFormFieldFilledIn(dueDate) === false) {
-    // let taskError = "Enter the due date.";
-    document.getElementById("dueDate").innerHTML = taskError;
+    // Assign dueDateError = "Enter the due date.";
+    document.getElementById("dueDate").innerHTML = dueDateError;
     return;
   }
-  document.getElementById("task_error").innerHTML = "";
 
   putFormDataInObj(forWho, task);
 } // End of: getFormData()
 
-function putFormDataInObj(forWho, task) {
+function putFormDataInObj(forWho, task, dueDate) {
   console.log("YOU have made it into putFormDataInObj()");
   
   // Create object for form data.
-  var aTodoItem = new TodoItem(forWho, task);
+  var aTodoItem = new TodoItem(forWho, task, dueDate);
   console.log("aTodoItem is: " + aTodoItem);
   
   //stringify - takes object and turns into string
