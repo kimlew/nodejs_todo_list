@@ -1,5 +1,20 @@
+/* To Do List */
+
+h3 {
+  color: #808000; /* Olive */
+}
+
+h4 {
+  color: #307D7E; /* greenish blue */
+}
+
+h5 {
+  color: #617C58; /* Hazel green */
+}
+
 body {
   font: sans-serif;
+  color: #B87333; /* Copper */
 }
 
 fieldset {
@@ -13,13 +28,9 @@ form {
   padding: 0 5px;
 }
 
-label {
-  
-}
-
 span.user_msg {
-  color: green;
-  font-size: 70%;
+  color: #800080; /* purple */
+  font-size: 50%;
   text-indent: 5px;
 }
 span.error {
