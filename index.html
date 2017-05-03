@@ -3,12 +3,12 @@
 	<head>
 		<meta charset="utf-8"> 
     <title> Todo List</title>
-    <link rel="stylesheet" type="text/css" href="styles/todo_list.css"/>
+    <link rel="stylesheet" type="text/css" href="/styles/todo_list.css"/>
   </head>
 
   <body>
     <div id="header">
-      <h2>To Do List</h2>
+      <h3>To Do List</h3>
     </div>
   
     <div id="content">
@@ -24,6 +24,7 @@
           <input id="searchButton" type="button" value="Search">   
         </p>     
       </form>
+      
       <h5>Search Results</h5>
         <p>
           <div id="searchResultsList"></div>
@@ -31,6 +32,7 @@
       </fieldset>
 
       <fieldset>
+        <h4>Enter a To Do</h4>
         <form id="taskForm">
           <p> 
             <label for ="forWho">For Who: </label>
@@ -51,7 +53,7 @@
           
           <p>
             <input type="button" id="submitButton" value="Submit">
-            <span name="user_msg" id="user_msg"></span>
+            <span id="user_msg" name="user_msg"></span>
           </p>
         </form>
     
