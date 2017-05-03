@@ -30,9 +30,9 @@ function init() {
   submitButton.onclick = getFormData;
 } // End of init()
 
-function display_submitted_msg(responseText) {
+function display_submitted_msg(respText) {
   var span = document.getElementById("user_msg");
-  span.innerHTML = "The To Do data has " + responseText +" been submitted.";
+  span.innerHTML = "The To Do data has " + respText +" been submitted.";
 }
 
 function getFormData() {
@@ -88,7 +88,6 @@ function putFormDataInObj(forWho, task, dueDate) {
   // via POST to web server.
   // Use the XMLHttpRequest constructor - to create a new request object.
   var xhr = new XMLHttpRequest();
-  console.log("xhr: " + xhr);
   var url = "url"; // This would be URL for web server to get data from.
   // var url = "http://someserver.com/data.json";
   
@@ -101,7 +100,9 @@ function putFormDataInObj(forWho, task, dueDate) {
   // HTTP GET request - the standard means of retrieving HTTP data.
   xhr.open("POST", url, true); // request.open("GET", url);
   xhr.setRequestHeader("Content-type", "application/json");
-  console.log('AFTER xhr.open(POST, url, true) AND xhr.setRequestHeader');
+  
+  console.log("xhr is: " + xhr);
+  console.log('AFTER xhr.open(POST, url, true) AND xhr.setRequestHeader\n');
   
   // Probably for AJAX request and response.
   /*xhr.onreadystatechange = function () { 
@@ -114,15 +115,14 @@ function putFormDataInObj(forWho, task, dueDate) {
   }
   */
   // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/responseText
-  // Set up an onload Handler - is called when the data arrives (instead
-  //  of just waiting for the data.
-  // Handler checks: If DONE, i.e., if return code is 200/OK, continue.
-  // responseText property of request object - holds data from 
-  /// the HTTP GET retrieval.
+  // Set up an onload Handler - is called when the data arrives (instead of
+  // waiting for the data. Handler checks: If DONE, i.e., if return code is 
+  // 200/OK, then continue.
+  // request object's responseText property - holds data from HTTP GET retrieval
   xhr.onload = function () {
     if (xhr.readyState === xhr.DONE) {
       if (xhr.status === 200) {
-        display_submitted_msg(responseText);
+        display_submitted_msg(xhr.responseText);
         console.log("xhr response is:", xhr.response);
         console.log("xhr responseText is:", xhr.responseText);
       }
