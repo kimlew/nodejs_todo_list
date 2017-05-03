@@ -32,14 +32,17 @@ function init() {
 
 function display_submitted_msg(responseText) {
   var span = document.getElementById("user_msg");
-  span.innerHTML = "The To Do data has been submitted.";
+  span.innerHTML = "The To Do data has " + responseText +" been submitted.";
 }
 
 function getFormData() {
   var forWho = document.getElementById("forWho").value,
     task = document.getElementById("task").value,
-    forWhoError = "Enter who the task is for.",
-    taskError = "Enter the task.";
+    dueDate = document.getElementById("dueDate").value;
+    
+  var forWhoError = "Enter who the task is for.",
+    taskError = "Enter the task.",
+    dueDate = "Enter the due date.";
 
   if (isFormFieldFilledIn(forWho) === false) {
     // let taskError = "Enter who the task is for."; 
@@ -52,6 +55,7 @@ function getFormData() {
     // let taskError = "Enter the task.";
     document.getElementById("task_error").innerHTML = taskError;
     return;
+  }
   
   if (isFormFieldFilledIn(dueDate) === false) {
     // let taskError = "Enter the due date.";
