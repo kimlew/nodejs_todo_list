@@ -62,10 +62,11 @@ function getFormData() {
     return;
   }
 
-  putFormDataInObj(forWho, task);
+  putFormDataInObj(forWho, task, dueDate);
 } // End of: getFormData()
 
 function putFormDataInObj(forWho, task, dueDate) {
+  console.log("dueDate is: " + dueDate);
   console.log("YOU have made it into putFormDataInObj()");
   
   // Create object for form data.
