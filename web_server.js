@@ -39,6 +39,7 @@ var serverUrl = "127.0.0.1"; // Server address/Server IP: localhost
 
 http.createServer(function(req, res) { // Called with each request. Callback 
    // function passes HTTP req, HTTP res.
+   // req and res parameters -in ready state when callback function is invoked.
   console.log("Request received-Am IN http.createServer(function(req, res) ");
 	
   if (req.method === "GET") {
@@ -107,7 +108,7 @@ http.createServer(function(req, res) { // Called with each request. Callback
     var body = "";
     
     req.on("data", function(chunk) {
-      console.log("IN req.on('data', function(chunk))");
+      console.log("IN req.on - that passes data FOR body with chunks)");
       // body variable - is a JSON string
       // To manipulate it and prepare it for insertion into db: turn into object.
       
@@ -132,14 +133,14 @@ http.createServer(function(req, res) { // Called with each request. Callback
       // TODO: Set status code to 400 - if the date format is NOT correct.
 
       // HTTP header specifying the content type of the response
+      // Write the message - with res.write() 
+      // End the HTTP server response object - with res.end() - to send/render
+      // message to the browser 
+      console.log("IN req.on - with end()" );
+      
       res.writeHead(200, {"Content-Type": "text/plain"});
-      // Write the message with response.write and end the HTTP server response 
-      // object to render message to the browser. 
-      // i.e., response.end - sends the message to browser 
-
-      console.log("IN req.on");
       res.write(body);
-      res.end(); // Tells HTTP Protocol to end the response.
+      res.end(); // Tells HTTP Protocol - to end the response.
     }); // End of req.on("end", function() {
     
   } // End of: else if (req.method === "POST") {
