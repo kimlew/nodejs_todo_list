@@ -42,7 +42,7 @@ function getFormData() {
     
   var forWhoError = "Enter who the task is for.",
     taskError = "Enter the task.",
-    dueDate = "Enter the due date.";
+    dueDateError = "Enter the due date.";
 
   if (isFormFieldFilledIn(forWho) === false) {
     // let taskError = "Enter who the task is for."; 
