@@ -105,7 +105,7 @@ http.createServer(function(req, res) { // Called with each request. Callback
   else if (req.method === "POST") {
     console.log("Method is POST?: ", req.method);
     
-    var body = "";
+    var body = ""; // String that will have POST JSON data added to it in chunks.
     
     req.on("data", function(chunk) {
       console.log("IN req.on - that passes data FOR body with chunks)");
@@ -137,11 +137,16 @@ http.createServer(function(req, res) { // Called with each request. Callback
       // End the HTTP server response object - with res.end() - to send/render
       // message to the browser 
       console.log("IN req.on - with end()" );
+          
+      makeJsonIntoObj(body);
+      //todoDataObj = JSON.parse(body);
+      //console.log("todoDataObj is: " + todoDataObj);
       
       res.writeHead(200, {"Content-Type": "text/plain"});
       res.write(body);
       res.end(); // Tells HTTP Protocol - to end the response.
     }); // End of req.on("end", function() {
+
     
   } // End of: else if (req.method === "POST") {
   
@@ -150,6 +155,13 @@ http.createServer(function(req, res) { // Called with each request. Callback
 //console.log("Web Server running at http://localhost:3000");
 //console.log("There is now a server running on http localhost.");
 console.log("Starting web server at " + serverUrl + ":" + port);
+
+// Turn var body JSON string - into an object - as prep before going to db.
+function makeJsonIntoObj(body) {
+  todoDataObj = JSON.parse(body);
+  console.log("todoDataObj is: " + todoDataObj);
+  
+}
 
 function getFile(localPath, res, mimeType) {
 	fs.readFile(localPath, function(err, contents) {
