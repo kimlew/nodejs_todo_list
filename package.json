@@ -1,4 +1,9 @@
 {
+  "main": "web_server.js",
+  "scripts": {
+    "start": "node web_server.js"
+  },
+  
   "dependencies": {
     "pg": "6.x"
   }
