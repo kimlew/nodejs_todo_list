@@ -3,8 +3,18 @@
   "scripts": {
     "start": "node web_server.js"
   },
-  
   "dependencies": {
     "pg": "6.x"
-  }
+  },
+  "name": "nodejs-todo-list",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://kimslew@bitbucket.org/kimslew/nodejs_todo_list.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/kimslew/nodejs_todo_list#readme",
+  "description": ""
 }
