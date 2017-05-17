@@ -13,8 +13,8 @@
     "url": "git+https://kimslew@bitbucket.org/kimslew/nodejs_todo_list.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Kim Lew",
   "license": "ISC",
   "homepage": "https://bitbucket.org/kimslew/nodejs_todo_list#readme",
-  "description": ""
+  "description": "To Do List app-JavaScript, node.js, Postgres"
 }
