@@ -34,7 +34,7 @@ var fs = require("fs");
 var path = require("path");
 var checkMimeType = true;
 
-var port = 80;  // 3001; //TCP port- e.g. 8000;
+var port = process.env.PORT || 3001;  // 3001; //TCP port- e.g. 80;
 var serverUrl = "127.0.0.1"; // Server address/Server IP: localhost
 
 http.createServer(function(req, res) { // Called with each request. Callback 
