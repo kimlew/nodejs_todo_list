@@ -150,7 +150,9 @@ http.createServer(function(req, res) { // Called with each request. Callback
     
   } // End of: else if (req.method === "POST") {
   
-}).listen(port, serverUrl); // TCP port and server address
+}).listen(port /*, serverUrl */); // TCP port and server address - DON'T 
+// include serverUrl param when deploying to Heroku
+
 
 //console.log("Web Server running at http://localhost:3000");
 //console.log("There is now a server running on http localhost.");
