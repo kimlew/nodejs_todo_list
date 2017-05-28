@@ -35,7 +35,7 @@ var path = require("path");
 var checkMimeType = true;
 
 var port = process.env.PORT || 3001;  // 3001; //TCP port- e.g. 80;
-var serverUrl = "127.0.0.1"; // Server address/Server IP: localhost
+var serverIpAddress = "127.0.0.1"; // Server IP address: localhost
 
 http.createServer(function(req, res) { // Called with each request. Callback 
    // function passes HTTP req, HTTP res.
@@ -142,6 +142,10 @@ http.createServer(function(req, res) { // Called with each request. Callback
       //todoDataObj = JSON.parse(body);
       //console.log("todoDataObj is: " + todoDataObj);
       
+      // Call  insertFormDataToDb() here
+      // insertFormDataToDb();
+      
+      // Confirmation that everything before this worked fine.
       res.writeHead(200, {"Content-Type": "text/plain"});
       res.write(body);
       res.end(); // Tells HTTP Protocol - to end the response.
@@ -150,8 +154,8 @@ http.createServer(function(req, res) { // Called with each request. Callback
     
   } // End of: else if (req.method === "POST") {
   
-}).listen(port /*, serverUrl */); // TCP port and server address - DON'T 
-// include serverUrl param when deploying to Heroku
+}).listen(port /*, serverIpAddress */); // TCP port and server IP address - DON'T 
+// exclude 2nd param when deploying to Heroku
 
 
 //console.log("Web Server running at http://localhost:3000");
@@ -164,6 +168,10 @@ function makeJsonIntoObj(body) {
   console.log("todoDataObj is: " + todoDataObj);
   
 }
+
+// insertFormDataToDb()
+
+
 
 function getFile(localPath, res, mimeType) {
 	fs.readFile(localPath, function(err, contents) {
