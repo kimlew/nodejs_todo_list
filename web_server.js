@@ -28,7 +28,7 @@ var config = require('./config');
 
 const pg = require('pg');
 
-var url = require('url');
+//var url = require('url');
 
 // FROM: formServer.js - node.js Essent Train
 var http = require("http");
@@ -120,18 +120,16 @@ http.createServer(function(req, res) { // Called with each request. Callback
     }); // End of req.on("data", function(chunk) {
      
     req.on("end", function() {
+      // Since web server only knows how to talk to db - MUST do
+      // db stuff from node.js web server side.
+
+      // TODO: Remove old HTML stuff and leave body - so just JSON      
       // TODO: parse(body), etc. here.
-      // TODO:  Use body var - since it is the data in JSON string format.
+      // TODO: Use body var - since it is the data in JSON string format.
       // Use parse() - to make it into an object. Need it in object form
       // to use its object properties - to INSERT INTO the db.
-      
-      // TODO: Remove HTML stuff and leave body - so just JSON
-      // TODO: Validations on the resulting object BEFORE it is INSERT into db
-      // TODO: database INSERT stuff here.
-      // Since web server only knows how to talk to database - Must do
-      // database stuff from node.js web server side.
-      
-      // TODO: For date: There might be a Date class in standard JavaScript library 
+         
+      // TODO: For DATE: - might be a Date class in standard JavaScript library 
       // with parse date or date validation. Look up: JavaScript date class.
       // TODO: Set status code to 400 - if the date format is NOT correct.
 
@@ -141,10 +139,12 @@ http.createServer(function(req, res) { // Called with each request. Callback
       // message to the browser 
       console.log("IN req.on - with end()" );
           
-      makeJsonIntoObj(body);
-      //todoDataObj = JSON.parse(body);
-      //console.log("todoDataObj is: " + todoDataObj);
+      // Turn var body JSON string - into an object - as prep before going to db.
+      var todoDataObj = JSON.parse(body);
+      console.log("todoDataObj is: " + todoDataObj);
       
+      // TODO: Do Validations - on resulting object BEFORE INSERT INTO db
+      // TODO: INSERT INTO db stuff here.
       // Call  insertFormDataToDb() here
       // insertFormDataToDb();
       
@@ -165,12 +165,6 @@ http.createServer(function(req, res) { // Called with each request. Callback
 //console.log("There is now a server running on http localhost.");
 console.log("Starting web server at " + serverUrl + ":" + port);
 
-// Turn var body JSON string - into an object - as prep before going to db.
-function makeJsonIntoObj(body) {
-  todoDataObj = JSON.parse(body);
-  console.log("todoDataObj is: " + todoDataObj);
-  
-}
 
 // insertFormDataToDb()
 
