@@ -11,13 +11,6 @@
 //});
 
 /*
-// Require express and create an express app
-var express = require('express');
-var app = express();
-
-// By default, express does NOT parse the body so we need this additional middleware 
-var bodyParser = require('body-parser');
-
 var querystring = require('querystring');
 var async = require('async');
 
@@ -167,7 +160,6 @@ console.log("Starting web server at " + serverUrl + ":" + port);
 
 
 // insertFormDataToDb()
-
 
 
 function getFile(localPath, res, mimeType) {
