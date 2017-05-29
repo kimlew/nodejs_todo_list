@@ -19,7 +19,8 @@ var storage = require('./storage.js');
 var config = require('./config');
 */
 
-const pg = require('pg');
+var pg = require("pg");
+//const pg = require('pg'); // ES6 feature 'const'
 
 //var url = require('url');
 
@@ -33,11 +34,11 @@ var checkMimeType = true;
 var port = process.env.PORT || 3001;  // 3001; //TCP port- e.g. 80;
 var serverIpAddress = "127.0.0.1"; // Server IP address: localhost
 
-http.createServer(function(req, res) { // Called with each request. Callback 
+http.createServer(function (req, res) { // Called with each request. Callback
    // function passes HTTP req, HTTP res.
    // req and res parameters -in ready state when callback function is invoked.
-  console.log("Request received-Am IN http.createServer(function(req, res) ");
-	
+   console.log("Request received-Am IN http.createServer(function(req, res) ");
+  
   if (req.method === "GET") {
     var filename = req.url || "/index.html"; // Defaults to index.html
     // http://localhost:3001 OR http://localhost:3001/ 
@@ -91,7 +92,7 @@ http.createServer(function(req, res) { // Called with each request. Callback
       console.log("Invalid file extension detected: " + ext + " (" + filename + ")")
     }
     
-	  /* These are taken care of now in getFile() 
+    /* These are taken care of now in getFile() 
     res.writeHead(200, {"Content-Type": "text/html"});
     fs.createReadStream(filename, "UTF-8").pipe(res);
     */
@@ -116,15 +117,15 @@ http.createServer(function(req, res) { // Called with each request. Callback
       // Since web server only knows how to talk to db - MUST do
       // db stuff from node.js web server side.
 
-      // TODO: Remove old HTML stuff and leave body - so just JSON      
-      // TODO: parse(body), etc. here.
-      // TODO: Use body var - since it is the data in JSON string format.
+      // DO: Remove old HTML stuff and leave body - so just JSON      
+      // DO: parse(body), etc. here.
+      // DO: Use body var - since it is the data in JSON string format.
       // Use parse() - to make it into an object. Need it in object form
       // to use its object properties - to INSERT INTO the db.
          
-      // TODO: For DATE: - might be a Date class in standard JavaScript library 
+      // DO: For DATE: - might be a Date class in standard JavaScript library 
       // with parse date or date validation. Look up: JavaScript date class.
-      // TODO: Set status code to 400 - if the date format is NOT correct.
+      // DO: Set status code to 400 - if the date format is NOT correct.
 
       // HTTP header specifying the content type of the response
       // Write the message - with res.write() 
@@ -133,11 +134,11 @@ http.createServer(function(req, res) { // Called with each request. Callback
       console.log("IN req.on - with end()" );
           
       // Turn var body JSON string - into an object - as prep before going to db.
-      var todoDataObj = JSON.parse(body);
-      console.log("todoDataObj is: " + todoDataObj);
+      var DODataObj = JSON.parse(body);
+      console.log("DODataObj is: " + DODataObj);
       
-      // TODO: Do Validations - on resulting object BEFORE INSERT INTO db
-      // TODO: INSERT INTO db stuff here.
+      // DO: Do Validations - on resulting object BEFORE INSERT INTO db
+      // DO: INSERT INTO db stuff here.
       // Call  insertFormDataToDb() here
       // insertFormDataToDb();
       
@@ -146,10 +147,9 @@ http.createServer(function(req, res) { // Called with each request. Callback
       res.write(body);
       res.end(); // Tells HTTP Protocol - to end the response.
     }); // End of req.on("end", function() {
-
     
   } // End of: else if (req.method === "POST") {
-  
+
 }).listen(port /*, serverIpAddress */); // TCP port and server IP address - DON'T 
 // exclude 2nd param when deploying to Heroku
 
@@ -161,19 +161,3 @@ console.log("Starting web server at " + serverUrl + ":" + port);
 
 // insertFormDataToDb()
 
-
-function getFile(localPath, res, mimeType) {
-	fs.readFile(localPath, function(err, contents) {
-		if(!err) {
-			res.setHeader("Content-Length", contents.length);
-			if (mimeType != undefined) {
-				res.setHeader("Content-Type", mimeType);
-			}
-			res.statusCode = 200;
-			res.end(contents);
-		} else {
-			res.writeHead(500);
-			res.end();
-		}
-	});
-}
