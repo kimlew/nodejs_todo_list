@@ -27,6 +27,8 @@ var storage = require('./storage.js');
 var config = require('./config');
 */
 
+const pg = require('pg');
+
 // FROM: formServer.js - node.js Essent Train
 var http = require("http");
 var fs = require("fs");
