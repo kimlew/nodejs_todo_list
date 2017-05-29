@@ -1,8 +1,13 @@
 /* KIM's starting point - for To Do List */
-/* Create an express.js - Hello World server */
 
+// For JSLint:
+/*jslint node: true */
+
+// For JSHint:
+/*jshint strict:false */
+
+//Run JSHint but accept ES6 syntax.
 /* jshint esnext: true */
-/* Run jshint but accept ES6 syntax */
 
 // Test statement: console.log("Hello world")
 // Test communic w port: Run express server on port 8080
@@ -35,9 +40,9 @@ var port = process.env.PORT || 3001;  // 3001; //TCP port- e.g. 80;
 var serverIpAddress = "127.0.0.1"; // Server IP address: localhost
 
 http.createServer(function (req, res) { // Called with each request. Callback
-   // function passes HTTP req, HTTP res.
-   // req and res parameters -in ready state when callback function is invoked.
-   console.log("Request received-Am IN http.createServer(function(req, res) ");
+  // function passes HTTP req, HTTP res.
+  // req and res parameters -in ready state when callback function is invoked.
+  console.log("Request received-Am IN http.createServer(function(req, res) ");
   
   if (req.method === "GET") {
     var filename = req.url || "/index.html"; // Defaults to index.html
@@ -56,17 +61,17 @@ http.createServer(function (req, res) { // Called with each request. Callback
     var localPath = __dirname;
   
     var validExtensions = {
-      ".html" : "text/html",
-      ".js": "application/javascript",
-      ".css": "text/css",
-      ".txt": "text/plain",
-      ".jpg": "image/jpeg",
-      ".gif": "image/gif",
-      ".png": "image/png",
-      ".woff": "application/font-woff",
-      ".woff2": "application/font-woff2",
-      ".ico": "image/x-icon"
-    };
+            ".html" : "text/html",
+            ".js": "application/javascript",
+            ".css": "text/css",
+            ".txt": "text/plain",
+            ".jpg": "image/jpeg",
+            ".gif": "image/gif",
+            ".png": "image/png",
+            ".woff": "application/font-woff",
+            ".woff2": "application/font-woff2",
+            ".ico": "image/x-icon"
+  };
 
     var validMimeType = true;
     var mimeType = validExtensions[ext];
@@ -153,11 +158,9 @@ http.createServer(function (req, res) { // Called with each request. Callback
 }).listen(port /*, serverIpAddress */); // TCP port and server IP address - DON'T 
 // exclude 2nd param when deploying to Heroku
 
-
 //console.log("Web Server running at http://localhost:3000");
 //console.log("There is now a server running on http localhost.");
 console.log("Starting web server at " + serverUrl + ":" + port);
-
 
 // insertFormDataToDb()
 
