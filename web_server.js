@@ -1,5 +1,6 @@
 /* KIM's starting point - for To Do List */
 /* Create an express.js - Hello World server */
+
 /* jshint esnext: true */
 /* Run jshint but accept ES6 syntax */
 
@@ -14,8 +15,6 @@
 var express = require('express');
 var app = express();
 
-var url = require('url');
-
 // By default, express does NOT parse the body so we need this additional middleware 
 var bodyParser = require('body-parser');
 
@@ -28,6 +27,8 @@ var config = require('./config');
 */
 
 const pg = require('pg');
+
+var url = require('url');
 
 // FROM: formServer.js - node.js Essent Train
 var http = require("http");
