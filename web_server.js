@@ -147,6 +147,19 @@ http.createServer(function (req, res) { // Called with each request. Callback
       // Call  insertFormDataToDb() here
       // insertFormDataToDb();
       
+      pg.defaults.ssl = true;
+      pg.connect(process.env.DATABASE_URL, function(err, client) {
+  
+        if (err) throw err;
+          console.log('Connected to Postgres! Getting schemas...');
+
+          client
+            .query('SELECT table_schema,table_name FROM information_schema.tables;')
+            .on('row', function(row) {
+            console.log(JSON.stringify(row));
+          });
+      });
+      
       // Confirmation that everything before this worked fine.
       res.writeHead(200, {"Content-Type": "text/plain"});
       res.write(body);
