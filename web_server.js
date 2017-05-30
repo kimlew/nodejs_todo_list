@@ -39,6 +39,8 @@ var checkMimeType = true;
 var port = process.env.PORT || 3001;  // 3001; //TCP port- e.g. 80;
 var serverIpAddress = "127.0.0.1"; // Server IP address: localhost
 
+var connectionStr = process.env.DATABASE_URL || 'postgres://localhost:5000/';
+
 http.createServer(function (req, res) { // Called with each request. Callback
   // function passes HTTP req, HTTP res.
   // req and res parameters -in ready state when callback function is invoked.
@@ -148,10 +150,10 @@ http.createServer(function (req, res) { // Called with each request. Callback
       // insertFormDataToDb();
       
       pg.defaults.ssl = true;
-      pg.connect(process.env.DATABASE_URL, function(err, client) {
+      pg.connect(connectionStr, function(err, client) {
   
         if (err) throw err;
-          console.log('Connected to Postgres! Getting schemas...');
+          console.log('Connected to Postgres. Getting schemas...');
 
           client
             .query('SELECT table_schema,table_name FROM information_schema.tables;')
