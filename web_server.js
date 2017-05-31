@@ -149,45 +149,48 @@ http.createServer(function (req, res) { // Called with each request. Callback
       // Call  insertFormDataToDb() here
       // insertFormDataToDb();
       
+      pg.defaults.ssl = true; // Sort of like HTTPS - but for your communication
+      // with your database. Might be a standard on Heroku and most prod environs.
       
-      // NICE TO HAVE: Check for if table exists - If not, create a table.
-      var createTableQueryStr = 'CREATE TABLE items(id SERIAL PRIMARY KEY, text VARCHAR(40) not null, complete BOOLEAN)');
-      pg.defaults.ssl = true;
-      
-      // Create a new instance of Client to interact with the database.
-      // Establish communication with it via the connect() method.
-      var client = new pg.Client(connectionStr);
-      client.connect();
-      
+      // Create a new instance of the database Client to interact with the
+      // database. Establish communication with it via the connect() method.
+      // Client is sorta like - dbConnection variable
+
+      // AFTER I created the database, run this portion to test if connecting
+      // to the db. 
+      // information_schema.tables - already exist - so something should be
+      // returned.
       // SELECT
       pg.connect(connectionStr, function(err, client) {
         if (err) throw err;
-          console.log('Connected to Postgres. Getting schemas...');
+        console.log('Connected to Postgres.');
 
         // Run a SQL query via the query() method
-          client
-            .query('SELECT table_schema,table_name FROM information_schema.tables;')
-            .on('row', function(row) {
+        client
+          .query('SELECT table_schema,table_name FROM information_schema.tables;')
+          .on('row', function(row) {
             console.log(JSON.stringify(row));
           });
-      });      
-          
+      });  // End of: pg.connect(connectionStr, function(err, client) {     
+      
+      /*
       // INSERT - With your Postgres server up and running on port 5000, 
       // make a database connection with the pg library:
       var insertQueryStr = "INSERT INTO ";
-      var query = client.query(insertQueryStr, function (error, result) {
 
-      
-      // i.e., Close communication with client object? via the end() method.
-      client.end()
-          
+      pg.connect(connectionStr, function(err, client) {
+        if (err) throw err;
+        console.log('Connected to Postgres.');
+
+        // Doing an INSERT
+        client.query(insertQueryStr);
       });
       
       // Confirmation that everything before this worked fine.
       res.writeHead(200, {"Content-Type": "text/plain"});
       res.write(body);
       res.end(); // Tells HTTP Protocol - to end the response.
-      
+      */
       
     }); // End of req.on("end", function() {
     
