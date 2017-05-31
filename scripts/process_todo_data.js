@@ -120,12 +120,10 @@ function putFormDataInObj(forWho, task, dueDate) {
   // 200/OK, then continue.
   // request object's responseText property - holds data from HTTP GET retrieval
   xhr.onload = function () {
-    if (xhr.readyState === xhr.DONE) {
-      if (xhr.status === 200) {
+    if (xhr.readyState === xhr.DONE && xhr.status === 200) {
         display_submitted_msg(xhr.responseText);
         console.log("xhr response is:", xhr.response);
         console.log("xhr responseText is:", xhr.responseText);
-      }
     }
   }; // End of: xhr.onload = function () {
 
