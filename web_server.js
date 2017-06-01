@@ -132,8 +132,8 @@ http.createServer(function (req, res) { // Called with each request.
       console.log("IN req.on - with end()" );
           
       // Turn var body JSON string - into an object - as prep before going to db.
-      var DODataObj = JSON.parse(body);
-      console.log("DODataObj is: " + DODataObj);
+      var dataObj = JSON.parse(body);
+      console.log("dataObj is: " + dataObj);
       
       // DO: Do Validations - on resulting object BEFORE INSERT INTO db
       // DO: INSERT INTO db stuff here.
