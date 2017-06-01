@@ -38,23 +38,22 @@ var serverIpAddress = "127.0.0.1"; // Server IP address: localhost
 
 var connectionStr = process.env.DATABASE_URL || 'postgres://localhost:5000/';
 
-http.createServer(function (req, res) { // Called with each request. Callback
-  // function passes HTTP req, HTTP res.
+http.createServer(function (req, res) { // Called with each request. 
+  // Callback function passes HTTP req, HTTP res.
   // req and res parameters -in ready state when callback function is invoked.
-  console.log("Request received-Am IN http.createServer(function(req, res) ");
   
   if (req.method === "GET") {
     var filename = req.url || "/index.html"; // Defaults to index.html
-    // http://localhost:3001 OR http://localhost:3001/ 
-    // OR http://localhost:3001/index.html
+    // http://localhost:3001 OR http://localhost:3001/ OR
+    // http://localhost:3001/index.html
     
-    // Test if filename === /  - which is root URL which is equivalent to index.html
+    // Test if filename === /
+    //  / is root URL - which is equivalent to index.html
     if (filename === "/") {
        filename = "/index.html"; 
     }
 	
-    console.log("Method is GET?: ", req.method);
-    console.log("URL is: ", req.url);
+    console.log("Method is GET?: ", req.method, " URL is: ", req.url);
         
     var ext = path.extname(filename);
     var localPath = __dirname;
@@ -81,8 +80,9 @@ http.createServer(function (req, res) { // Called with each request. Callback
 
     if (validMimeType) {
       localPath += filename;
+      
       fs.exists(localPath, function(exists) {
-        if(exists) {
+        if (exists) {
           console.log("Serving file: " + localPath);
           getFile(localPath, res, mimeType);
         } else {
@@ -90,17 +90,11 @@ http.createServer(function (req, res) { // Called with each request. Callback
           res.writeHead(404);
           res.end();
         }
-      });
-    } 
+      }); // End of:fs.exists(localPath, function(exists) {
+    } // End of: if (validMimeType) {
     else {
       console.log("Invalid file extension detected: " + ext + " (" + filename + ")")
     }
-    
-    /* These are taken care of now in getFile() 
-    res.writeHead(200, {"Content-Type": "text/html"});
-    fs.createReadStream(filename, "UTF-8").pipe(res);
-    */
-    //var SampleJsonData = JSON.stringify([{"ElementName":"ElementValue"}]);
   } // End of: if (req.method === "GET") {
   
   else if (req.method === "POST") {
