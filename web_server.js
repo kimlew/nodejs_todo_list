@@ -203,5 +203,21 @@ http.createServer(function (req, res) { // Called with each request. Callback
 //console.log("There is now a server running on http localhost.");
 console.log("Starting web server at " + serverUrl + ":" + port);
 
+function getFile(localPath, res, mimeType) {
+	fs.readFile(localPath, function(err, contents) {
+		if(!err) {
+			res.setHeader("Content-Length", contents.length);
+			if (mimeType != undefined) {
+				res.setHeader("Content-Type", mimeType);
+			}
+			res.statusCode = 200;
+			res.end(contents);
+		} else {
+			res.writeHead(500);
+			res.end();
+		}
+	});
+}
+
 // insertFormDataToDb()
 
