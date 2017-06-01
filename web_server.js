@@ -192,7 +192,7 @@ http.createServer(function (req, res) { // Called with each request.
 
 //console.log("Web Server running at http://localhost:3000");
 //console.log("There is now a server running on http localhost.");
-console.log("Starting web server at " + serverUrl + ":" + port);
+console.log("Starting web server at: " + port);
 
 function getFile(localPath, res, mimeType) {
 	fs.readFile(localPath, function(err, contents) {
