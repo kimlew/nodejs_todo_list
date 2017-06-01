@@ -161,7 +161,7 @@ http.createServer(function (req, res) { // Called with each request. Callback
       // information_schema.tables - already exist - so something should be
       // returned.
       // SELECT
-      pg.connect(connectionStr, function(err, client) {
+      pg.connect(connectionStr, function(err, client)) {
         if (err) throw err;
         console.log('Connected to Postgres.');
 
