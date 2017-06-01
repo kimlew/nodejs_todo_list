@@ -147,10 +147,8 @@ http.createServer(function (req, res) { // Called with each request.
       // database. Establish communication with it via the connect() method.
       // Client is sorta like - dbConnection variable
 
-      // AFTER I created the database, run this portion to test if connecting
-      // to the db. 
-      // information_schema.tables - already exist - so something should be
-      // returned.
+      // After I create database, run query to test if connecting to db. 
+
       // SELECT
       pg.connect(connectionStr, function(err, client) {
         var selectQueryStr = 'SELECT * FROM todo_list_tb;'
