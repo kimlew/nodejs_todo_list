@@ -1,4 +1,4 @@
-/* KIM's starting point - for To Do List */
+/* To Do List */
 
 // For JSLint:
 /*jslint node: true */
@@ -15,18 +15,16 @@
 //});
 
 /*
+var url = require('url');
 var querystring = require('querystring');
 var async = require('async');
 
-//var authenticator = require('./authenticator');
+var authenticator = require('./authenticator');
 var storage = require('./storage.js');
 var config = require('./config');
 */
 
 var pg = require("pg");
-//const pg = require('pg'); // ES6 feature 'const'
-
-//var url = require('url');
 
 // FROM: formServer.js - node.js Essent Train
 var http = require("http");
