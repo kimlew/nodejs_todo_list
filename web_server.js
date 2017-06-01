@@ -162,12 +162,14 @@ http.createServer(function (req, res) { // Called with each request. Callback
       // returned.
       // SELECT
       pg.connect(connectionStr, function(err, client) {
+        var selectQueryStr = 'SELECT * FROM todo_list_tb;'
+        
         if (err) throw err;
         console.log('Connected to Postgres.');
 
         // Run a SQL query via the query() method
         client
-          .query('SELECT table_schema,table_name FROM information_schema.tables;')
+          .query(selectQueryStr)
           .on('row', function(row) {
             console.log(JSON.stringify(row));
           });
