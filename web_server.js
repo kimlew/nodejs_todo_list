@@ -145,11 +145,9 @@ http.createServer(function (req, res) { // Called with each request.
       
       // Create a new instance of the database Client to interact with the
       // database. Establish communication with it via the connect() method.
-      // Client is sorta like - dbConnection variable
+      // Client is sorta like - dbConnection variable 
 
-      // After I create database, run query to test if connecting to db. 
-
-      // SELECT
+      // SELECT - after database created, run query to test if connecting to db.
       pg.connect(connectionStr, function(err, client) {
         var selectQueryStr = 'SELECT * FROM todo_list_tb;'
         
@@ -165,8 +163,8 @@ http.createServer(function (req, res) { // Called with each request.
       });  // End of: pg.connect(connectionStr, function(err, client) {     
       
       /*
-      // INSERT - With your Postgres server up and running on port 5000, 
-      // make a database connection with the pg library:
+      // INSERT - With Postgres server up and running on port 5000, make a
+      // database connection with the pg library:
 
       pg.connect(connectionStr, function(err, client) {
         var insertQueryStr = 'INSERT INTO todo_list_tb (for_who, task, date_due)
