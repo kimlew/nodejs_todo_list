@@ -196,19 +196,20 @@ console.log("Starting web server at: " + port);
 
 function getFile(localPath, res, mimeType) {
 	fs.readFile(localPath, function(err, contents) {
-		if(!err) {
+		if (!err) {
 			res.setHeader("Content-Length", contents.length);
 			if (mimeType != undefined) {
 				res.setHeader("Content-Type", mimeType);
 			}
 			res.statusCode = 200;
 			res.end(contents);
-		} else {
+		} 
+		else {
 			res.writeHead(500);
 			res.end();
 		}
-	});
-}
+	}); // End of: fs.readFile(localPath, function(err, contents) {
+} // End of: function getFile(localPath, res, mimeType) {
 
-// insertFormDataToDb()
+// After making into a separate function, call here: insertFormDataToDb();
 
