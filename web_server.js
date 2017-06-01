@@ -172,7 +172,7 @@ http.createServer(function (req, res) { // Called with each request.
 
       pg.connect(connectionStr, function(err, client) {
         var insertQueryStr = 'INSERT INTO todo_list_tb (for_who, task, date_due)
-         VALUES ();'
+         VALUES (dataObj.forWho, dataObj.task, dataObj.dateDue);'
          
         if (err) throw err;
         console.log('Connected to Postgres.');
