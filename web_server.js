@@ -9,7 +9,6 @@
 //Run JSHint but accept ES6 syntax.
 /* jshint esnext: true */
 
-// Test statement: console.log("Hello world")
 // Test communic w port: Run express server on port 8080
 //app.listen(8080, function(){
 //  console.log("Express server is running on port 8080.");
@@ -150,7 +149,7 @@ http.createServer(function (req, res) { // Called with each request. Callback
       // insertFormDataToDb();
       
       pg.defaults.ssl = true; // Sort of like HTTPS - but for your communication
-      // with your database. Might be a standard on Heroku and most prod environs.
+      // with your database. Might be a standard on Heroku and most PROD environs.
       
       // Create a new instance of the database Client to interact with the
       // database. Establish communication with it via the connect() method.
@@ -178,9 +177,11 @@ http.createServer(function (req, res) { // Called with each request. Callback
       /*
       // INSERT - With your Postgres server up and running on port 5000, 
       // make a database connection with the pg library:
-      var insertQueryStr = "INSERT INTO ";
 
       pg.connect(connectionStr, function(err, client) {
+        var insertQueryStr = 'INSERT INTO todo_list_tb (for_who, task, date_due)
+         VALUES ();'
+         
         if (err) throw err;
         console.log('Connected to Postgres.');
 
