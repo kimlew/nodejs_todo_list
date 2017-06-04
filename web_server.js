@@ -36,7 +36,7 @@ var checkMimeType = true;
 var port = process.env.PORT || 3001;  // 3001; //TCP port-e.g. 80;
 var serverIpAddress = "127.0.0.1"; // Server IP address: localhost
 
-var connectionStr = process.env.DATABASE_URL || 'postgres://localhost:5432/';
+var connectionStr = process.env.DATABASE_URL || 'postgres://localhost:5432/nodejs_todo_list';
 // This is set up by Postgres unless Heroku sets up (the 1st choice) here.
 
 http.createServer(function (req, res) { // Called with each request. 
@@ -164,13 +164,21 @@ http.createServer(function (req, res) { // Called with each request.
           });
       });  // End of: pg.connect(connectionStr, function(err, client) {     
       
-      /*
+   
       // INSERT - With Postgres server up and running on port 5000, make a
       // database connection with the pg library:
 
       pg.connect(connectionStr, function(err, client) {
-        var insertQueryStr = 'INSERT INTO todo_list_tb (for_who, task, date_due)
-         VALUES (dataObj.forWho, dataObj.task, dataObj.dateDue);'
+        // want something like
+        // INSERT INTO todo_list_tb (for_who, task, date_due) VALUES ('Lola', 'Eat carrots', '2017-06-03 00:00:00');
+        var insertQueryStr = 
+        "INSERT INTO todo_list_tb (for_who, task, date_due) VALUES ('" + 
+         dataObj.forWho + 
+         "', '" +
+         dataObj.task +
+         "', '" +
+         dataObj.dateDue +
+         "');"
          
         if (err) throw err;
         console.log('Connected to Postgres.');
@@ -183,7 +191,7 @@ http.createServer(function (req, res) { // Called with each request.
       res.writeHead(200, {"Content-Type": "text/plain"});
       res.write(body);
       res.end(); // Tells HTTP Protocol - to end the response.
-      */
+      
       
     }); // End of req.on("end", function() {
     
