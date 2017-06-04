@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 	<head>
-		<meta charset="utf-8"> 
+		<meta charset="UTF-8"> 
     <title> Todo List</title>
     <link rel="stylesheet" type="text/css" href="/styles/todo_list.css"/>
   </head>
@@ -18,43 +19,37 @@
       
      <fieldset>
       <form action="/" method="post" id="searchForm">
-        <p>
           <!-- label for ="searchTerm"></label -->
           <input id="searchTerm" name="searchTerm" type="search">
           <input id="searchButton" type="button" value="Search">   
-        </p>     
+        <br>     
       </form>
       
-      <h5>Search Results</h5>
-        <p>
-          <div id="searchResultsList"></div>
-        </p>
+      <h5>Search Results</h5><br>
+          <div id="searchResultsList"></div><br>
       </fieldset>
 
       <fieldset>
         <h4>Enter a To Do</h4>
         <form id="taskForm">
-          <p> 
+         
             <label for ="forWho">For Who: </label>
               <input type ="text" name="forWho" id="forWho">
               <span class="error" id="forWho_error"</span>
-           </p>
-           
-          <p>
+            <br>
+
             <label for ="task">Task: </label>
               <input type="text" name="task" id="task">
               <span class="error" id="task_error"</span>
-          </p>
+            <br>
           
-          <p>
-            <label for ="dueDate">Due Date:</label>
-            <input type="date" id="dueDate" name="dueDate">
-          </p>
+            <label for ="dueDate">Due Date: </label>
+              <input type="date" id="dueDate" name="dueDate">
+            <br>
           
-          <p>
             <input type="button" id="submitButton" value="Submit">
             <span id="user_msg" name="user_msg"></span>
-          </p>
+          <br>
         </form>
     
         <!-- h5>Submit Result</h5 -->
