@@ -33,10 +33,11 @@ var fs = require("fs");
 var path = require("path");
 var checkMimeType = true;
 
-var port = process.env.PORT || 3001;  // 3001; //TCP port- e.g. 80;
+var port = process.env.PORT || 3001;  // 3001; //TCP port-e.g. 80;
 var serverIpAddress = "127.0.0.1"; // Server IP address: localhost
 
-var connectionStr = process.env.DATABASE_URL || 'postgres://localhost:5000/';
+var connectionStr = process.env.DATABASE_URL || 'postgres://localhost:5432/';
+// This is set up by Postgres unless Heroku sets up (the 1st choice) here.
 
 http.createServer(function (req, res) { // Called with each request. 
   // Callback function passes HTTP req, HTTP res.
@@ -112,8 +113,8 @@ http.createServer(function (req, res) { // Called with each request.
     }); // End of req.on("data", function(chunk) {
      
     req.on("end", function() {
-      // Since web server only knows how to talk to db - MUST do
-      // db stuff from node.js web server side.
+      // Since web server only knows how to talk to db - MUST do db stuff from
+      // node.js web server side.
 
       // DO: Remove old HTML stuff and leave body - so just JSON      
       // DO: parse(body), etc. here.
@@ -131,7 +132,7 @@ http.createServer(function (req, res) { // Called with each request.
       // message to the browser 
       console.log("IN req.on - with end()" );
           
-      // Turn var body JSON string - into an object - as prep before going to db.
+      // Turn var body JSON string object - as prep before going to db.
       var dataObj = JSON.parse(body);
       console.log("dataObj is: " + dataObj);
       
@@ -158,7 +159,7 @@ http.createServer(function (req, res) { // Called with each request.
         client
           .query(selectQueryStr)
           .on('row', function(row) {
-            console.log(JSON.stringify(row));
+            console.log("MOO " + JSON.stringify(row));
           });
       });  // End of: pg.connect(connectionStr, function(err, client) {     
       
