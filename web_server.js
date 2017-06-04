@@ -169,8 +169,8 @@ http.createServer(function (req, res) { // Called with each request.
       // database connection with the pg library:
 
       pg.connect(connectionStr, function(err, client) {
-        // want something like
-        // INSERT INTO todo_list_tb (for_who, task, date_due) VALUES ('Lola', 'Eat carrots', '2017-06-03 00:00:00');
+        // Want something like:
+        // INSERT INTO...VALUES ('Lola', 'Eat carrots', '2017-06-03 00:00:00');
         var insertQueryStr = 
         "INSERT INTO todo_list_tb (for_who, task, date_due) VALUES ('" + 
          dataObj.forWho + 
