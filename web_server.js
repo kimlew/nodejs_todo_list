@@ -141,7 +141,8 @@ http.createServer(function (req, res) { // Called with each request.
       // Call  insertFormDataToDb() here
       // insertFormDataToDb();
       
-      pg.defaults.ssl = true; // Sort of like HTTPS - but for your communication
+      pg.defaults.ssl = false; // Note: Set to true to run on Heroku.
+      // Sort of like HTTPS - but for your communication
       // with your database. Might be a standard on Heroku and most PROD environs.
       
       // Create a new instance of the database Client to interact with the
