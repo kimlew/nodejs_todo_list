@@ -35,7 +35,7 @@ label {
 
 span#user_msg {
   color: #800080; /* purple */
-  font-size: 50%;
+  font-size: 9pt;
   text-indent: 5px;
 }
 span.error {
