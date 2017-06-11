@@ -32,7 +32,8 @@ label {
   font-size: 13pt;
   color: #999900; /* Dark yellow2 */
 }
-span.user_msg {
+
+span#user_msg {
   color: #800080; /* purple */
   font-size: 50%;
   text-indent: 5px;
