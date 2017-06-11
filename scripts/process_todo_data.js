@@ -32,7 +32,7 @@ function init() {
 
 function display_submitted_msg(respText) {
   var span = document.getElementById("user_msg");
-  span.innerHTML = "The To Do data has " + respText + " been submitted.";
+  span.innerHTML = "The To Do data " + respText + " has been submitted.";
 }
 
 function getFormData() {
