@@ -104,16 +104,6 @@ function putFormDataInObj(whoFor, task, dateDue) {
   console.log("xhr is: " + xhr);
   console.log('AFTER xhr.open(POST, url, true) AND xhr.setRequestHeader\n');
   
-  // Probably for AJAX request and response.
-  /*xhr.onreadystatechange = function () { 
-      if (xhr.readyState == 4 && xhr.status == 200) {
-          var todo_object = JSON.parse(xhr.responseText);
-          // Data received from server, is in JSON format. Use: JSON.parse
-          // - to turn string of JSON text into JavaScript object
-          console.log(:todo_object is: " + todo_object)
-      }
-  }
-  */
   // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/responseText
   // Set up an onload Handler - is called when the data arrives (instead of
   // waiting for the data. Handler checks: If DONE, i.e., if return code is 
@@ -135,5 +125,19 @@ function putFormDataInObj(whoFor, task, dateDue) {
   console.log("AFTER: xhr.send(aTodoItemAsString)");
 
 } // End of: function putFormDataInObj()
+
+  // Probably for AJAX request and response.
+  /*xhr.onreadystatechange = function () { 
+      if (xhr.readyState == 4 && xhr.status == 200) {
+          var todo_object = JSON.parse(xhr.responseText);
+          // Data received from server, is in JSON format. Use: JSON.parse
+          // - to turn string of JSON text into JavaScript object
+          console.log(:todo_object is: " + todo_object)
+      }
+  }
+  */
+function getAllTodoItems() {
+
+}
 
 window.onload = init;
