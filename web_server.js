@@ -70,7 +70,7 @@ http.createServer(function (req, res) { // Called with each request.
             ".woff": "application/font-woff",
             ".woff2": "application/font-woff2",
             ".ico": "image/x-icon"
-  };
+    };
 
     var validMimeType = true;
     var mimeType = validExtensions[ext];
@@ -96,6 +96,21 @@ http.createServer(function (req, res) { // Called with each request.
     else {
       console.log("Invalid file extension detected: " + ext + " (" + filename + ")")
     }
+    
+    var results = []; 
+    var queryAllTodoItems = client.query('SELECT * FROM todo_list_tb ORDER BY id ASC');
+    
+    // Stream results back 1 row at a time
+    query.on('row', (row) => {
+      results.push(row);
+    });
+    
+    // After all data is returned, close connection and return results
+    query.on('end', () => {
+      done();
+      return res.json(results);
+    });
+  
   } // End of: if (req.method === "GET") {
   
   else if (req.method === "POST") {
@@ -194,12 +209,9 @@ http.createServer(function (req, res) { // Called with each request.
       res.writeHead(200, {"Content-Type": "text/plain"});
       res.write(body);
       res.end(); // Tells HTTP Protocol - to end the response.
-      
-      
-    }); // End of req.on("end", function() {
-    
+    }); // End of req.on("end", function() { 
   } // End of: else if (req.method === "POST") {
-
+  
 }).listen(port /*, serverIpAddress */); // TCP port and server IP address - DON'T 
 // exclude 2nd param when deploying to Heroku
 
