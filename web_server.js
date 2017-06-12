@@ -172,7 +172,7 @@ http.createServer(function (req, res) { // Called with each request.
         // Want something like:
         // INSERT INTO...VALUES ('Lola', 'Eat carrots', '2017-06-03 00:00:00');
         var insertQueryStr = 
-        "INSERT INTO todo_list_tb (for_who, task, date_due) VALUES ('" + 
+        "INSERT INTO todo_list_tb (who_for, task, date_due) VALUES ('" + 
          dataObj.whoFor + 
          "', '" +
          dataObj.task +
