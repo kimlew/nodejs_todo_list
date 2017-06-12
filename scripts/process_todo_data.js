@@ -15,12 +15,12 @@
 
 // Constructor - Retrieve input data using constructor and put in todoItemObj 
 // - stores form data. Note: data will be sent to PHP script on server.
-function TodoItem(whoFor, task, dueDate="") {
-  // dueDate is optional.
+function TodoItem(whoFor, task, dateDue="") {
+  // dateDue is optional.
   //this.id = id; // Used for index? in LocalStorage before.
   this.whoFor = whoFor;
   this.task = task;
-  this.dueDate = dueDate;
+  this.dateDue = dateDue;
   //this.done = false;
 }
 
@@ -38,11 +38,11 @@ function display_submitted_msg(respText) {
 function getFormData() {
   var whoFor = document.getElementById("whoFor").value,
     task = document.getElementById("task").value,
-    dueDate = document.getElementById("dueDate").value;
+    dateDue = document.getElementById("dateDue").value;
     
   var whoForError = "Enter who the task is for.",
     taskError = "Enter the task.",
-    dueDateError = "Enter the due date.";
+    dateDueError = "Enter the due date.";
 
   if (isFormFieldFilledIn(whoFor) === false) {
     // Assign taskError = "Enter who the task is for."; 
@@ -56,21 +56,21 @@ function getFormData() {
     return;
   }
   
-  if (isFormFieldFilledIn(dueDate) === false) {
-    // Assign dueDateError = "Enter the due date.";
-    document.getElementById("dueDate").innerHTML = dueDateError;
+  if (isFormFieldFilledIn(dateDue) === false) {
+    // Assign dateDueError = "Enter the due date.";
+    document.getElementById("dateDue").innerHTML = dateDueError;
     return;
   }
 
-  putFormDataInObj(whoFor, task, dueDate);
+  putFormDataInObj(whoFor, task, dateDue);
 } // End of: getFormData()
 
-function putFormDataInObj(whoFor, task, dueDate) {
-  console.log("dueDate is: " + dueDate);
+function putFormDataInObj(whoFor, task, dateDue) {
+  console.log("dateDue is: " + dateDue);
   console.log("YOU have made it into putFormDataInObj()");
   
   // Create object for form data.
-  var aTodoItem = new TodoItem(whoFor, task, dueDate);
+  var aTodoItem = new TodoItem(whoFor, task, dateDue);
   console.log("aTodoItem is: " + aTodoItem);
   
   //stringify - takes object and turns into string
@@ -78,7 +78,7 @@ function putFormDataInObj(whoFor, task, dueDate) {
   console.log("aTodoItemAsString is: " + aTodoItemAsString);
 
   // Note: aTodoItem is: [object Object]
-  // process_todo_data.js:71 aTodoItemAsString is: {"whoFor":"Boris","task":"buy beer","dueDate":""}
+  // process_todo_data.js:71 aTodoItemAsString is: {"whoFor":"Boris","task":"buy beer","dateDue":""}
 
 /* Create an XMLHttpRequest object, load it with a URL and HTTP
   request type, along with a handler. Then send the request and wait for

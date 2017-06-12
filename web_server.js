@@ -177,10 +177,10 @@ http.createServer(function (req, res) { // Called with each request.
          "', '" +
          dataObj.task +
          "', '" +
-         dataObj.dueDate +
+         dataObj.dateDue +
          "');"
         
-        // Was: dateDue Want: dueDate - id from .html form
+        // Was: dateDue Want: dateDue - id from .html form
         // Kim test then change ALL to dateDue.
          
         if (err) throw err;
