@@ -144,6 +144,7 @@ function updateList(responseText) {
     var todoItemFromObj = todoListObj[i];
     var li = document.createElement("li");
     li.setAttribute("class", "todoItem");
+    todoListUl.appendChild(li);
   }
 }
  
