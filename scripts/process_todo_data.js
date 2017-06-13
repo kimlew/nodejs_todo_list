@@ -138,7 +138,7 @@ function putFormDataInObj(whoFor, task, dateDue) {
   
 function updateList(responseText) {
   var todoListDiv = document.getElementById("todoList");
-  todoListDiv.innerHTML = responseText;
+  var todoListObj = JSON.parse(responseText); // Turns JSON into object.
 }
  
 function getAllTodoItems() {
