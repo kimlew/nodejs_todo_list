@@ -88,17 +88,15 @@ function putFormDataInObj(whoFor, task, dateDue) {
   // via POST to web server.
   // Use the XMLHttpRequest constructor - to create a new request object.
   var xhr = new XMLHttpRequest();
-  var url = "url"; // This would be URL for web server to get data from.
+  var url = "url"; // URL for web server to get data from.
   // var url = "http://someserver.com/data.json";
   
   // Tells the request object which URL we want it to retrieve
-  // along with the kind of request it should use - use the standard
-  // HTTP GET request. To do this, use the request object’s open method.
-
+  // along with the kind of request it should use
   // open - just sets up the request with a URL & tells the request object
   // the kind of request to use so the XMLHttpRequest can verify the connection
   // HTTP GET request - the standard means of retrieving HTTP data.
-  xhr.open("POST", url, true); // request.open("GET", url);
+  xhr.open("POST", url, true);
   xhr.setRequestHeader("Content-type", "application/json");
   
   console.log("xhr is: " + xhr);
@@ -138,11 +136,11 @@ function putFormDataInObj(whoFor, task, dateDue) {
   */
 function getAllTodoItems() {
   var xhr = new XMLHttpRequest();
-  var url = "url"; // This would be URL for web server to get data from.
+  var url = "url"; // URL for web server to get data from.
   
   // open - just sets up the request with a URL & tells the request object
   // the kind of request to use so the XMLHttpRequest can verify the connection
-  // HTTP GET request - the standard means of retrieving HTTP data.
+  // HTTP GET request - the standard means of retrieving HTTP data
   xhr.open("GET", url, true);
   xhr.setRequestHeader("Content-type", "application/json");
   
