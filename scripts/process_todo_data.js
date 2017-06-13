@@ -43,7 +43,7 @@ function getFormData() {
   var whoForError = "Enter who the task is for.",
     taskError = "Enter the task.",
     dateDueError = "Enter the due date.";
-
+/*
   if (isFormFieldFilledIn(whoFor) === false) {
     // Assign taskError = "Enter who the task is for."; 
     document.getElementById("whoFor_error").innerHTML = whoForError;
@@ -61,7 +61,7 @@ function getFormData() {
     document.getElementById("dateDue").innerHTML = dateDueError;
     return;
   }
-
+*/
   putFormDataInObj(whoFor, task, dateDue);
 } // End of: getFormData()
 
