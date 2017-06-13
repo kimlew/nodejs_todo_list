@@ -135,6 +135,12 @@ function putFormDataInObj(whoFor, task, dateDue) {
       }
   }
   */
+  
+function updateList(responseText) {
+  var todoListDiv = document.getElementById("todoList");
+  todoListDiv.innerHTML = responseText;
+}
+ 
 function getAllTodoItems() {
   var xhr = new XMLHttpRequest();
   var url = "url"; // URL for web server to get data from.
@@ -153,6 +159,9 @@ function getAllTodoItems() {
         display_submitted_msg(xhr.responseText);
         console.log("xhr response is:", xhr.response);
         console.log("xhr responseText is:", xhr.responseText);
+        
+        // Pass xhr.responseText to updateList(). 
+        updateList(xhr.responseText);  
     }
   }; // End of: xhr.onload = function () {
 
