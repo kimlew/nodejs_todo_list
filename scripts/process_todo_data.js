@@ -141,7 +141,7 @@ function updateList(responseText) {
   var todoListObj = JSON.parse(responseText); // Turns JSON into object.
   
   for (var = 0; i < todoListObj.length; i++) {
-  
+    var todoItem = todoListObj[i];
   }
 }
  
