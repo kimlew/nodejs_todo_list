@@ -99,7 +99,7 @@ http.createServer(function (req, res) { // Called with each request.
     
     // SELECT - after database created, run query to test if connecting to db.
     pg.connect(connectionStr, function(err, client) {
-      var results;
+      var results = [];
       var selectQueryStr = 'SELECT * FROM todo_list_tb ORDER BY date_due ASC;'
     
       if (err) throw err;
@@ -115,7 +115,7 @@ http.createServer(function (req, res) { // Called with each request.
           
           results += JSON.stringify(row);
           console.log("RESULTS has: " + results);
-          //return results;
+          return results; // Returns to client results array with data as JSON.
           
         });
     });  // End of: pg.connect(connectionStr, function(err, client) { 
