@@ -39,9 +39,9 @@ var serverIpAddress = "127.0.0.1"; // Server IP address: localhost
 var connectionStr = process.env.DATABASE_URL || 'postgres://localhost:5432/nodejs_todo_list';
 // This is set up by Postgres unless Heroku sets up (the 1st choice) here.
 
-http.createServer(function (req, res) { // Called with each request. 
+http.createServer(function (req, res) { // Called with each request.
   // Callback function passes HTTP req, HTTP res.
-  // req and res parameters -in ready state when callback function is invoked.
+  // req and res parameters - in ready state when callback function is invoked.
   
   if (req.method === "GET") {
     var filename = req.url || "/index.html"; // Defaults to index.html
@@ -54,7 +54,7 @@ http.createServer(function (req, res) { // Called with each request.
        filename = "/index.html"; 
     }
 	
-    console.log("Method is GET?: ", req.method, " URL is: ", req.url);
+    console.log("Method is GET: ", req.method, " URL is: ", req.url);
         
     var ext = path.extname(filename);
     var localPath = __dirname;
@@ -97,24 +97,42 @@ http.createServer(function (req, res) { // Called with each request.
       console.log("Invalid file extension detected: " + ext + " (" + filename + ")")
     }
     
-    var results = []; 
-    var queryAllTodoItems = pg.query('SELECT * FROM todo_list_tb ORDER BY id ASC');
+    // SELECT - after database created, run query to test if connecting to db.
+    pg.connect(connectionStr, function(err, client) {
+      var results;
+      var selectQueryStr = 'SELECT * FROM todo_list_tb ORDER BY date_due ASC;'
     
-    // Stream results back 1 row at a time
-    query.on('row', (row) => {
-      results.push(row);
-    });
-    
-    // After all data is returned, close connection and return results
-    query.on('end', () => {
-      done();
-      return res.json(results);
-    });
-  
+      if (err) throw err;
+      console.log('Connected to Postgres.');
+
+      // Run a SQL query via the query() method
+      client
+        .query(selectQueryStr)
+        .on('row', function(row) { // Stream results back.
+          
+     
+          console.log("IN GET " + JSON.stringify(row));
+          
+          results += JSON.stringify(row);
+          console.log("RESULTS has: " + results);
+          //return results;
+          
+        });
+    });  // End of: pg.connect(connectionStr, function(err, client) { 
+      
+    // After all data is returned, close connection.
+    // Confirms everything before this worked fine.
+    /*
+    res.writeHead(200, {"Content-Type": "text/plain"});
+    res.write(body);
+    res.end(); // Tells HTTP Protocol - to end the response.
+    */
+    // pg.on('end', () => { client.end(); });
+
   } // End of: if (req.method === "GET") {
   
   else if (req.method === "POST") {
-    console.log("Method is POST?: ", req.method);
+    console.log("Method is POST: ", req.method);
     
     var body = ""; // String that will have POST JSON data added to it in chunks.
     
@@ -128,8 +146,7 @@ http.createServer(function (req, res) { // Called with each request.
     }); // End of req.on("data", function(chunk) {
      
     req.on("end", function() {
-      // Since web server only knows how to talk to db - MUST do db stuff from
-      // node.js web server side.
+      // ONLY web server knows how to talk to db - DO db stuff on node.js web server side.
 
       // DO: Remove old HTML stuff and leave body - so just JSON      
       // DO: parse(body), etc. here.
@@ -165,7 +182,7 @@ http.createServer(function (req, res) { // Called with each request.
       // Client is sorta like - dbConnection variable 
 
       // SELECT - after database created, run query to test if connecting to db.
-      pg.connect(connectionStr, function(err, client) {
+/*      pg.connect(connectionStr, function(err, client) {
         var selectQueryStr = 'SELECT * FROM todo_list_tb;'
         
         if (err) throw err;
@@ -175,10 +192,10 @@ http.createServer(function (req, res) { // Called with each request.
         client
           .query(selectQueryStr)
           .on('row', function(row) {
-            console.log("MOO " + JSON.stringify(row));
+            console.log("IN POST " + JSON.stringify(row));
           });
       });  // End of: pg.connect(connectionStr, function(err, client) {     
-      
+*/      
    
       // INSERT - With Postgres server up and running on port 5000, make a
       // database connection with the pg library:
@@ -237,4 +254,3 @@ function getFile(localPath, res, mimeType) {
 } // End of: function getFile(localPath, res, mimeType) {
 
 // After making into a separate function, call here: insertFormDataToDb();
-
