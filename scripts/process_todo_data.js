@@ -28,6 +28,7 @@ function TodoItem(whoFor, task, dateDue="") {
 function init() {
   var submitButton = document.getElementById("submitButton");
   submitButton.onclick = getFormData;
+  getAllTodoItems();
 } // End of init()
 
 function display_submitted_msg(respText) {
@@ -147,6 +148,14 @@ function getAllTodoItems() {
   console.log("xhr is: " + xhr);
   console.log('AFTER xhr.open(GET, url, true) AND xhr.setRequestHeader\n');
 
-}
+  xhr.onload = function () {
+    if (xhr.readyState === xhr.DONE && xhr.status === 200) {
+        display_submitted_msg(xhr.responseText);
+        console.log("xhr response is:", xhr.response);
+        console.log("xhr responseText is:", xhr.responseText);
+    }
+  }; // End of: xhr.onload = function () {
+
+} // End of: function getAllTodoItems() {
 
 window.onload = init;
