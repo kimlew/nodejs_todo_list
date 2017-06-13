@@ -98,7 +98,7 @@ http.createServer(function (req, res) { // Called with each request.
     }
     
     var results = []; 
-    var queryAllTodoItems = client.query('SELECT * FROM todo_list_tb ORDER BY id ASC');
+    var queryAllTodoItems = pg.query('SELECT * FROM todo_list_tb ORDER BY id ASC');
     
     // Stream results back 1 row at a time
     query.on('row', (row) => {
