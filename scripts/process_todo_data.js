@@ -137,6 +137,7 @@ function putFormDataInObj(whoFor, task, dateDue) {
   */
   
 function updateList(responseText) {
+console.log("IN updateList() ");
   var todoListUl = document.getElementById("todoList");
   var todoListObj = JSON.parse(responseText); // Turns JSON into object.
   
@@ -149,6 +150,7 @@ function updateList(responseText) {
 }
  
 function getAllTodoItems() {
+console.log("IN getAllTodoItems() ");
   var xhr = new XMLHttpRequest();
   var url = "url"; // URL for web server to get data from.
   
@@ -162,7 +164,7 @@ function getAllTodoItems() {
   console.log('AFTER xhr.open(GET, url, true) AND xhr.setRequestHeader\n');
 
   xhr.onload = function () {
-    if (xhr.readyState === xhr.DONE && xhr.status === 200) {
+    if (xhr.status === 200) {
         display_submitted_msg(xhr.responseText);
         console.log("xhr response is:", xhr.response);
         console.log("xhr responseText is:", xhr.responseText);
