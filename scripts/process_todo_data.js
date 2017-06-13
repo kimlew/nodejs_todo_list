@@ -163,7 +163,7 @@ function getAllTodoItems() {
         // Pass xhr.responseText to updateList(). 
         updateList(xhr.responseText);  
     }
-    request.send(null); // Since not sending any data to the remote service.
+    xhr.send(null); // Since not sending any data to the remote service.
   }; // End of: xhr.onload = function () {
 
 } // End of: function getAllTodoItems() {
