@@ -142,6 +142,7 @@ function updateList(responseText) {
   
   for (var = 0; i < todoListObj.length; i++) {
     var todoItem = todoListObj[i];
+    var li = document.createElement("li");
   }
 }
  
