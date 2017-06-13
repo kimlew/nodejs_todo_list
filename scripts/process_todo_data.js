@@ -137,6 +137,17 @@ function putFormDataInObj(whoFor, task, dateDue) {
   }
   */
 function getAllTodoItems() {
+  var xhr = new XMLHttpRequest();
+  var url = "url"; // This would be URL for web server to get data from.
+  
+  // open - just sets up the request with a URL & tells the request object
+  // the kind of request to use so the XMLHttpRequest can verify the connection
+  // HTTP GET request - the standard means of retrieving HTTP data.
+  xhr.open("GET", url, true);
+  xhr.setRequestHeader("Content-type", "application/json");
+  
+  console.log("xhr is: " + xhr);
+  console.log('AFTER xhr.open(GET, url, true) AND xhr.setRequestHeader\n');
 
 }
 
