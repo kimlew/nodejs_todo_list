@@ -140,7 +140,7 @@ function updateList(responseText) {
   var todoListUl = document.getElementById("todoList");
   var todoListObj = JSON.parse(responseText); // Turns JSON into object.
   
-  for (var = 0; i < todoListObj.length; i++) {
+  for (var i = 0; i < todoListObj.length; i++) {
     var todoItemFromObj = todoListObj[i];
     var li = document.createElement("li");
     li.setAttribute("class", "todoItem");
