@@ -157,10 +157,9 @@ function getAllTodoItems() {
         // Pass xHttpReq.responseText to updateList(). 
         updateList(xHttpReq.responseText);  
       }
-      
-      xHttpReq.send(null); // Since not sending any data to the remote service.
     }; // End of: xHttpReq.onreadystatechange = function () {
-
+    
+    xHttpReq.send(null); // Since not sending any data to the remote service.
 } // End of: function getAllTodoItems() {
 
 window.onload = init;
