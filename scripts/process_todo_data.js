@@ -74,7 +74,7 @@ function putFormDataInObj(whoFor, task, dateDue) {
   var aTodoItem = new TodoItem(whoFor, task, dateDue);
   console.log("aTodoItem is: " + aTodoItem);
   
-  //stringify - takes object and turns into string
+  // stringify - takes object and turns into string in JSON
   var aTodoItemAsString = JSON.stringify(aTodoItem);
   console.log("aTodoItemAsString is: " + aTodoItemAsString);
 
@@ -85,39 +85,33 @@ function putFormDataInObj(whoFor, task, dateDue) {
   request type, along with a handler. Then send the request and wait for
   the data to arrive. When it does, the handler is called.
 */
-  // Use XMLHttpRequest - to send string that is in JSON string format 
-  // via POST to web server.
-  // Use the XMLHttpRequest constructor - to create a new request object.
+  // Use XMLHttpRequest - to send string in JSON string format via POST to web server.
+  // Use the XMLHttpRequest constructor - creates a new request object
   var xHttpReq = new XMLHttpRequest();
   var url = "url"; // URL for web server to get data from.
   // var url = "http://someserver.com/data.json";
   
-  // Tells the request object which URL we want it to retrieve
-  // along with the kind of request it should use
-  // open - just sets up the request with a URL & tells the request object
-  // the kind of request to use so the XMLHttpRequest can verify the connection
-  // HTTP GET request - the standard means of retrieving HTTP data.
+  // Tells request object URL we want it to retrieve & request type to use
+  // open - ONLY sets up the request
+  // request type stated - so the XMLHttpRequest can verify the connection
+  // HTTP GET request - the standard means of retrieving HTTP data
   xHttpReq.open("POST", url, true);
   xHttpReq.setRequestHeader("Content-type", "application/json");
   
   console.log("xHttpReq is: " + xHttpReq);
   console.log('AFTER xHttpReq.open(POST, url, true) AND xHttpReq.setRequestHeader\n');
   
-  // Set up an onload Handler - called when the data arrives (instead of
-  // waiting for the data.
-  // request object's responseText property - holds data from HTTP GET retrieval
+  // Set up an onload Handler - called when data arrives (vs waiting for data)
+  // responseText - property of request object - holds data from HTTP GET retrieval
   xHttpReq.onload = function () {
     if (xHttpReq.readyState === xHttpReq.DONE && xHttpReq.status === 200) {
         display_submitted_msg(xHttpReq.responseText);
-        console.log("xHttpReq response is:", xHttpReq.response);
-        console.log("xHttpReq responseText is:", xHttpReq.responseText);
+        console.log("xHttpReq response & responseText: ", xHttpReq.response, xHttpReq.responseText);
     }
   }; // End of: xHttpReq.onload = function () {
 
-  // Tell the request to go out and get the data with send()
-  // which sends request to web server.
-  // Pass null if not sending any data to the remote service.
-  // i.e., request.send(null);
+  // send() - tell request to go out and get the data which sends request to web server.
+  // Pass null if not sending any data to remote service, i.e., request.send(null);
   xHttpReq.send(aTodoItemAsString);
   console.log("AFTER: xHttpReq.send(aTodoItemAsString)");
 
