@@ -67,15 +67,13 @@ function getFormData() {
 } // End of: getFormData()
 
 function putFormDataInObj(whoFor, task, dateDue) {
-  console.log("dateDue is: " + dateDue);
-  console.log("YOU have made it into putFormDataInObj()");
-  
-  // Create object for form data.
-  var aTodoItem = new TodoItem(whoFor, task, dateDue);
-  console.log("aTodoItem is: " + aTodoItem);
-  
+  var aTodoItem = new TodoItem(whoFor, task, dateDue); // Create object for form data.
   // stringify - takes object and turns into string in JSON
   var aTodoItemAsString = JSON.stringify(aTodoItem);
+  
+  //console.log("dateDue is: " + dateDue);
+  //console.log("YOU have made it into putFormDataInObj()");
+  console.log("aTodoItem is: " + aTodoItem);
   console.log("aTodoItemAsString is: " + aTodoItemAsString);
 
   // Note: aTodoItem is: [object Object]
@@ -118,7 +116,6 @@ function putFormDataInObj(whoFor, task, dateDue) {
 } // End of: function putFormDataInObj()
   
 function updateList(responseText) {
-console.log("IN updateList() ");
   var todoListUl = document.getElementById("todoList");
   var todoListObj = JSON.parse(responseText); // Turns JSON into object.
   
@@ -128,14 +125,15 @@ console.log("IN updateList() ");
     li.setAttribute("class", "todoItem");
     todoListUl.appendChild(li);
   }
+  console.log("IN updateList() ");
 }
  
 function getAllTodoItems() {
     var xHttpReq = new XMLHttpRequest();
     var url = "url"; // URL for web server to get data from.
   
-    // open - just sets up the request with a URL & tells the request object
-    // the kind of request to use so the XMLHttpRequest can verify the connection
+    // open - ONLY sets up: request with a URL & tells request object
+    // request type to use - so the XMLHttpRequest can verify connection
     // HTTP GET request - the standard means of retrieving HTTP data
     xHttpReq.open("GET", url);
     xHttpReq.setRequestHeader("Content-type", "application/json");
@@ -145,7 +143,7 @@ function getAllTodoItems() {
     
 /***** NEVER makes it past this line - Why? */
 
-    xHttpReq.onload = function () {
+    xHttpReq.onreadystatechange = function () {
       console.log("WITHIN xHttpReq.onload = function ():");
       console.log("xHttpReq status BEFORE if:", xHttpReq.status);
     
@@ -159,8 +157,9 @@ function getAllTodoItems() {
         // Pass xHttpReq.responseText to updateList(). 
         updateList(xHttpReq.responseText);  
       }
+      
       xHttpReq.send(null); // Since not sending any data to the remote service.
-    }; // End of: xHttpReq.onload = function () {
+    }; // End of: xHttpReq.onreadystatechange = function () {
 
 } // End of: function getAllTodoItems() {
 
