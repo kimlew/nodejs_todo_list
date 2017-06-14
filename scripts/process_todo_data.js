@@ -103,10 +103,8 @@ function putFormDataInObj(whoFor, task, dateDue) {
   console.log("xHttpReq is: " + xHttpReq);
   console.log('AFTER xHttpReq.open(POST, url, true) AND xHttpReq.setRequestHeader\n');
   
-  // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/responseText
-  // Set up an onload Handler - is called when the data arrives (instead of
-  // waiting for the data. Handler checks: If DONE, i.e., if return code is 
-  // 200/OK, then continue.
+  // Set up an onload Handler - called when the data arrives (instead of
+  // waiting for the data.
   // request object's responseText property - holds data from HTTP GET retrieval
   xHttpReq.onload = function () {
     if (xHttpReq.readyState === xHttpReq.DONE && xHttpReq.status === 200) {
