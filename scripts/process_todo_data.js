@@ -144,18 +144,24 @@ function getAllTodoItems() {
 /***** NEVER makes it past this line - Why? */
 
     xHttpReq.onreadystatechange = function () {
-      console.log("WITHIN xHttpReq.onload = function ():");
+      console.log("IN .onreadystatechange");
       console.log("xHttpReq status BEFORE if:", xHttpReq.status);
     
-      if (xHttpReq.readyState == this.DONE && xHttpReq.status == 200) {
+      if (xHttpReq.readyState == this.DONE && this.status == 200) {     
+        if (this.responseText) {
+          updateList(this.responseText);
+          //addTodosToPage();
+        }
+        else {
+          console.log("Error: There is NO data.");
+        }
+      
         display_submitted_msg(xHttpReq.responseText);
         
         console.log("IN getAllTodoItems(), AFTER if, and status == 200");
         console.log("xHttpReq response is:", xHttpReq.response);
         console.log("xHttpReq responseText is:", xHttpReq.responseText);
       
-        // Pass xHttpReq.responseText to updateList(). 
-        updateList(xHttpReq.responseText);  
       }
     }; // End of: xHttpReq.onreadystatechange = function () {
     
