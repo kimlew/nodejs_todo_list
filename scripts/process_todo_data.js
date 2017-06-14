@@ -124,17 +124,6 @@ function putFormDataInObj(whoFor, task, dateDue) {
   console.log("AFTER: xhr.send(aTodoItemAsString)");
 
 } // End of: function putFormDataInObj()
-
-  // Probably for AJAX request and response.
-  /*xhr.onreadystatechange = function () { 
-      if (xhr.readyState == 4 && xhr.status == 200) {
-          var todo_object = JSON.parse(xhr.responseText);
-          // Data received from server, is in JSON format. Use: JSON.parse
-          // - to turn string of JSON text into JavaScript object
-          console.log(:todo_object is: " + todo_object)
-      }
-  }
-  */
   
 function updateList(responseText) {
 console.log("IN updateList() ");
@@ -150,30 +139,37 @@ console.log("IN updateList() ");
 }
  
 function getAllTodoItems() {
-console.log("IN getAllTodoItems() ");
-  var xhr = new XMLHttpRequest();
-  var url = "url"; // URL for web server to get data from.
   
-  // open - just sets up the request with a URL & tells the request object
-  // the kind of request to use so the XMLHttpRequest can verify the connection
-  // HTTP GET request - the standard means of retrieving HTTP data
-  xhr.open("GET", url, true);
-  xhr.setRequestHeader("Content-type", "application/json");
+    var xhr = new XMLHttpRequest();
+    var url = "url"; // URL for web server to get data from.
   
-  console.log("xhr is: " + xhr);
-  console.log('AFTER xhr.open(GET, url, true) AND xhr.setRequestHeader\n');
+    // open - just sets up the request with a URL & tells the request object
+    // the kind of request to use so the XMLHttpRequest can verify the connection
+    // HTTP GET request - the standard means of retrieving HTTP data
+    xhr.open("GET", url);
+    xhr.setRequestHeader("Content-type", "application/json");
+  
+    console.log("xhr is: " + xhr);
+    console.log('AFTER xhr.open(GET, url, true) AND xhr.setRequestHeader\n');
+  
 
-  xhr.onload = function () {
-    if (xhr.status === 200) {
+    xhr.onload = function () {
+      console.log("xhr.status is:", xhr.status);
+    
+      console.log("xhr status BEFORE if:", xhr.status);
+    
+      if (xhr.status === 200) {
+        console.log("IN getAllTodoItems() and status === 200 AFTER if");
+      
         display_submitted_msg(xhr.responseText);
         console.log("xhr response is:", xhr.response);
         console.log("xhr responseText is:", xhr.responseText);
-        
+      
         // Pass xhr.responseText to updateList(). 
         updateList(xhr.responseText);  
-    }
-    xhr.send(null); // Since not sending any data to the remote service.
-  }; // End of: xhr.onload = function () {
+      }
+      xhr.send(null); // Since not sending any data to the remote service.
+    }; // End of: xhr.onload = function () {
 
 } // End of: function getAllTodoItems() {
 
