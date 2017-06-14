@@ -88,7 +88,7 @@ function putFormDataInObj(whoFor, task, dateDue) {
   // Use XMLHttpRequest - to send string that is in JSON string format 
   // via POST to web server.
   // Use the XMLHttpRequest constructor - to create a new request object.
-  var xhr = new XMLHttpRequest();
+  var xHttpReq = new XMLHttpRequest();
   var url = "url"; // URL for web server to get data from.
   // var url = "http://someserver.com/data.json";
   
@@ -97,31 +97,31 @@ function putFormDataInObj(whoFor, task, dateDue) {
   // open - just sets up the request with a URL & tells the request object
   // the kind of request to use so the XMLHttpRequest can verify the connection
   // HTTP GET request - the standard means of retrieving HTTP data.
-  xhr.open("POST", url, true);
-  xhr.setRequestHeader("Content-type", "application/json");
+  xHttpReq.open("POST", url, true);
+  xHttpReq.setRequestHeader("Content-type", "application/json");
   
-  console.log("xhr is: " + xhr);
-  console.log('AFTER xhr.open(POST, url, true) AND xhr.setRequestHeader\n');
+  console.log("xHttpReq is: " + xHttpReq);
+  console.log('AFTER xHttpReq.open(POST, url, true) AND xHttpReq.setRequestHeader\n');
   
   // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/responseText
   // Set up an onload Handler - is called when the data arrives (instead of
   // waiting for the data. Handler checks: If DONE, i.e., if return code is 
   // 200/OK, then continue.
   // request object's responseText property - holds data from HTTP GET retrieval
-  xhr.onload = function () {
-    if (xhr.readyState === xhr.DONE && xhr.status === 200) {
-        display_submitted_msg(xhr.responseText);
-        console.log("xhr response is:", xhr.response);
-        console.log("xhr responseText is:", xhr.responseText);
+  xHttpReq.onload = function () {
+    if (xHttpReq.readyState === xHttpReq.DONE && xHttpReq.status === 200) {
+        display_submitted_msg(xHttpReq.responseText);
+        console.log("xHttpReq response is:", xHttpReq.response);
+        console.log("xHttpReq responseText is:", xHttpReq.responseText);
     }
-  }; // End of: xhr.onload = function () {
+  }; // End of: xHttpReq.onload = function () {
 
   // Tell the request to go out and get the data with send()
   // which sends request to web server.
   // Pass null if not sending any data to the remote service.
   // i.e., request.send(null);
-  xhr.send(aTodoItemAsString);
-  console.log("AFTER: xhr.send(aTodoItemAsString)");
+  xHttpReq.send(aTodoItemAsString);
+  console.log("AFTER: xHttpReq.send(aTodoItemAsString)");
 
 } // End of: function putFormDataInObj()
   
@@ -139,37 +139,36 @@ console.log("IN updateList() ");
 }
  
 function getAllTodoItems() {
-  
-    var xhr = new XMLHttpRequest();
+    var xHttpReq = new XMLHttpRequest();
     var url = "url"; // URL for web server to get data from.
   
     // open - just sets up the request with a URL & tells the request object
     // the kind of request to use so the XMLHttpRequest can verify the connection
     // HTTP GET request - the standard means of retrieving HTTP data
-    xhr.open("GET", url);
-    xhr.setRequestHeader("Content-type", "application/json");
+    xHttpReq.open("GET", url);
+    xHttpReq.setRequestHeader("Content-type", "application/json");
   
-    console.log("xhr is: " + xhr);
-    console.log('AFTER xhr.open(GET, url, true) AND xhr.setRequestHeader\n');
-  
+    console.log('AFTER xHttpReq.open(GET, url, true) AND xHttpReq.setRequestHeader\n');
+    console.log("xHttpReq is: " + xHttpReq);
+    
+/***** NEVER makes it past this line - Why? */
 
-    xhr.onload = function () {
-      console.log("xhr.status is:", xhr.status);
+    xHttpReq.onload = function () {
+      console.log("WITHIN xHttpReq.onload = function ():");
+      console.log("xHttpReq status BEFORE if:", xHttpReq.status);
     
-      console.log("xhr status BEFORE if:", xhr.status);
-    
-      if (xhr.status === 200) {
-        console.log("IN getAllTodoItems() and status === 200 AFTER if");
+      if (xHttpReq.status === 200) {
+        console.log("IN getAllTodoItems(), AFTER if, and status === 200");
       
-        display_submitted_msg(xhr.responseText);
-        console.log("xhr response is:", xhr.response);
-        console.log("xhr responseText is:", xhr.responseText);
+        display_submitted_msg(xHttpReq.responseText);
+        console.log("xHttpReq response is:", xHttpReq.response);
+        console.log("xHttpReq responseText is:", xHttpReq.responseText);
       
-        // Pass xhr.responseText to updateList(). 
-        updateList(xhr.responseText);  
+        // Pass xHttpReq.responseText to updateList(). 
+        updateList(xHttpReq.responseText);  
       }
-      xhr.send(null); // Since not sending any data to the remote service.
-    }; // End of: xhr.onload = function () {
+      xHttpReq.send(null); // Since not sending any data to the remote service.
+    }; // End of: xHttpReq.onload = function () {
 
 } // End of: function getAllTodoItems() {
 
