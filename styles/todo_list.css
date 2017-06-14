@@ -21,12 +21,17 @@ fieldset {
   max-width: 900px;
   border: 1px solid #333;
 }
-
+legend {
+  font-family: sans-serif;
+  font-size: 13pt;
+  color: #630547; /* Dark magenta */
+}
 form {
   max-width: 800px;
   margin: 0;
   padding: 0 5px;
 }
+
 label {
   font-family: sans-serif;
   font-size: 13pt;
