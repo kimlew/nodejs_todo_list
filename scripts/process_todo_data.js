@@ -159,7 +159,7 @@ function getAllTodoItems() {
       }
     }; // End of: xHttpReq.onreadystatechange = function () {
     
-    xHttpReq.send(null); // Since not sending any data to the remote service.
+    xHttpReq.send(); // param is null - when NOT sending any data to remote service
 } // End of: function getAllTodoItems() {
 
 window.onload = init;
