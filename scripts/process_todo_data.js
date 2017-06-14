@@ -147,10 +147,10 @@ function getAllTodoItems() {
       console.log("WITHIN xHttpReq.onload = function ():");
       console.log("xHttpReq status BEFORE if:", xHttpReq.status);
     
-      if (xHttpReq.status === 200) {
+      if (xHttpReq.readyState == this.DONE && xHttpReq.status == 200) {
         display_submitted_msg(xHttpReq.responseText);
         
-        console.log("IN getAllTodoItems(), AFTER if, and status === 200");
+        console.log("IN getAllTodoItems(), AFTER if, and status == 200");
         console.log("xHttpReq response is:", xHttpReq.response);
         console.log("xHttpReq responseText is:", xHttpReq.responseText);
       
