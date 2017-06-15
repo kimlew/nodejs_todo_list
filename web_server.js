@@ -110,24 +110,28 @@ http.createServer(function (req, res) { // Called with each request.
         .query(selectQueryStr)
         .on('row', function(row) { // Stream results back.
           
-     
           console.log("IN GET " + JSON.stringify(row));
           
-          results += JSON.stringify(row);
+          results += row;
           console.log("RESULTS has: " + results);
           return results; // Returns to client results array with data as JSON.
           
+        })   
+        
+        // After all data is returned, close connection.
+        // Confirms everything before this worked.
+        .on('end', () => {
+          console.log("Attempting to send results:", JSON.stringify(results));
+          console.log("About to write the head");
+          res.writeHead(200, {"Content-Type": "application/json"});
+          console.log("Wrote the head");
+          res.write(JSON.stringify(results));
+          console.log("Wrote the results");
+          res.end(); // Tells HTTP Protocol - to end the response
+          console.log("End of response");
+          client.end();
         });
-    });  // End of: pg.connect(connectionStr, function(err, client) { 
-      
-    // After all data is returned, close connection.
-    // Confirms everything before this worked fine.
-    /*
-    res.writeHead(200, {"Content-Type": "text/plain"});
-    res.write(body);
-    res.end(); // Tells HTTP Protocol - to end the response.
-    */
-    // pg.on('end', () => { client.end(); });
+    });  // End of: pg.connect(connectionStr, function(err, client) {
 
   } // End of: if (req.method === "GET") {
   
@@ -222,7 +226,7 @@ http.createServer(function (req, res) { // Called with each request.
         client.query(insertQueryStr);
       });
       
-      // Confirmation that everything before this worked fine.
+      // Confirmation that everything before this worked.
       res.writeHead(200, {"Content-Type": "text/plain"});
       res.write(body);
       res.end(); // Tells HTTP Protocol - to end the response.
