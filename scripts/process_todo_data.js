@@ -146,10 +146,12 @@ function getAllTodoItems() {
     xHttpReq.onreadystatechange = function () {
       console.log("IN .onreadystatechange");
       console.log("xHttpReq status BEFORE if:", xHttpReq.status);
+      console.log("xHttpReq.readyState:", xHttpReq.readyState);
+      console.log("xHttpReq.DONE:", xHttpReq.DONE);
     
-      if (xHttpReq.readyState == this.DONE && this.status == 200) {     
-        if (this.responseText) {
-          updateList(this.responseText);
+      if (xHttpReq.readyState == xHttpReq.DONE && xHttpReq.status == 200) {     
+        if (xHttpReq.responseText) {
+          updateList(xHttpReq.responseText);
           //addTodosToPage();
         }
         else {
