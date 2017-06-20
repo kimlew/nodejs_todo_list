@@ -132,21 +132,22 @@ function getAllTodoItems() {
     var xhr = new XMLHttpRequest();
     var url = "url"; // URL for web server to get data from.
   
-    // open - ONLY sets up: request with a URL & tells request object
-    // request type to use - so the XMLHttpRequest can verify connection
+    // open - ONLY sets up: request with a URL & tells request object request 
+    // type to use - so the XMLHttpRequest can verify connection
     // HTTP GET request - the standard means of retrieving HTTP data
     xhr.open("GET", url);
     xhr.setRequestHeader("Content-type", "application/json");
   
-    console.log('AFTER xhr.open(GET, url, true) AND xhr.setRequestHeader\n');
-    console.log("xhr is: " + xhr);
+    console.log('IN xhr.open(GET, url)';
+    console.log("xhr: " + xhr);
+    console.log("");
     
 /***** NEVER makes it past this line - Why? */
 
     xhr.onreadystatechange = function () {
-      console.log("IN .onreadystatechange");
-      console.log("xhr status BEFORE if:", xhr.status);
+      console.log("IN .onreadystatechange BEFORE if");
       console.log("xhr.readyState:", xhr.readyState);
+      console.log("xhr status:", xhr.status);
       console.log("xhr.DONE:", xhr.DONE);
     
       if (xhr.readyState == xhr.DONE && xhr.status == 200) {     
@@ -159,10 +160,9 @@ function getAllTodoItems() {
         }
       
         display_submitted_msg(xhr.responseText);
-        
-        console.log("IN getAllTodoItems(), AFTER if, and status == 200");
-        console.log("xhr response is:", xhr.response);
-        console.log("xhr responseText is:", xhr.responseText);
+
+        console.log("xhr response:", xhr.response);
+        console.log("xhr responseText:", xhr.responseText);
       
       }
     }; // End of: xhr.onreadystatechange = function () {
