@@ -48,8 +48,7 @@ http.createServer(function (req, res) { // Called with each request.
     // http://localhost:3001 OR http://localhost:3001/ OR
     // http://localhost:3001/index.html
     
-    // Test if filename === /
-    //  / is root URL - which is equivalent to index.html
+    // Test if filename === /. / is root URL and is equivalent to index.html
     if (filename === "/") {
        filename = "/index.html"; 
     }
@@ -108,8 +107,8 @@ http.createServer(function (req, res) { // Called with each request.
       // Run a SQL query via the query() method
       client
         .query(selectQueryStr)
-        .on('row', function(row) { // Stream results back.
-          
+        
+        .on('row', function(row) { // Stream results back.  
           console.log("IN GET " + JSON.stringify(row));
           
           results += row;
@@ -123,16 +122,20 @@ http.createServer(function (req, res) { // Called with each request.
         .on('end', () => {
           console.log("Attempting to send results:", JSON.stringify(results));
           console.log("About to write the head");
+          
           res.writeHead(200, {"Content-Type": "application/json"});
           console.log("Wrote the head");
+          
           res.write(JSON.stringify(results));
           console.log("Wrote the results");
+          
           res.end(); // Tells HTTP Protocol - to end the response
           console.log("End of response");
+          
           client.end();
         });
+        
     });  // End of: pg.connect(connectionStr, function(err, client) {
-
   } // End of: if (req.method === "GET") {
   
   else if (req.method === "POST") {
@@ -185,7 +188,7 @@ http.createServer(function (req, res) { // Called with each request.
       // database. Establish communication with it via the connect() method.
       // Client is sorta like - dbConnection variable 
 
-      // SELECT - after database created, run query to test if connecting to db.
+// SELECT - after database created, run query to test if connecting to db.
 /*      pg.connect(connectionStr, function(err, client) {
         var selectQueryStr = 'SELECT * FROM todo_list_tb;'
         
