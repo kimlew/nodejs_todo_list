@@ -71,33 +71,31 @@ function putFormDataInObj(whoFor, task, dateDue) {
   // stringify - takes object and turns into string in JSON
   var aTodoItemAsString = JSON.stringify(aTodoItem);
   
+  //console.log("IN putFormDataInObj()");
   //console.log("dateDue is: " + dateDue);
-  //console.log("YOU have made it into putFormDataInObj()");
   console.log("aTodoItem is: " + aTodoItem);
   console.log("aTodoItemAsString is: " + aTodoItemAsString);
 
   // Note: aTodoItem is: [object Object]
   // process_todo_data.js:71 aTodoItemAsString is: {"whoFor":"Boris","task":"buy beer","dateDue":""}
 
-/* Create an XMLHttpRequest object, load it with a URL and HTTP
-  request type, along with a handler. Then send the request and wait for
-  the data to arrive. When it does, the handler is called.
+/* Create an XMLHttpRequest object, load it with a URL and HTTP request type,
+   along with a handler. Then send request and wait for data to arrive.
+   When it does, handler is called.
 */
-  // Use XMLHttpRequest - to send string in JSON string format via POST to web server.
-  // Use the XMLHttpRequest constructor - creates a new request object
+  // Use XMLHttpRequest - sends string in JSON string format via POST to web server
+  // Use XMLHttpRequest constructor - creates new request object
   var xhr = new XMLHttpRequest();
-  var url = "url"; // URL for web server to get data from.
-  // var url = "http://someserver.com/data.json";
+  var url = "url"; // URL for web server to get data from
   
   // Tells request object URL we want it to retrieve & request type to use
-  // open - ONLY sets up the request
+  // open - ONLY sets up the request - still have to send()
   // request type stated - so the XMLHttpRequest can verify the connection
-  // HTTP GET request - the standard means of retrieving HTTP data
   xhr.open("POST", url, true);
   xhr.setRequestHeader("Content-type", "application/json");
   
+  console.log('IN xhr.open(POST, url, true)');
   console.log("xhr is: " + xhr);
-  console.log('AFTER xhr.open(POST, url, true) AND xhr.setRequestHeader\n');
   
   // Set up an onload Handler - called when data arrives (vs waiting for data)
   // responseText - property of request object - holds data from HTTP GET retrieval
@@ -134,11 +132,11 @@ function getAllTodoItems() {
   
     // open - ONLY sets up: request with a URL & tells request object request 
     // type to use - so the XMLHttpRequest can verify connection
-    // HTTP GET request - the standard means of retrieving HTTP data
+    // HTTP GET request - standard means of retrieving HTTP data
     xhr.open("GET", url);
     xhr.setRequestHeader("Content-type", "application/json");
   
-    console.log('IN xhr.open(GET, url)';
+    console.log('IN xhr.open(GET, url)');
     console.log("xhr: " + xhr);
     console.log("");
     
