@@ -13,8 +13,9 @@
 //var ulResults;
 //var countFound = 0;
 
-// Constructor - Retrieve input data using constructor and put in todoItemObj 
-// - stores form data. Note: data will be sent to PHP script on server.
+// Constructor - stores form data - Retrieves input data using constructor and 
+// puts in todoItemObj 
+// Note: data will be sent via node.js script to node.js server
 function TodoItem(whoFor, task, dateDue="") {
   // dateDue is optional.
   //this.id = id; // Used for index? in LocalStorage before.
