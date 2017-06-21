@@ -100,7 +100,7 @@ http.createServer(function (req, res) { // Called with each request.
       // req.headers["x-requested-with"] != 'XMLHttpRequest'
       // Put all the stuff to do with getting a FILE in this else block.
  
-    } // End of: else - NO 'XMLHttpRequest' in req.headers["x-requested-with"]
+   
     
     var filename = req.url || "/index.html"; // Defaults to index.html
     // http://localhost:3001 OR http://localhost:3001/ OR
@@ -154,6 +154,8 @@ http.createServer(function (req, res) { // Called with each request.
     else {
       console.log("Invalid file extension detected: " + ext + " (" + filename + ")")
     }
+    
+    } // End of: else - NO 'XMLHttpRequest' in req.headers["x-requested-with"]
     
   } // End of: if (req.method === "GET") {
   
