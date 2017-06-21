@@ -44,6 +44,73 @@ http.createServer(function (req, res) { // Called with each request.
   // req and res parameters - in ready state when callback function is invoked.
   
   if (req.method === "GET") {
+    // Determine if AJAX request or normal request, e.g., file.
+    // Check request.headers if it contains HTTP_X_REQUESTED_WITH.
+    // If x-requested-with has value of: XMLHttpRequest - it IS an AJAX request.
+  
+    if (req.headers["x-requested-with"] == 'XMLHttpRequest') {
+      // IS AJAX request 
+      //LOLA: Do current GET stuff related to the write to the JSON file with new todo data.
+         
+         
+      // Put all the stuff to do with get stuff from db.   
+    // SELECT - after database created, run query to test if connecting to db.
+    pg.connect(connectionStr, function(err, client) {
+      var results = [];
+      var selectQueryStr = 'SELECT * FROM todo_list_tb ORDER BY date_due ASC;'
+    
+      if (err) throw err;
+      console.log('Connected to Postgres.');
+
+      // Run a SQL query via the query() method
+      client
+        .query(selectQueryStr)
+        
+        .on('row', function(row) { // Stream results back.  
+          console.log("IN GET " + JSON.stringify(row));
+          
+          results += row;
+          console.log("RESULTS has: " + results);
+          return results; // Returns to client results array with data as JSON.
+          
+        })   
+        
+        // After all data is returned, close connection.
+        // Confirms everything before this worked.
+        .on('end', () => {
+          console.log("Attempting to send results:", JSON.stringify(results));
+          console.log("About to write the head");
+          
+          res.writeHead(200, {"Content-Type": "application/json"});
+          console.log("Wrote the head");
+          
+          res.write(JSON.stringify(results));
+          console.log("Wrote the results");
+          
+          res.end(); // Tells HTTP Protocol - to end the response
+          console.log("End of response");
+          
+          client.end();
+        });
+        
+    });  // End of: pg.connect(connectionStr, function(err, client) {
+
+
+
+
+
+
+
+
+
+    
+    } // End of: if
+    
+    // Put all the stuff to do with getting a FILE.
+    else { // IS normal request - read file
+ 
+    } // End of: else
+    
     var filename = req.url || "/index.html"; // Defaults to index.html
     // http://localhost:3001 OR http://localhost:3001/ OR
     // http://localhost:3001/index.html
@@ -85,7 +152,8 @@ http.createServer(function (req, res) { // Called with each request.
         if (exists) {
           console.log("Serving file: " + localPath);
           getFile(localPath, res, mimeType);
-        } else {
+        } 
+        else {
           console.log("File not found: " + localPath);
           res.writeHead(404);
           res.end();
@@ -96,46 +164,6 @@ http.createServer(function (req, res) { // Called with each request.
       console.log("Invalid file extension detected: " + ext + " (" + filename + ")")
     }
     
-    // SELECT - after database created, run query to test if connecting to db.
-    pg.connect(connectionStr, function(err, client) {
-      var results = [];
-      var selectQueryStr = 'SELECT * FROM todo_list_tb ORDER BY date_due ASC;'
-    
-      if (err) throw err;
-      console.log('Connected to Postgres.');
-
-      // Run a SQL query via the query() method
-      client
-        .query(selectQueryStr)
-        
-        .on('row', function(row) { // Stream results back.  
-          console.log("IN GET " + JSON.stringify(row));
-          
-          results += row;
-          console.log("RESULTS has: " + results);
-          return results; // Returns to client results array with data as JSON.
-          
-        })   
-        
-        // After all data is returned, close connection.
-        // Confirms everything before this worked.
-        .on('end', () => {
-          console.log("Attempting to send results:", JSON.stringify(results));
-          console.log("About to write the head");
-          
-          res.writeHead(200, {"Content-Type": "application/json"});
-          console.log("Wrote the head");
-          
-          res.write(JSON.stringify(results));
-          console.log("Wrote the results");
-          
-          res.end(); // Tells HTTP Protocol - to end the response
-          console.log("End of response");
-          
-          client.end();
-        });
-        
-    });  // End of: pg.connect(connectionStr, function(err, client) {
   } // End of: if (req.method === "GET") {
   
   else if (req.method === "POST") {
