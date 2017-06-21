@@ -92,15 +92,15 @@ http.createServer(function (req, res) { // Called with each request.
           });
         
       });  // End of: pg.connect(connectionStr, function(err, client) {
-
-
+    } // End of: if (req.headers["x-requested-with"] == 'XMLHttpRequest') {
     
-    } // End of: if
-    
-    // Put all the stuff to do with getting a FILE.
-    else { // IS normal request - read file
+   
+    else { 
+      // IS normal request - read file
+      // req.headers["x-requested-with"] != 'XMLHttpRequest'
+      // Put all the stuff to do with getting a FILE in this else block.
  
-    } // End of: else
+    } // End of: else - NO 'XMLHttpRequest' in req.headers["x-requested-with"]
     
     var filename = req.url || "/index.html"; // Defaults to index.html
     // http://localhost:3001 OR http://localhost:3001/ OR
