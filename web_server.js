@@ -98,62 +98,61 @@ http.createServer(function (req, res) { // Called with each request.
     else { 
       // IS normal request - read file
       // req.headers["x-requested-with"] != 'XMLHttpRequest'
-      // Put all the stuff to do with getting a FILE in this else block.
- 
-   
+      // Put all the stuff to do with getting a FILE in this else block. 
     
-    var filename = req.url || "/index.html"; // Defaults to index.html
-    // http://localhost:3001 OR http://localhost:3001/ OR
-    // http://localhost:3001/index.html
+      var filename = req.url || "/index.html"; // Defaults to index.html
+      // http://localhost:3001 OR http://localhost:3001/ OR
+      // http://localhost:3001/index.html
     
-    // Test if filename === /. / is root URL and is equivalent to index.html
-    if (filename === "/") {
-       filename = "/index.html"; 
-    }
-	
-    console.log("Method is GET: ", req.method, " URL is: ", req.url);
+      // Test if filename === /. / is root URL and is equivalent to index.html
+      if (filename === "/") {
+         filename = "/index.html"; 
+      }
+  
+      console.log("Method is GET: ", req.method, " URL is: ", req.url);
         
-    var ext = path.extname(filename);
-    var localPath = __dirname;
+      var ext = path.extname(filename);
+      var localPath = __dirname;
   
-    var validExtensions = {
-            ".html" : "text/html",
-            ".js": "application/javascript",
-            ".css": "text/css",
-            ".txt": "text/plain",
-            ".jpg": "image/jpeg",
-            ".gif": "image/gif",
-            ".png": "image/png",
-            ".woff": "application/font-woff",
-            ".woff2": "application/font-woff2",
-            ".ico": "image/x-icon"
-    };
+      var validExtensions = {
+              ".html" : "text/html",
+              ".js": "application/javascript",
+              ".css": "text/css",
+              ".txt": "text/plain",
+              ".jpg": "image/jpeg",
+              ".gif": "image/gif",
+              ".png": "image/png",
+              ".woff": "application/font-woff",
+              ".woff2": "application/font-woff2",
+              ".ico": "image/x-icon"
+      };
 
-    var validMimeType = true;
-    var mimeType = validExtensions[ext];
+      var validMimeType = true;
+      var mimeType = validExtensions[ext];
   
-    if (checkMimeType) {
-      validMimeType = validExtensions[ext] != undefined;
-    }
+      if (checkMimeType) {
+        validMimeType = validExtensions[ext] != undefined;
+      }
 
-    if (validMimeType) {
-      localPath += filename;
+      if (validMimeType) {
+        localPath += filename;
       
-      fs.exists(localPath, function(exists) {
-        if (exists) {
-          console.log("Serving file: " + localPath);
-          getFile(localPath, res, mimeType);
-        } 
-        else {
-          console.log("File not found: " + localPath);
-          res.writeHead(404);
-          res.end();
-        }
-      }); // End of:fs.exists(localPath, function(exists) {
-    } // End of: if (validMimeType) {
-    else {
-      console.log("Invalid file extension detected: " + ext + " (" + filename + ")")
-    }
+        fs.exists(localPath, function(exists) {
+          if (exists) {
+            console.log("Serving file: " + localPath);
+            getFile(localPath, res, mimeType);
+          } 
+          else {
+            console.log("File not found: " + localPath);
+            res.writeHead(404);
+            res.end();
+          }
+        }); // End of:fs.exists(localPath, function(exists) {
+      } // End of: if (validMimeType) {
+    
+      else {
+        console.log("Invalid file extension detected: " + ext + " (" + filename + ")")
+      }
     
     } // End of: else - NO 'XMLHttpRequest' in req.headers["x-requested-with"]
     
