@@ -93,11 +93,9 @@ http.createServer(function (req, res) { // Called with each request.
         
       });  // End of: pg.connect(connectionStr, function(err, client) {
     } // End of: if (req.headers["x-requested-with"] == 'XMLHttpRequest') {
-    
    
-    else { 
+    else { // req.headers["x-requested-with"] != 'XMLHttpRequest'
       // IS normal request - read file
-      // req.headers["x-requested-with"] != 'XMLHttpRequest'
       // Put all the stuff to do with getting a FILE in this else block. 
     
       var filename = req.url || "/index.html"; // Defaults to index.html
