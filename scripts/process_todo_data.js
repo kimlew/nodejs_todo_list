@@ -141,14 +141,17 @@ function getAllTodoItems() {
     console.log("xhr: " + xhr);
     console.log("");
     
-/* NEVER makes it past this line - Why? **************************** */
+/* NEVER makes it past this line - Why? **************************** 
+
+*/
 
     xhr.onreadystatechange = function () {
       console.log("IN .onreadystatechange BEFORE if");
       console.log("xhr.readyState:", xhr.readyState);
       console.log("xhr status:", xhr.status);
       console.log("xhr.DONE:", xhr.DONE);
-    
+
+// Kim saw it make it in here - but was a status of 4.  maybe with Ctrl-C?
       if (xhr.readyState == xhr.DONE && xhr.status == 200) {     
         if (xhr.responseText) {
           updateList(xhr.responseText);
