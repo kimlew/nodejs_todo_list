@@ -45,16 +45,14 @@ http.createServer(function (req, res) { // Called with each request.
   
   if (req.method === "GET") {
     // Determine if AJAX request or normal request, e.g., file.
-    // Check request.headers if it contains HTTP_X_REQUESTED_WITH.
-    // If x-requested-with has value of: XMLHttpRequest - it IS an AJAX request.
   
     if (req.headers["x-requested-with"] == 'XMLHttpRequest') {
-      // IS AJAX request 
-      //LOLA: Do current GET stuff related to the write to the JSON file with new todo data.
-         
-         
-      // Put all the stuff to do with get stuff from db.   
-    // SELECT - after database created, run query to test if connecting to db.
+      // IS AJAX request - since header contains XMLHttpRequest in x-requested-with
+      // Do current GET stuff related to writing to JSON file with new todo data
+      // i.e, get stuff from database.   
+      // SELECT - for after database created, run query to test if connecting to db
+      // and SELECT - to retrieve from database to display To Do List.
+      
     pg.connect(connectionStr, function(err, client) {
       var results = [];
       var selectQueryStr = 'SELECT * FROM todo_list_tb ORDER BY date_due ASC;'
