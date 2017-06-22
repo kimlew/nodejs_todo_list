@@ -43,6 +43,10 @@ http.createServer(function (req, res) { // Called with each request.
   // Callback function passes HTTP req, HTTP res.
   // req and res parameters - in ready state when callback function is invoked.
   
+  console.log("req.method is ", req.method);
+  console.log("req.url is    ", req.url);
+  console.log("req.headers is %o", req.headers);
+  
   if (req.method === "GET") {
     // Determine if AJAX request or normal request, e.g., file.
   
