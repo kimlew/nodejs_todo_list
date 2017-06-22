@@ -140,6 +140,10 @@ console.log("todoItemFromArrObj: ", todoItemFromArrObj);
     // Sets the value of todoItem to the li element.
     li.setAttribute("class", "todoItem");
     
+    // Add todoItemFromArrObj somehow to li.
+    li.innerHTML = todoItemFromArrObj.whoFor + " must do " + 
+      todoItemFromArrObj.task + " before " +
+      todoItemFromArrObj.dateDue;
     console.log("li is: ", li.value);
     
     todoListUl.appendChild(li);
