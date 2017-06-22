@@ -53,6 +53,8 @@ http.createServer(function (req, res) { // Called with each request.
       // SELECT - for after database created, run query to test if connecting to db
       // and SELECT - to retrieve from database to display To Do List.
       
+      console.log("MADE it past line with: x-requested-with ");
+      
       pg.connect(connectionStr, function(err, client) {
         var results = [];
         var selectQueryStr = 'SELECT * FROM todo_list_tb ORDER BY date_due ASC;'
