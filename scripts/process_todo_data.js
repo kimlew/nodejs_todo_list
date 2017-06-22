@@ -115,13 +115,24 @@ function putFormDataInObj(whoFor, task, dateDue) {
 } // End of: function putFormDataInObj()
   
 function updateList(responseText) {
+  //console.log("responseText: ", responseText);
+  
   var todoListUl = document.getElementById("todoList");
   var todoListObj = JSON.parse(responseText); // Turns JSON into object.
+  console.log("todoListObj: ", todoListObj);
   
   for (var i = 0; i < todoListObj.length; i++) {
     var todoItemFromObj = todoListObj[i];
+
+/* KIM needs to do SOMETHING with todoItemFromObj *******************/
+    
     var li = document.createElement("li");
-    li.setAttribute("class", "todoItem");
+    
+    // Sets the value of todoItem to the li element.
+    li.setAttribute("class", "todoItemFromObj ");
+    
+    console.log("li is: ", li.value);
+    
     todoListUl.appendChild(li);
   }
   console.log("IN updateList() ");
@@ -145,8 +156,7 @@ function getAllTodoItems() {
     xhr.onreadystatechange = function () {
       console.log("IN .onreadystatechange BEFORE if");
       console.log("xhr.readyState:", xhr.readyState);
-      console.log("xhr status:", xhr.status);
-      console.log("xhr.DONE:", xhr.DONE);
+      console.log("xhr status:", xhr.status," xhr.DONE:", xhr.DONE);
 
 // Kim saw it make it in here - but was a status of 4.  maybe with Ctrl-C?
       if (xhr.readyState == xhr.DONE && xhr.status == 200) {     
@@ -160,9 +170,8 @@ function getAllTodoItems() {
       
         display_submitted_msg(xhr.responseText);
 
-        console.log("xhr response:", xhr.response);
-        console.log("xhr responseText:", xhr.responseText);
-      
+        //console.log("xhr response:", xhr.response);
+        //console.log("xhr responseText:", xhr.responseText);
       }
     }; // End of: xhr.onreadystatechange = function () {
     
