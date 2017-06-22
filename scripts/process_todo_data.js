@@ -136,7 +136,8 @@ function getAllTodoItems() {
     // HTTP GET request - standard means of retrieving HTTP data
     xhr.open("GET", url);
     xhr.setRequestHeader("Content-type", "application/json");
-  
+    xhr.setRequestHeader("x-requested-with", "XMLHttpRequest");
+      
     console.log('IN xhr.open(GET, url)');
     console.log("xhr: " + xhr);
     console.log("");
