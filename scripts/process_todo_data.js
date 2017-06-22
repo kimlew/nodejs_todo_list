@@ -84,10 +84,12 @@ function putFormDataInObj(whoFor, task, dateDue) {
    along with a handler. Then send request and wait for data to arrive.
    When it does, handler is called.
 */
-  // Use XMLHttpRequest - sends string in JSON string format via POST to web server
-  // Use XMLHttpRequest constructor - creates new request object
+  // XMLHttpRequest object - built into all modern browsers-to request data from a server
+  // Use XMLHttpRequest - to send string in JSON string format via POST to web server
+  // Use XMLHttpRequest constructor - to create new request object
   var xhr = new XMLHttpRequest();
-  var url = "url"; // URL for web server to get data from
+  var url = "url"; // URL for web server to get data from 
+  // url - a DOMString representing the URL to send the request to.
   
   // Tells request object URL we want it to retrieve & request type to use
   // open - ONLY sets up the request - still have to send()
@@ -114,22 +116,29 @@ function putFormDataInObj(whoFor, task, dateDue) {
 
 } // End of: function putFormDataInObj()
   
-function updateList(responseText) {
+function updateList(responseText) {      
+  /* Take the data we got back from our XMLHttpRequest object (which is 
+     a JSON string) and convert it into a true JavaScript object.  
+     Walk through the resulting array and add new elements to the DOM, 
+     1 per item in the array.
+  */ 
+  
   //console.log("responseText: ", responseText);
   
   var todoListUl = document.getElementById("todoList");
-  var todoListObj = JSON.parse(responseText); // Turns JSON into object.
+  var todoListObj = JSON.parse(responseText); // Turns JSON into an array object.
+  
   console.log("todoListObj: ", todoListObj);
   
   for (var i = 0; i < todoListObj.length; i++) {
-    var todoItemFromObj = todoListObj[i];
+    var todoItemFromArrObj = todoListObj[i];
 
-/* KIM needs to do SOMETHING with todoItemFromObj *******************/
-    
+console.log("todoItemFromArrObj: ", todoItemFromArrObj);
+   
     var li = document.createElement("li");
     
     // Sets the value of todoItem to the li element.
-    li.setAttribute("class", "todoItemFromObj ");
+    li.setAttribute("class", "todoItemFromArrObj ");
     
     console.log("li is: ", li.value);
     
@@ -145,6 +154,8 @@ function getAllTodoItems() {
     // open - ONLY sets up: request with a URL & tells request object request 
     // type to use - so the XMLHttpRequest can verify connection
     // HTTP GET request - standard means of retrieving HTTP data
+
+// Load xhr with a URL and HTTP request type, along with a handler
     xhr.open("GET", url);
     xhr.setRequestHeader("Content-type", "application/json");
     xhr.setRequestHeader("x-requested-with", "XMLHttpRequest");
@@ -156,10 +167,18 @@ function getAllTodoItems() {
     xhr.onreadystatechange = function () {
       console.log("IN .onreadystatechange BEFORE if");
       console.log("xhr.readyState:", xhr.readyState);
-      console.log("xhr status:", xhr.status," xhr.DONE:", xhr.DONE);
+      /* Full list of readyState values:
+          State  Description
+          0      The request is not initialized
+          1      The request has been set up
+          2      The request has been sent
+          3      The request is in process
+          4      The request is complete  */
+      console.log("xhr.DONE:", xhr.DONE, " xhr.status:", xhr.status);
 
-// Kim saw it make it in here - but was a status of 4.  maybe with Ctrl-C?
-      if (xhr.readyState == xhr.DONE && xhr.status == 200) {     
+      if (xhr.readyState == 4 && xhr.status == 200) { 
+      //if (xhr.readyState == xhr.DONE && xhr.status == 200) {    
+
         if (xhr.responseText) {
           updateList(xhr.responseText);
           //addTodosToPage();
@@ -175,7 +194,10 @@ function getAllTodoItems() {
       }
     }; // End of: xhr.onreadystatechange = function () {
     
-    xhr.send(); // param is null - when NOT sending any data to remote service
+    xhr.send(); // Send the request and wait for the data to arrive. 
+    // When the data arrives, the handler is called.
+    // Note: request.send(null); Use null when NOT sending data to remote service.
+
 } // End of: function getAllTodoItems() {
 
 window.onload = init;
