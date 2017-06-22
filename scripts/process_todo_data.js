@@ -141,10 +141,6 @@ function getAllTodoItems() {
     console.log('IN xhr.open(GET, url)');
     console.log("xhr: " + xhr);
     console.log("");
-    
-/* NEVER makes it past this line - Why? **************************** 
-
-*/
 
     xhr.onreadystatechange = function () {
       console.log("IN .onreadystatechange BEFORE if");
