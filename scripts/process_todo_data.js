@@ -138,7 +138,7 @@ console.log("todoItemFromArrObj: ", todoItemFromArrObj);
     var li = document.createElement("li");
     
     // Sets the value of todoItem to the li element.
-    li.setAttribute("class", "todoItemFromArrObj ");
+    li.setAttribute("class", "todoItem");
     
     console.log("li is: ", li.value);
     
