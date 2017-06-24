@@ -73,7 +73,9 @@ http.createServer(function (req, res) { // Called with each request.
           .on('row', function(row) { // Stream results back.  
             console.log("IN GET " + JSON.stringify(row));
           
-            results += row;
+            results.push(row);
+            //results += row;  // += is turning the result into a string DAMMIT!
+            
             console.log("RESULTS has: " + results);
             return results; // Returns to client results array with data as JSON.
           
