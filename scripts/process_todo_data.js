@@ -141,9 +141,9 @@ console.log("todoItemFromArrObj: ", todoItemFromArrObj);
     li.setAttribute("class", "todoItem");
     
     // Add todoItemFromArrObj somehow to li.
-    li.innerHTML = todoItemFromArrObj.whoFor + " must do " + 
+    li.innerHTML = todoItemFromArrObj.who_for + " must do " + 
       todoItemFromArrObj.task + " before " +
-      todoItemFromArrObj.dateDue;
+      todoItemFromArrObj.date_due;
     console.log("li is: ", li.value);
     
     todoListUl.appendChild(li);
