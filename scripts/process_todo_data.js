@@ -32,11 +32,7 @@ function init() {
   getAllTodoItems();
 } // End of init()
 
-function display_submitted_msg(respText) { //whoFor, task, dateDue) {
-  var span = document.getElementById("user_msg");
-  span.innerHTML = "The To Do data for " + respText + " has been submitted.";
-  //whoFor + " to " + task " before " + dateDue + 
-}
+
 
 function getFormData() {
   var whoFor = document.getElementById("whoFor").value,
@@ -117,6 +113,12 @@ function putFormDataInObj(whoFor, task, dateDue) {
 
 } // End of: function putFormDataInObj()
   
+  function display_submitted_msg(respText) { //whoFor, task, dateDue) {
+  var span = document.getElementById("user_msg");
+  span.innerHTML = "The To Do data for " + respText + " has been submitted.";
+  //whoFor + " to " + task " before " + dateDue + 
+}
+
 function updateList(responseText) {      
   /* Take the data received back from XMLHttpRequest object (which is a JSON 
      string) and convert it into a true JavaScript object. Loop through resulting
@@ -188,8 +190,6 @@ function getAllTodoItems() {
         else {
           console.log("Error: There is NO data.");
         }
-      
-        display_submitted_msg(xhr.responseText);//whoFor, task, dateDue);
 
         //console.log("xhr response:", xhr.response);
         console.log("xhr responseText:", xhr.responseText);
