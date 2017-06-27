@@ -32,9 +32,10 @@ function init() {
   getAllTodoItems();
 } // End of init()
 
-function display_submitted_msg(respText) {
+function display_submitted_msg(respText) { //whoFor, task, dateDue) {
   var span = document.getElementById("user_msg");
-  span.innerHTML = "The To Do data " + respText + " has been submitted.";
+  span.innerHTML = "The To Do data for " + respText + " has been submitted.";
+  //whoFor + " to " + task " before " + dateDue + 
 }
 
 function getFormData() {
@@ -104,8 +105,8 @@ function putFormDataInObj(whoFor, task, dateDue) {
   // responseText - property of request object - holds data from HTTP GET retrieval
   xhr.onload = function () {
     if (xhr.readyState === xhr.DONE && xhr.status === 200) {
-        display_submitted_msg(xhr.responseText);
-        console.log("xhr response & responseText: ", xhr.response, xhr.responseText);
+        display_submitted_msg(xhr.responseText); //whoFor, task, dateDue);
+        //console.log("xhr response & responseText: ", xhr.response, xhr.responseText);
     }
   }; // End of: xhr.onload = function () {
 
@@ -117,11 +118,9 @@ function putFormDataInObj(whoFor, task, dateDue) {
 } // End of: function putFormDataInObj()
   
 function updateList(responseText) {      
-  /* Take the data we got back from our XMLHttpRequest object (which is 
-     a JSON string) and convert it into a true JavaScript object.  
-     Walk through the resulting array and add new elements to the DOM, 
-     1 per item in the array.
-  */ 
+  /* Take the data received back from XMLHttpRequest object (which is a JSON 
+     string) and convert it into a true JavaScript object. Loop through resulting
+     array and add new elements to the DOM, 1 per item in the array. */ 
   
   //console.log("responseText: ", responseText);
   
@@ -132,9 +131,6 @@ function updateList(responseText) {
   
   for (var i = 0; i < todoListObj.length; i++) {
     var todoItemFromArrObj = todoListObj[i];
-
-console.log("todoItemFromArrObj: ", todoItemFromArrObj);
-   
     var li = document.createElement("li");
     
     // Sets the value of todoItem to the li element.
@@ -144,9 +140,11 @@ console.log("todoItemFromArrObj: ", todoItemFromArrObj);
     li.innerHTML = todoItemFromArrObj.who_for + " must do " + 
       todoItemFromArrObj.task + " before " +
       todoItemFromArrObj.date_due;
-    console.log("li is: ", li.value);
     
     todoListUl.appendChild(li);
+    
+    console.log("todoItemFromArrObj: ", todoItemFromArrObj);
+    console.log("li is: ", li.value);
   }
   console.log("IN updateList() ");
 }
@@ -171,6 +169,7 @@ function getAllTodoItems() {
     xhr.onreadystatechange = function () {
       console.log("IN .onreadystatechange BEFORE if");
       console.log("xhr.readyState:", xhr.readyState);
+      console.log("xhr.DONE:", xhr.DONE, " xhr.status:", xhr.status);
       /* Full list of readyState values:
           State  Description
           0      The request is not initialized
@@ -178,7 +177,6 @@ function getAllTodoItems() {
           2      The request has been sent
           3      The request is in process
           4      The request is complete  */
-      console.log("xhr.DONE:", xhr.DONE, " xhr.status:", xhr.status);
 
       if (xhr.readyState == 4 && xhr.status == 200) { 
       //if (xhr.readyState == xhr.DONE && xhr.status == 200) {    
@@ -191,10 +189,10 @@ function getAllTodoItems() {
           console.log("Error: There is NO data.");
         }
       
-        display_submitted_msg(xhr.responseText);
+        display_submitted_msg(xhr.responseText);//whoFor, task, dateDue);
 
         //console.log("xhr response:", xhr.response);
-        //console.log("xhr responseText:", xhr.responseText);
+        console.log("xhr responseText:", xhr.responseText);
       }
     }; // End of: xhr.onreadystatechange = function () {
     
