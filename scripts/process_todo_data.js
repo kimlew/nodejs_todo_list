@@ -27,11 +27,12 @@ function TodoItem(whoFor, task, dateDue="") {
 
 //   ***** Functions *****
 function init() {
+  getAllTodoItems();
+  
   var submitButton = document.getElementById("submitButton");
   submitButton.onclick = getFormData;
-  getAllTodoItems();
-} // End of init()
 
+} // End of init()
 
 
 function getFormData() {
@@ -143,16 +144,16 @@ function updateList(respTextFromGet) {
     li.setAttribute("class", "todoItem");
     
     // Add todoItemFromArrObj somehow to li.
-    li.innerHTML = todoItemFromArrObj.who_for + " must do " + 
+    li.innerHTML = todoItemFromArrObj.who_for + " must " + 
       todoItemFromArrObj.task + " before " +
       todoItemFromArrObj.date_due;
     
     todoListUl.appendChild(li);
     
-    console.log("todoItemFromArrObj: ", todoItemFromArrObj);
-    console.log("li is: ", li.value);
+    //console.log("todoItemFromArrObj: ", todoItemFromArrObj);
+    //console.log("li is: ", li.value);
   }
-  console.log("IN updateList() ");
+  //console.log("IN updateList() ");
 }
  
 function getAllTodoItems() {
@@ -189,7 +190,7 @@ function getAllTodoItems() {
 
         if (xhr.responseText) {
           updateList(xhr.responseText);
-          //addTodosToPage();
+          //getAllTodoItems();
         }
         else {
           console.log("Error: There is NO data.");
