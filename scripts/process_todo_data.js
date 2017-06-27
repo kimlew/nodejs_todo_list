@@ -113,10 +113,14 @@ function putFormDataInObj(whoFor, task, dateDue) {
 
 } // End of: function putFormDataInObj()
   
-  function display_submitted_msg(respText) { //whoFor, task, dateDue) {
+function display_submitted_msg(respText) { //whoFor, task, dateDue) {
+  var submitTodoObj = JSON.parse(respText);
+  
   var span = document.getElementById("user_msg");
-  span.innerHTML = "The To Do data for " + respText + " has been submitted.";
-  //whoFor + " to " + task " before " + dateDue + 
+  span.innerHTML = " The To Do data for " + 
+      submitTodoObj.whoFor + " to " + 
+      submitTodoObj.task + " before " +
+      submitTodoObj.dateDue + " has been submitted.";
 }
 
 function updateList(respTextFromGet) {      
