@@ -119,15 +119,15 @@ function putFormDataInObj(whoFor, task, dateDue) {
   //whoFor + " to " + task " before " + dateDue + 
 }
 
-function updateList(responseText) {      
+function updateList(respTextFromGet) {      
   /* Take the data received back from XMLHttpRequest object (which is a JSON 
      string) and convert it into a true JavaScript object. Loop through resulting
      array and add new elements to the DOM, 1 per item in the array. */ 
   
-  //console.log("responseText: ", responseText);
+  //console.log("respTextFromGet: ", respTextFromGet);
   
   var todoListUl = document.getElementById("todoList");
-  var todoListObj = JSON.parse(responseText); // Turns JSON into an array object.
+  var todoListObj = JSON.parse(respTextFromGet); // Turns JSON into an array object.
   
   console.log("todoListObj: ", todoListObj);
   
