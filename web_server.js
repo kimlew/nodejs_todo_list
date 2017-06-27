@@ -61,7 +61,7 @@ http.createServer(function (req, res) { // Called with each request.
       
       pg.connect(connectionStr, function(err, client) {
         var results = [];
-        var selectQueryStr = 'SELECT * FROM todo_list_tb ORDER BY date_due ASC;'
+        var selectQueryStr = 'SELECT * FROM todo_list_tb ORDER BY date_due DESC;'
     
         if (err) throw err;
         console.log('Connected to Postgres.');
