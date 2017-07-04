@@ -37,7 +37,8 @@ var port = process.env.PORT || 3001;  // 3001; //TCP port-e.g. 80;
 var serverIpAddress = "127.0.0.1"; // Server IP address: localhost
 
 var connectionStr = process.env.DATABASE_URL || 'postgres://localhost:5432/nodejs_todo_list';
-// This is set up by Postgres unless Heroku sets up (the 1st choice) here.
+// Heroku sets up the 1st choice to use Postgres. The 2nd one is the URL I 
+// state for Postgres.
 
 http.createServer(function (req, res) { // Called with each request.
   // Callback function passes HTTP req, HTTP res.
@@ -54,8 +55,8 @@ http.createServer(function (req, res) { // Called with each request.
       // IS AJAX request - since header contains XMLHttpRequest in x-requested-with
       // Do current GET stuff related to writing to JSON file with new todo data
       // i.e, get stuff from database.   
-      // SELECT - for after database created, run query to test if connecting to db
-      // and SELECT - to retrieve from database to display To Do List.
+      // SELECT - for after database created, run query to test if connecting to 
+      // db and SELECT - to retrieve from database to display To Do List.
       
       console.log("MADE it past line with: x-requested-with ");
       
