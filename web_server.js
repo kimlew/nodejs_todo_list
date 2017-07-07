@@ -274,7 +274,7 @@ http.createServer(function (req, res) { // Called with each request.
       pg.defaults.ssl = false; // Note: Set to true to run on Heroku.
 
       pg.connect(connectionStr, function(err, client) {
-//        var insertQueryStr = "DELETE * FROM todo_list_tb";
+        var deleteQueryStr = "DELETE * FROM todo_list_tb";
       }); // End of pg.connect() {
     
     }); // End of req.on("end", function() { 
