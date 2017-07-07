@@ -254,7 +254,7 @@ http.createServer(function (req, res) { // Called with each request.
 
         // Doing an INSERT
         client.query(insertQueryStr);
-      });
+      }); // End of pg.connect() {
       
       // Confirmation that everything before this worked.
       res.writeHead(200, {"Content-Type": "text/plain"});
@@ -271,6 +271,12 @@ http.createServer(function (req, res) { // Called with each request.
      
     req.on("end", function() {
     
+      pg.defaults.ssl = false; // Note: Set to true to run on Heroku.
+/*
+      pg.connect(connectionStr, function(err, client) {
+        var insertQueryStr = "DELETE * FROM todo_list_tb";
+      }); // End of pg.connect() {
+*/    
     }); // End of req.on("end", function() { 
   } // End of: else if (req.method === "DELETE") {
   
