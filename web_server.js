@@ -263,6 +263,26 @@ http.createServer(function (req, res) { // Called with each request.
     }); // End of req.on("end", function() { 
   } // End of: else if (req.method === "POST") {
   
+  //DELETE * FROM todo_list
+  else if (req.method === "DELETE") {
+    console.log("Method is DELETE: ", req.method);
+  
+    var body = ""; // String that will have POST JSON data added to it in chunks.
+    
+    req.on("data", function(chunk) {
+      console.log("IN req.on - that passes data FOR body with chunks)");
+      // body variable - is a JSON string
+      // To manipulate it and prepare it for insertion into db: turn into object.
+      
+      body += chunk;
+      console.log("body has: " + body);
+    }); // End of req.on("data", function(chunk) {
+     
+    req.on("end", function() {
+    
+    }); // End of req.on("end", function() { 
+  } // End of: else if (req.method === "DELETE") {
+  
 }).listen(port /*, serverIpAddress */); // TCP port and server IP address - DON'T 
 // exclude 2nd param when deploying to Heroku
 
