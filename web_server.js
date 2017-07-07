@@ -55,8 +55,8 @@ http.createServer(function (req, res) { // Called with each request.
       // IS AJAX request - since header contains XMLHttpRequest in x-requested-with
       // Do current GET stuff related to writing to JSON file with new todo data
       // i.e, get stuff from database.   
-      // SELECT - for after database created, run query to test if connects to 
-      // db and retrieves with SELECT from database to display To Do List.
+      // SELECT - After database created, run query to test if connects to db
+      // and retrieves with SELECT from database, to display To Do List.
       
       console.log("MADE it past line with: x-requested-with ");
       
