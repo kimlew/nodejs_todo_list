@@ -28,7 +28,7 @@
 -->
       <fieldset>
         <legend><b>Enter a To Do</b></legend>
-        <form id="taskForm">
+        <form id="taskForm" action="/" method="post">
             <label for ="whoFor">For Who: </label>
               <input type ="text" name="whoFor" id="whoFor">
               <span class="error" id="whoFor_error"</span>
@@ -48,8 +48,10 @@
           <br>
         </form>
       </fieldset>
-         
-      <input id="clearListButton" type="button" value="Clear To Do List">
+     
+      <form id="deleteForm" action="/" method="post">    
+        <input id="clearListButton" type="button" value="Clear To Do List">
+      </form>  
     </div><!-- End tag for form -->
        
     <div id="list"> 
