@@ -166,6 +166,10 @@ http.createServer(function (req, res) { // Called with each request.
   } // End of: if (req.method === "GET") {
   
   else if (req.method === "POST") {
+  // app.post('buttonclicked/:id/:submit',function(req,res)
+  
+  
+  
     console.log("Method is POST: ", req.method);
     
     var body = ""; // String that will have POST JSON data added to it in chunks.
