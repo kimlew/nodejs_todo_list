@@ -82,8 +82,8 @@ http.createServer(function (req, res) { // Called with each request.
           
           })   
         
-          // After all data is returned, close connection.
           // Confirms everything before this worked.
+          // After all data is returned, close connection.
           .on('end', () => {
             console.log("Attempting to send results:", JSON.stringify(results));
             console.log("About to write the head");
@@ -98,7 +98,7 @@ http.createServer(function (req, res) { // Called with each request.
             console.log("End of response");
           
             client.end();
-          });
+          }); // End of: .on('end', () => {
         
       });  // End of: pg.connect(connectionStr, function(err, client) {
     } // End of: if (req.headers["x-requested-with"] == 'XMLHttpRequest') {
