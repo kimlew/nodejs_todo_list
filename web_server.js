@@ -267,16 +267,7 @@ http.createServer(function (req, res) { // Called with each request.
   else if (req.method === "DELETE") {
     console.log("Method is DELETE: ", req.method);
   
-    var body = ""; // String that will have POST JSON data added to it in chunks.
-    
-    req.on("data", function(chunk) {
-      console.log("IN req.on - that passes data FOR body with chunks)");
-      // body variable - is a JSON string
-      // To manipulate it and prepare it for insertion into db: turn into object.
-      
-      body += chunk;
-      console.log("body has: " + body);
-    }); // End of req.on("data", function(chunk) {
+
      
     req.on("end", function() {
     
