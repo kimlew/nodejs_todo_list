@@ -167,8 +167,9 @@ http.createServer(function (req, res) { // Called with each request.
   
   else if (req.method === "POST") {
   // app.post('buttonclicked/:id/:submit',function(req,res)
-  
-  
+  // clearListButton
+  // With changes on client-side, req.url will now have diff values depending on
+  // if Submit or Delete button click
   
     console.log("Method is POST: ", req.method);
     
