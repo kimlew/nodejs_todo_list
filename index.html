@@ -47,18 +47,18 @@
             <span id="user_msg" name="user_msg"></span>
           <br>
         </form>
-      </fieldset>
-     
-      <form id="deleteForm" action="/poo" method="post"> 
-      
-      <!-- TRY: Redirect action to something else and do redirect web_server.js-->
-         
-        <button type="button" id="clearListButton" value="Clear To Do List"></button>
-      </form>  
-    </div><!-- End tag for form -->
+      </fieldset> 
+    </div><!-- End tag: for <div id = "forms" -->
        
     <div id="list"> 
       <h5>All To Do Items </h5>
+      
+        <form id="deleteForm" action="/poo" method="post"> 
+      
+      <!-- TRY: Redirect action to something else and do redirect web_server.js-->
+        <input type="button" id="clearListButton" value="Clear To Do List">
+      </form>
+      
       <ul id="todoList"></ul>
     </div><!-- End tag for list -->
       
