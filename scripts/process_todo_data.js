@@ -32,7 +32,9 @@ function init() {
   var submitButton = document.getElementById("submitButton");
   submitButton.onclick = getFormData;
   
-
+   if (deleteButton.onclick) {
+    deleteList();
+  }
 
 } // End of init()
 
