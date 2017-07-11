@@ -31,6 +31,8 @@ function init() {
   
   var submitButton = document.getElementById("submitButton");
   submitButton.onclick = getFormData;
+  
+
 
 } // End of init()
 
@@ -206,5 +208,34 @@ function getAllTodoItems() {
     // Note: request.send(null); Use null when NOT sending data to remote service.
 
 } // End of: function getAllTodoItems() {
+
+function deleteList() {
+  var xhr = new XMLHttpRequest();
+  var url = "url"; // URL for web server to get data from 
+  // url - a DOMString representing the URL to send the request to.
+  
+  // Tells request object URL we want it to retrieve & request type to use
+  // open - ONLY sets up the request - still have to send()
+  // request type stated - so the XMLHttpRequest can verify the connection
+  xhr.open("DELETE", url, true);
+  xhr.setRequestHeader("Content-type", "application/json");
+  
+  console.log("IN xhr.open(DELETE, url, true) AND xhr is: " + xhr);
+  
+  // Set up an onload Handler - called when data arrives (vs waiting for data)
+  // responseText - property of request object - holds data from HTTP GET retrieval
+  xhr.onload = function () {
+    if (xhr.readyState === xhr.DONE && xhr.status === 200) {
+        display_submitted_msg(xhr.responseText);
+        console.log("xhr response & responseText: ", xhr.response, xhr.responseText);
+    }
+  }; // End of: xhr.onload = function () {
+
+  // send() - tell request to go out and get the data which sends request to web server.
+  // Pass null if not sending any data to remote service, i.e., request.send(null);
+  xhr.send();
+  console.log("AFTER: xhr.send()");
+
+} // End of: function deleteList()
 
 window.onload = init;
