@@ -27,17 +27,17 @@ function TodoItem(whoFor, task, dateDue="") {
 
 //   ***** Functions *****
 function init() {
-  if (deleteButton.onclick) {
+  var submitButton = document.getElementById("submitButton");
+  var clearListButton = document.getElementById("clearListButton");
+  
+  if (clearListButton.onclick) {
     deleteList();
   }
   
   getAllTodoItems();
-  
-  var submitButton = document.getElementById("submitButton");
   submitButton.onclick = getFormData;
 
 } // End of init()
-
 
 function getFormData() {
   var whoFor = document.getElementById("whoFor").value,
