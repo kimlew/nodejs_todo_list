@@ -194,7 +194,6 @@ function getAllTodoItems() {
 
         if (xhr.responseText) {
           updateList(xhr.responseText);
-          //getAllTodoItems();
         }
         else {
           console.log("Error: There is NO data.");
