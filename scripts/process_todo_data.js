@@ -160,7 +160,7 @@ console.log(d);
 
     // Add todoItemFromArrObj somehow to li.
     li.innerHTML = todoItemFromArrObj.who_for + " must " + 
-      todoItemFromArrObj.task + " on or before " + dateDueSubstr;
+      todoItemFromArrObj.task + " before the end of " + dateDueSubstr;
 
     todoListUl.appendChild(li);
     
