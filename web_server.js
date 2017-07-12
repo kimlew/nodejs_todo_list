@@ -268,7 +268,7 @@ http.createServer(function (req, res) { // Called with each request.
     }); // End of req.on("end", function() { 
   } // End of: else if (req.method === "POST") {
   
-  //DELETE * FROM todo_list
+  //DELETE FROM todo_list
   else if (req.method === "DELETE") {
     console.log("Method is DELETE: ", req.method);
 
@@ -276,8 +276,13 @@ http.createServer(function (req, res) { // Called with each request.
       pg.defaults.ssl = false; // Note: Set to true to run on Heroku.
 
       pg.connect(connectionStr, function(err, client) {
-        var deleteQueryStr = "DELETE * FROM todo_list_tb";
+        var deleteQueryStr = "DELETE FROM todo_list_tb";
+        client.query(deleteQueryStr);
       }); // End of pg.connect() {
+
+      // Confirmation that everything before this worked.
+      res.writeHead(200, {"Content-Type": "text/plain"});
+      res.end(); // Tells HTTP Protocol - to end the response.
     
     }); // End of req.on("end", function() { 
   } // End of: else if (req.method === "DELETE") {
