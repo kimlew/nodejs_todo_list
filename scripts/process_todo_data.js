@@ -30,12 +30,9 @@ function init() {
   var submitButton = document.getElementById("submitButton");
   var clearListButton = document.getElementById("clearListButton");
   
-  if (clearListButton.onclick) {
-    deleteList();
-  }
-  
   getAllTodoItems();
   submitButton.onclick = getFormData;
+  clearListButton.onclick = deleteList;
 
 } // End of init()
 
