@@ -266,23 +266,22 @@ http.createServer(function (req, res) { // Called with each request.
   //DELETE FROM todo_list
   else if (req.method === "DELETE") {
     console.log("Method is DELETE: ", req.method);
+     
+    pg.defaults.ssl = true; // Note: To run on Heroku, set to true.
+
+    pg.connect(connectionStr, function(err, client) {
+console.log("INSIDE pg.connect() of DELETE");
+      var deleteQueryStr = "DELETE FROM todo_list_tb";
+      client.query(deleteQueryStr);
+    }); // End of pg.connect() {
 
     req.on("end", function() {
-console.log("INSIDE req.on() of DELETE");      
-      pg.defaults.ssl = true; // Note: To run on Heroku, set to true.
-
-      pg.connect(connectionStr, function(err, client) {
-console.log("INSIDE pg.connect() of DELETE");
-      
-        var deleteQueryStr = "DELETE FROM todo_list_tb";
-        client.query(deleteQueryStr);
-      }); // End of pg.connect() {
-
+console.log("INSIDE req.on() of DELETE"); 
       // Confirmation that everything before this worked.
       res.writeHead(200, {"Content-Type": "text/plain"});
-      res.end(); // Tells HTTP Protocol - to end the response.
+      res.end(); // Tells HTTP Protocol - to end the response
+    }); // End of req.on("end", function() {
     
-    }); // End of req.on("end", function() { 
   } // End of: else if (req.method === "DELETE") {
   
 }).listen(port /*, serverIpAddress */); // TCP port and server IP address - DON'T 
