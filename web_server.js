@@ -268,9 +268,12 @@ http.createServer(function (req, res) { // Called with each request.
     console.log("Method is DELETE: ", req.method);
 
     req.on("end", function() {
-      pg.defaults.ssl = false; // Note: Set to true to run on Heroku.
+console.log("INSIDE req.on() of DELETE");      
+      pg.defaults.ssl = false; // Note: To run on Heroku, set to true.
 
       pg.connect(connectionStr, function(err, client) {
+console.log("INSIDE pg.connect() of DELETE");
+      
         var deleteQueryStr = "DELETE FROM todo_list_tb";
         client.query(deleteQueryStr);
       }); // End of pg.connect() {
