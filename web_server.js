@@ -210,7 +210,7 @@ http.createServer(function (req, res) { // Called with each request.
       // DO: Do Validations - on resulting object BEFORE INSERT INTO db
       // DO: INSERT INTO db stuff here, i.e., Call insertFormDataToDb()
       
-      pg.defaults.ssl = false; // Note: Set to true to run on Heroku.
+      pg.defaults.ssl = true; // Note: Set to true to run on Heroku.
       // Sort of like HTTPS - but for your communication
       // with your database. Might be a standard on Heroku and most PROD environs.
       
@@ -269,7 +269,7 @@ http.createServer(function (req, res) { // Called with each request.
 
     req.on("end", function() {
 console.log("INSIDE req.on() of DELETE");      
-      pg.defaults.ssl = false; // Note: To run on Heroku, set to true.
+      pg.defaults.ssl = true; // Note: To run on Heroku, set to true.
 
       pg.connect(connectionStr, function(err, client) {
 console.log("INSIDE pg.connect() of DELETE");
