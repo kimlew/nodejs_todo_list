@@ -271,7 +271,7 @@ http.createServer(function (req, res) { // Called with each request.
 
     pg.connect(connectionStr, function(err, client) {
 console.log("INSIDE pg.connect() of DELETE");
-      var deleteQueryStr = "DELETE FROM todo_list_tb";
+      var deleteQueryStr = "DELETE FROM todo_list_tb;";
       client.query(deleteQueryStr);
     }); // End of pg.connect() {
 
