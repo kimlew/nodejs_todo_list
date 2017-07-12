@@ -208,9 +208,7 @@ http.createServer(function (req, res) { // Called with each request.
       console.log("dataObj is: " + dataObj);
       
       // DO: Do Validations - on resulting object BEFORE INSERT INTO db
-      // DO: INSERT INTO db stuff here.
-      // Call  insertFormDataToDb() here
-      // insertFormDataToDb();
+      // DO: INSERT INTO db stuff here, i.e., Call insertFormDataToDb()
       
       pg.defaults.ssl = false; // Note: Set to true to run on Heroku.
       // Sort of like HTTPS - but for your communication
