@@ -166,7 +166,7 @@ http.createServer(function (req, res) { // Called with each request.
   } // End of: if (req.method === "GET") {
   
   else if (req.method === "POST") {
-  
+    connAndInsertToDb(connectionStr, req, res);
   } // End of: else if (req.method === "POST") {
   
   /*** DELETE FROM todo_list **/
@@ -234,7 +234,7 @@ function connAndInsertToDb(connectionStr, req, res) {
       // database. Establish communication with it via the connect() method.
       // Client is sorta like - dbConnection variable 
 
-// SELECT - after database created, run query to test if connecting to db.
+// SELECT - To test db connection - after database created, run query
 /*      pg.connect(connectionStr, function(err, client) {
         var selectQueryStr = 'SELECT * FROM todo_list_tb;'
         
