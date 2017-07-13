@@ -265,8 +265,7 @@ http.createServer(function (req, res) { // Called with each request.
   
   /*** DELETE FROM todo_list **/
   else if (req.method === "DELETE") {
-    connThenDeleteFromDb(connectionStr, req, res);
-    
+    connAndDeleteFromDb(connectionStr, req, res);
   } // End of: else if (req.method === "DELETE") {
   
 }).listen(port /*, serverIpAddress */); // TCP port and server IP address - DON'T 
@@ -276,7 +275,7 @@ http.createServer(function (req, res) { // Called with each request.
 //console.log("There is now a server running on http localhost.");
 console.log("Starting web server at: " + port);
 
-function connThenDeleteFromDb(connectionStr, req, res) {
+function connAndDeleteFromDb(connectionStr, req, res) {
     console.log("Method is DELETE: ", req.method);
      
     pg.defaults.ssl = false; // Note: To run on Heroku, set to true.
