@@ -263,8 +263,20 @@ http.createServer(function (req, res) { // Called with each request.
     }); // End of req.on("end", function() { 
   } // End of: else if (req.method === "POST") {
   
-  //DELETE FROM todo_list
+  /*** DELETE FROM todo_list **/
   else if (req.method === "DELETE") {
+    connThenDeleteFromDb(connectionStr, err, client);
+    
+  } // End of: else if (req.method === "DELETE") {
+  
+}).listen(port /*, serverIpAddress */); // TCP port and server IP address - DON'T 
+// exclude 2nd param when deploying to Heroku
+
+//console.log("Web Server running at http://localhost:3000");
+//console.log("There is now a server running on http localhost.");
+console.log("Starting web server at: " + port);
+
+function connThenDeleteFromDb(connectionStr, err, client) {
     console.log("Method is DELETE: ", req.method);
      
     pg.defaults.ssl = true; // Note: To run on Heroku, set to true.
@@ -281,15 +293,8 @@ console.log("INSIDE req.on() of DELETE");
       res.writeHead(200, {"Content-Type": "text/plain"});
       res.end(); // Tells HTTP Protocol - to end the response
     }); // End of req.on("end", function() {
-    
-  } // End of: else if (req.method === "DELETE") {
-  
-}).listen(port /*, serverIpAddress */); // TCP port and server IP address - DON'T 
-// exclude 2nd param when deploying to Heroku
 
-//console.log("Web Server running at http://localhost:3000");
-//console.log("There is now a server running on http localhost.");
-console.log("Starting web server at: " + port);
+}
 
 function getFile(localPath, res, mimeType) {
 	fs.readFile(localPath, function(err, contents) {
