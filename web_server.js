@@ -292,8 +292,7 @@ console.log("INSIDE req.on() of DELETE");
       res.writeHead(200, {"Content-Type": "text/plain"});
       res.end(); // Tells HTTP Protocol - to end the response
     }); // End of req.on("end", function() {
-
-}
+} // End of: connAndDeleteFromDb()
 
 function getFile(localPath, res, mimeType) {
 	fs.readFile(localPath, function(err, contents) {
