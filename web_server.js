@@ -166,7 +166,23 @@ http.createServer(function (req, res) { // Called with each request.
   } // End of: if (req.method === "GET") {
   
   else if (req.method === "POST") {
-  // app.post('buttonclicked/:id/:submit',function(req,res)
+  
+  } // End of: else if (req.method === "POST") {
+  
+  /*** DELETE FROM todo_list **/
+  else if (req.method === "DELETE") {
+    connAndDeleteFromDb(connectionStr, req, res);
+  } // End of: else if (req.method === "DELETE") {
+  
+}).listen(port /*, serverIpAddress */); // TCP port and server IP address - DON'T 
+// exclude 2nd param when deploying to Heroku
+
+//console.log("Web Server running at http://localhost:3000");
+//console.log("There is now a server running on http localhost.");
+console.log("Starting web server at: " + port);
+
+function connAndInsertToDb(connectionStr, req, res) {
+// app.post('buttonclicked/:id/:submit',function(req,res)
   // clearListButton
   // With changes on client-side, req.url will now have diff values depending on
   // if Submit or Delete button click
@@ -261,19 +277,8 @@ http.createServer(function (req, res) { // Called with each request.
       res.write(body);
       res.end(); // Tells HTTP Protocol - to end the response.
     }); // End of req.on("end", function() { 
-  } // End of: else if (req.method === "POST") {
-  
-  /*** DELETE FROM todo_list **/
-  else if (req.method === "DELETE") {
-    connAndDeleteFromDb(connectionStr, req, res);
-  } // End of: else if (req.method === "DELETE") {
-  
-}).listen(port /*, serverIpAddress */); // TCP port and server IP address - DON'T 
-// exclude 2nd param when deploying to Heroku
 
-//console.log("Web Server running at http://localhost:3000");
-//console.log("There is now a server running on http localhost.");
-console.log("Starting web server at: " + port);
+} // End of: connAndInsertToDb()
 
 function connAndDeleteFromDb(connectionStr, req, res) {
     console.log("Method is DELETE: ", req.method);
