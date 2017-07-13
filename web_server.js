@@ -56,63 +56,7 @@ http.createServer(function (req, res) { // Called with each request.
     } // End of: if (req.headers["x-requested-with"] == 'XMLHttpRequest') {
    
     else { // req.headers["x-requested-with"] != 'XMLHttpRequest'
-      // IS normal request - read file
-      // Put all the stuff to do with getting a FILE in this else block. 
-    
-      var filename = req.url || "/index.html"; // Defaults to index.html
-      // http://localhost:3001 OR http://localhost:3001/ OR
-      // http://localhost:3001/index.html
-    
-      // Test if filename === /. / is root URL and is equivalent to index.html
-      if (filename === "/") {
-         filename = "/index.html"; 
-      }
-  
-      console.log("Method is GET: ", req.method, " URL is: ", req.url);
-        
-      var ext = path.extname(filename);
-      var localPath = __dirname;
-  
-      var validExtensions = {
-              ".html" : "text/html",
-              ".js": "application/javascript",
-              ".css": "text/css",
-              ".txt": "text/plain",
-              ".jpg": "image/jpeg",
-              ".gif": "image/gif",
-              ".png": "image/png",
-              ".woff": "application/font-woff",
-              ".woff2": "application/font-woff2",
-              ".ico": "image/x-icon"
-      };
-
-      var validMimeType = true;
-      var mimeType = validExtensions[ext];
-  
-      if (checkMimeType) {
-        validMimeType = validExtensions[ext] != undefined;
-      }
-
-      if (validMimeType) {
-        localPath += filename;
-      
-        fs.exists(localPath, function(exists) {
-          if (exists) {
-            console.log("Serving file: " + localPath);
-            getFile(localPath, res, mimeType);
-          } 
-          else {
-            console.log("File not found: " + localPath);
-            res.writeHead(404);
-            res.end();
-          }
-        }); // End of:fs.exists(localPath, function(exists) {
-      } // End of: if (validMimeType) {
-    
-      else {
-        console.log("Invalid file extension detected: " + ext + " (" + filename + ")")
-      }
-    
+      sendRegularRequest(connectionStr, req, res);
     } // End of: else - NO 'XMLHttpRequest' in req.headers["x-requested-with"]
     
   } // End of: if (req.method === "GET") {
@@ -132,6 +76,65 @@ http.createServer(function (req, res) { // Called with each request.
 //console.log("Web Server running at http://localhost:3000");
 //console.log("There is now a server running on http localhost.");
 console.log("Starting web server at: " + port);
+
+function sendRegularRequest(connectionStr, req, res) {
+  // IS regular request - read file
+  // Put all the stuff to do with getting a FILE in this else block. 
+
+  var filename = req.url || "/index.html"; // Defaults to index.html
+  // http://localhost:3001 OR http://localhost:3001/ OR
+  // http://localhost:3001/index.html
+
+  // Test if filename === /. / is root URL and is equivalent to index.html
+  if (filename === "/") {
+     filename = "/index.html"; 
+  }
+
+  console.log("Method is GET: ", req.method, " URL is: ", req.url);
+  
+  var ext = path.extname(filename);
+  var localPath = __dirname;
+
+  var validExtensions = {
+          ".html" : "text/html",
+          ".js": "application/javascript",
+          ".css": "text/css",
+          ".txt": "text/plain",
+          ".jpg": "image/jpeg",
+          ".gif": "image/gif",
+          ".png": "image/png",
+          ".woff": "application/font-woff",
+          ".woff2": "application/font-woff2",
+          ".ico": "image/x-icon"
+  };
+
+  var validMimeType = true;
+  var mimeType = validExtensions[ext];
+
+  if (checkMimeType) {
+    validMimeType = validExtensions[ext] != undefined;
+  }
+
+  if (validMimeType) {
+    localPath += filename;
+
+    fs.exists(localPath, function(exists) {
+      if (exists) {
+        console.log("Serving file: " + localPath);
+        getFile(localPath, res, mimeType);
+      } 
+      else {
+        console.log("File not found: " + localPath);
+        res.writeHead(404);
+        res.end();
+      }
+    }); // End of:fs.exists(localPath, function(exists) {
+  } // End of: if (validMimeType) {
+
+  else {
+    console.log("Invalid file extension detected: " + ext + " (" + filename + ")")
+  }
+} // End of: sendRegularRequest(connectionStr, req, res)
 
 function sendAjaxRequest(connectionStr, req, res) {
   // IS AJAX request - since header contains XMLHttpRequest in x-requested-with
