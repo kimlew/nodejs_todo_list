@@ -210,7 +210,7 @@ http.createServer(function (req, res) { // Called with each request.
       // DO: Do Validations - on resulting object BEFORE INSERT INTO db
       // DO: INSERT INTO db stuff here, i.e., Call insertFormDataToDb()
       
-      pg.defaults.ssl = true; // Note: Set to true to run on Heroku.
+      pg.defaults.ssl = false; // Note: Set to true to run on Heroku.
       // Sort of like HTTPS - but for your communication
       // with your database. Might be a standard on Heroku and most PROD environs.
       
@@ -265,7 +265,7 @@ http.createServer(function (req, res) { // Called with each request.
   
   /*** DELETE FROM todo_list **/
   else if (req.method === "DELETE") {
-    connThenDeleteFromDb(connectionStr, err, client);
+    connThenDeleteFromDb(connectionStr, req, res);
     
   } // End of: else if (req.method === "DELETE") {
   
@@ -276,10 +276,10 @@ http.createServer(function (req, res) { // Called with each request.
 //console.log("There is now a server running on http localhost.");
 console.log("Starting web server at: " + port);
 
-function connThenDeleteFromDb(connectionStr, err, client) {
+function connThenDeleteFromDb(connectionStr, req, res) {
     console.log("Method is DELETE: ", req.method);
      
-    pg.defaults.ssl = true; // Note: To run on Heroku, set to true.
+    pg.defaults.ssl = false; // Note: To run on Heroku, set to true.
 
     pg.connect(connectionStr, function(err, client) {
 console.log("INSIDE pg.connect() of DELETE");
