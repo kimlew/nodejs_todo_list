@@ -40,43 +40,6 @@ var connectionStr = process.env.DATABASE_URL || 'postgres://localhost:5432/nodej
 // Heroku sets up the 1st choice to use Postgres. The 2nd one is the URL I 
 // state for Postgres.
 
-http.createServer(function (req, res) { // Called with each request.
-  // Callback function passes HTTP req, HTTP res.
-  // req and res parameters - in ready state when callback function is invoked.
-  
-  console.log("req.method is ", req.method);
-  console.log("req.url is    ", req.url);
-  console.log("req.headers is %o", req.headers);
-  
-  if (req.method === "GET") {
-    // Determine if AJAX request or normal request, e.g., file.
-    // AJAX request - if 'XMLHttpRequest' in req.headers["x-requested-with"]
-    // Regular request - if NO 'XMLHttpRequest' in req.headers["x-requested-with"]
-    
-    if (req.headers["x-requested-with"] == 'XMLHttpRequest') {
-      sendAjaxRequest(connectionStr, req, res);
-    }
-    else { // req.headers["x-requested-with"] != 'XMLHttpRequest'
-      sendRegularRequest(connectionStr, req, res);
-    }   
-  } // End of: if (req.method === "GET") {
-  
-  else if (req.method === "POST") {
-    connAndInsertToDb(connectionStr, req, res);
-  } // End of: else if (req.method === "POST") {
-  
-  /*** DELETE FROM todo_list **/
-  else if (req.method === "DELETE") {
-    connAndDeleteFromDb(connectionStr, req, res);
-  } // End of: else if (req.method === "DELETE") {
-  
-}).listen(port /*, serverIpAddress */); 
-// TCP port and server IP address - DON'T exclude 2nd param when
-// deploying to Heroku
-
-//console.log("Web Server running at localhost at http://localhost:3000");
-console.log("Starting web server at: " + port);
-
 /***** FUNCTIONS *****/
 function sendRegularRequest(connectionStr, req, res) {
   // IS regular request - read file - For GETting a FILE
@@ -320,4 +283,40 @@ function getFile(localPath, res, mimeType) {
 	}); // End of: fs.readFile(localPath, function(err, contents) {
 } // End of: function getFile(localPath, res, mimeType) {
 
-// After making into a separate function, call here: insertFormDataToDb();
+/***** The MAIN function with all other function calls *****/
+http.createServer(function (req, res) { // Called with each request.
+  // Callback function passes HTTP req, HTTP res.
+  // req and res parameters - in ready state when callback function is invoked.
+  
+  console.log("req.method is ", req.method);
+  console.log("req.url is    ", req.url);
+  console.log("req.headers is %o", req.headers);
+  
+  if (req.method === "GET") {
+    // Determine if AJAX request or normal request, e.g., file.
+    // AJAX request - if 'XMLHttpRequest' in req.headers["x-requested-with"]
+    // Regular request - if NO 'XMLHttpRequest' in req.headers["x-requested-with"]
+    
+    if (req.headers["x-requested-with"] == 'XMLHttpRequest') {
+      sendAjaxRequest(connectionStr, req, res);
+    }
+    else { // req.headers["x-requested-with"] != 'XMLHttpRequest'
+      sendRegularRequest(connectionStr, req, res);
+    }   
+  } // End of: if (req.method === "GET") {
+  
+  else if (req.method === "POST") {
+    connAndInsertToDb(connectionStr, req, res);
+  } // End of: else if (req.method === "POST") {
+  
+  /*** DELETE FROM todo_list **/
+  else if (req.method === "DELETE") {
+    connAndDeleteFromDb(connectionStr, req, res);
+  } // End of: else if (req.method === "DELETE") {
+  
+}).listen(port /*, serverIpAddress */); 
+// TCP port and server IP address - DON'T exclude 2nd param when
+// deploying to Heroku
+
+//console.log("Web Server running at localhost at http://localhost:3000");
+console.log("Starting web server at: " + port);
