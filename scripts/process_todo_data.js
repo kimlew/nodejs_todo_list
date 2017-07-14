@@ -255,6 +255,7 @@ function init() {
   getAllTodoItems();
   submitButton.onclick = getFormData;
   clearListButton.onclick = deleteList;
+  searchButton.onclick = getSearchAndTrim;
 
 } // End of init()
 
