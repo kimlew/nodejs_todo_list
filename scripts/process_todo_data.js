@@ -241,6 +241,9 @@ function deleteList() {
 
 } // End of: function deleteList()
 
+function getSearchAndTrim() {
+}
+
 function init() {
   var submitButton = document.getElementById("submitButton");
   var clearListButton = document.getElementById("clearListButton");
@@ -250,4 +253,5 @@ function init() {
   clearListButton.onclick = deleteList;
 
 } // End of init()
+
 window.onload = init;
