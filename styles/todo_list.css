@@ -12,9 +12,13 @@ h5 {
   color: #617C58; /* Hazel green */
 }
 
+h6 {
+  color: #B87333; /* Copper */
+}
+
 body {
   font: sans-serif;
-  color: #000000; /* Black */ #B87333; /* Copper */
+  color: #000000; /* Black */ 
 }
 
 fieldset {
