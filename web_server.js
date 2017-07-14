@@ -77,6 +77,7 @@ http.createServer(function (req, res) { // Called with each request.
 //console.log("Web Server running at localhost at http://localhost:3000");
 console.log("Starting web server at: " + port);
 
+
 function sendRegularRequest(connectionStr, req, res) {
   // IS regular request - read file - For GETting a FILE
 
@@ -249,12 +250,10 @@ function connAndInsertToDb(connectionStr, req, res) {
       });  // End of: pg.connect(connectionStr, function(err, client) {     
 */      
    
-      // INSERT - With Postgres server up and running on port 5000, make a
-      // database connection with the pg library:
+      /*** INSERT - With Postgres server up and running on port 5000, make 
+      database connection with the pg library: ***/
 
       pg.connect(connectionStr, function(err, client) {
-        // Want something like:
-        // INSERT INTO...VALUES ('Lola', 'Eat carrots', '2017-06-03 00:00:00');
         var insertQueryStr = 
         "INSERT INTO todo_list_tb (who_for, task, date_due) VALUES ('" + 
          dataObj.whoFor + 
@@ -289,14 +288,16 @@ function connAndDeleteFromDb(connectionStr, req, res) {
     pg.defaults.ssl = false; // Note: To run on Heroku, set to true.
 
     pg.connect(connectionStr, function(err, client) {
-console.log("INSIDE pg.connect() of DELETE");
+      console.log("INSIDE pg.connect() of DELETE");
+      
       var deleteQueryStr = "DELETE FROM todo_list_tb;";
       client.query(deleteQueryStr);
     }); // End of pg.connect() {
 
     req.on("end", function() {
-console.log("INSIDE req.on() of DELETE"); 
-      // Confirmation that everything before this worked.
+      console.log("INSIDE req.on() of DELETE"); 
+      
+      // Add to header - to confirm that all code before this point worked
       res.writeHead(200, {"Content-Type": "text/plain"});
       res.end(); // Tells HTTP Protocol - to end the response
     }); // End of req.on("end", function() {
