@@ -122,6 +122,18 @@ function display_general_msg(aMsg) {
   span.innerHTML = aMsg;
 }
 
+function createAndDisplaySingleToDo() {
+  // Format date. Was: 2017-07-12T06:00:00.000Z
+  var dateDue = aTodoItemFromObj.date_due;
+  var dateDueSubstr = dateDue.substr(0,10); // +' '+ dateDue.substr(11,8);
+
+  // Add todoItemFromArrObj somehow to li.
+  li.innerHTML = aTodoItemFromObj.who_for + " must " + 
+    aTodoItemFromObj.task + " - before the end of " + dateDueSubstr;
+    
+  return li.innerHTML;
+}
+
 function updateList(respTextFromGet) {      
   /* Take the data received back from XMLHttpRequest object (which is a JSON 
      string) and convert it into a JavaScript object. Loop through resulting
@@ -153,18 +165,6 @@ function updateList(respTextFromGet) {
     //console.log("li is: ", li.value);
   }
   //console.log("IN updateList() ");
-}
- 
-function createAndDisplaySingleToDo() {
-  // Format date. Was: 2017-07-12T06:00:00.000Z
-  var dateDue = aTodoItemFromObj.date_due;
-  var dateDueSubstr = dateDue.substr(0,10); // +' '+ dateDue.substr(11,8);
-
-  // Add todoItemFromArrObj somehow to li.
-  li.innerHTML = aTodoItemFromObj.who_for + " must " + 
-    aTodoItemFromObj.task + " - before the end of " + dateDueSubstr;
-    
-  return li.innerHTML;
 }
 
 function getAllTodoItems() {
