@@ -77,7 +77,7 @@ http.createServer(function (req, res) { // Called with each request.
 //console.log("Web Server running at localhost at http://localhost:3000");
 console.log("Starting web server at: " + port);
 
-
+/***** FUNCTIONS *****/
 function sendRegularRequest(connectionStr, req, res) {
   // IS regular request - read file - For GETting a FILE
 
