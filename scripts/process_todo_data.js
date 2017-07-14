@@ -253,15 +253,19 @@ function getSearchAndTrim() {
   compareSearchTermToList();
 }
 
-function compareSearchTermToList() {
+function compareSearchTermToList(searchTerm) {
  // Check searchTerm against all items in objectWithAllTodos
   for (var i = 0; i < objectWithAllTodos.length; i++) {
     var aTodoItemFromObj = objectWithAllTodos[i];
     
     console.log("Todo item at " + i + " : " + objectWithAllTodos[i]);
-    }
-    */
-}
+    
+    // Create case INsensitive regex to use for comparison
+    
+    
+  } // End of: for()
+    
+} // End of: compareSearchTermToList()
 
 function init() {
   var submitButton = document.getElementById("submitButton");
