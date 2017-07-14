@@ -9,10 +9,9 @@
 
 "use strict"; // Tells js interpreter to use strict mode.
 
-//var countFound = 0;
-
 var objectWithAllTodos; // Declare as a global object so accessible by any function.
 var searchResultsList;
+var searchCount = 0;
 
 // Constructor - stores form data - Retrieves input data using constructor and 
 // puts in todoItemObj 
