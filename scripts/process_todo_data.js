@@ -122,7 +122,7 @@ function display_general_msg(aMsg) {
   span.innerHTML = aMsg;
 }
 
-function createAndDisplaySingleToDo() {
+function createAndDisplaySingleToDo(aTodoItemFromObj, li) {
   // Format date. Was: 2017-07-12T06:00:00.000Z
   var dateDue = aTodoItemFromObj.date_due;
   var dateDueSubstr = dateDue.substr(0,10); // +' '+ dateDue.substr(11,8);
@@ -131,7 +131,7 @@ function createAndDisplaySingleToDo() {
   li.innerHTML = aTodoItemFromObj.who_for + " must " + 
     aTodoItemFromObj.task + " - before the end of " + dateDueSubstr;
     
-  return li.innerHTML;
+  //return li.innerHTML;
 }
 
 function updateList(respTextFromGet) {      
@@ -157,7 +157,7 @@ function updateList(respTextFromGet) {
     // Sets the value of todoItem to the li element.
     li.setAttribute("class", "todoItem");
     
-    createAndDisplaySingleToDo();
+    createAndDisplaySingleToDo(aTodoItemFromObj, li);
 
     todoListUl.appendChild(li);
     
@@ -265,7 +265,7 @@ function compareSearchTermToList(searchTerm) {
     if (aTodoItemFromObj.who_for.match(re) || aTodoItemFromObj.task.match(re)) {
       console.log("aTodoItemFromObj.who_for is: " + aTodoItemFromObj.who_for);
       console.log("aTodoItemFromObj.task is: " + aTodoItemFromObj.task);
-      addSearchResultToPage();
+      addSearchResultToPage(aTodoItemFromObj);
       searchCount++;
     }
     
@@ -277,12 +277,13 @@ function compareSearchTermToList(searchTerm) {
     
 } // End of: compareSearchTermToList()
 
-function addSearchResultToPage() {
+function addSearchResultToPage(aTodoItemFromObj) {
   searchResultsList = document.getElementById("searchResultsList");
   var searchListFrag = document.createDocumentFragment();
   var liSearchResult = document.createElement("li");
   
-  createAndDisplaySingleToDo();
+  createAndDisplaySingleToDo(aTodoItemFromObj, liSearchResult);
+  searchListFrag.appendChild(liSearchResult);
 }
 
 function init() {
