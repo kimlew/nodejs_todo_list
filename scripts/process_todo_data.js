@@ -26,15 +26,7 @@ function TodoItem(whoFor, task, dateDue="") {
 }
 
 //   ***** Functions *****
-function init() {
-  var submitButton = document.getElementById("submitButton");
-  var clearListButton = document.getElementById("clearListButton");
-  
-  getAllTodoItems();
-  submitButton.onclick = getFormData;
-  clearListButton.onclick = deleteList;
 
-} // End of init()
 
 function getFormData() {
   var whoFor = document.getElementById("whoFor").value,
@@ -249,4 +241,13 @@ function deleteList() {
 
 } // End of: function deleteList()
 
+function init() {
+  var submitButton = document.getElementById("submitButton");
+  var clearListButton = document.getElementById("clearListButton");
+  
+  getAllTodoItems();
+  submitButton.onclick = getFormData;
+  clearListButton.onclick = deleteList;
+
+} // End of init()
 window.onload = init;
