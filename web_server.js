@@ -50,15 +50,15 @@ http.createServer(function (req, res) { // Called with each request.
   
   if (req.method === "GET") {
     // Determine if AJAX request or normal request, e.g., file.
-  
+    // AJAX request - if 'XMLHttpRequest' in req.headers["x-requested-with"]
+    // Regular request - if NO 'XMLHttpRequest' in req.headers["x-requested-with"]
+    
     if (req.headers["x-requested-with"] == 'XMLHttpRequest') {
       sendAjaxRequest(connectionStr, req, res);
-    } // End of: if (req.headers["x-requested-with"] == 'XMLHttpRequest') {
-   
+    }
     else { // req.headers["x-requested-with"] != 'XMLHttpRequest'
       sendRegularRequest(connectionStr, req, res);
-    } // End of: else - NO 'XMLHttpRequest' in req.headers["x-requested-with"]
-    
+    }   
   } // End of: if (req.method === "GET") {
   
   else if (req.method === "POST") {
@@ -70,16 +70,15 @@ http.createServer(function (req, res) { // Called with each request.
     connAndDeleteFromDb(connectionStr, req, res);
   } // End of: else if (req.method === "DELETE") {
   
-}).listen(port /*, serverIpAddress */); // TCP port and server IP address - DON'T 
-// exclude 2nd param when deploying to Heroku
+}).listen(port /*, serverIpAddress */); 
+// TCP port and server IP address - DON'T exclude 2nd param when
+// deploying to Heroku
 
-//console.log("Web Server running at http://localhost:3000");
-//console.log("There is now a server running on http localhost.");
+//console.log("Web Server running at localhost at http://localhost:3000");
 console.log("Starting web server at: " + port);
 
 function sendRegularRequest(connectionStr, req, res) {
-  // IS regular request - read file
-  // Put all the stuff to do with getting a FILE in this else block. 
+  // IS regular request - read file - For GETting a FILE
 
   var filename = req.url || "/index.html"; // Defaults to index.html
   // http://localhost:3001 OR http://localhost:3001/ OR
@@ -138,10 +137,10 @@ function sendRegularRequest(connectionStr, req, res) {
 
 function sendAjaxRequest(connectionStr, req, res) {
   // IS AJAX request - since header contains XMLHttpRequest in x-requested-with
-  // Do current GET stuff related to writing to JSON file with new todo data
-  // i.e, get stuff from database.   
-  // SELECT - After database created, run query to test if connects to db
-  // and retrieves with SELECT from database, to display To Do List.
+  // GET - related to writing to JSON file with new todo data, i.e, GET data 
+  // from db
+  // After database created, run SELECT query - to test connection to & retrieval
+  // from db - to display To Do List
   
   console.log("MADE it past line with: x-requested-with ");
   
