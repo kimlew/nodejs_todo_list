@@ -242,6 +242,10 @@ function deleteList() {
 } // End of: function deleteList()
 
 function getSearchAndTrim() {
+  var searchTermToTrim = getElementById("searchTerm");
+  var searchTerm = searchTermToTrim.trim();
+  
+  
 }
 
 function init() {
