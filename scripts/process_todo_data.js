@@ -283,6 +283,9 @@ function compareSearchTermToList(searchTerm) {
 
 function addSearchResultToPage() {
   searchResultsList = document.getElementById("searchResultsList");
+  var searchListFrag = document.createDocumentFragment();
+  
+  
 }
 
 function init() {
