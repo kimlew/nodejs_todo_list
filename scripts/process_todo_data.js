@@ -264,7 +264,7 @@ function compareSearchTermToList(searchTerm) {
     if (aTodoItemFromObj.who_for.match(re) || aTodoItemFromObj.task.match(re)) {
       console.log("aTodoItemFromObj.who_for is: " + aTodoItemFromObj.who_for);
       console.log("aTodoItemFromObj.task is: " + aTodoItemFromObj.task);
-      //addSearchResultToPage();
+      addSearchResultToPage();
     }
     
   } // End of: for()
