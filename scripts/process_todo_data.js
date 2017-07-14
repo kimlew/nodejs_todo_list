@@ -117,6 +117,11 @@ function display_submitted_msg(respText) { //whoFor, task, dateDue) {
       submitTodoObj.dateDue + " has been submitted.";
 }
 
+function display_general_msg(aMsg) {
+  var span = document.getElementById("general_msg");
+  span.innerHTML = aMsg;
+}
+
 function updateList(respTextFromGet) {      
   /* Take the data received back from XMLHttpRequest object (which is a JSON 
      string) and convert it into a JavaScript object. Loop through resulting
@@ -265,6 +270,11 @@ function compareSearchTermToList(searchTerm) {
       console.log("aTodoItemFromObj.who_for is: " + aTodoItemFromObj.who_for);
       console.log("aTodoItemFromObj.task is: " + aTodoItemFromObj.task);
       addSearchResultToPage();
+      searchCount++;
+    }
+    
+    if (searchCount == 0) {
+      display_general_msg("No match found.");
     }
     
   } // End of: for()
