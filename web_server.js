@@ -286,11 +286,11 @@ function getFile(localPath, res, mimeType) {
 /***** The MAIN function with all other function calls *****/
 http.createServer(function (req, res) { // Called with each request.
   // Callback function passes HTTP req, HTTP res.
-  // req and res parameters - in ready state when callback function is invoked.
+  // req and res parameters - in ready state when callback function is invoked
   
-  console.log("req.method is ", req.method);
-  console.log("req.url is    ", req.url);
-  console.log("req.headers is %o", req.headers);
+  console.log("req.method is: ", req.method);
+  console.log("req.url is:    ", req.url);
+  console.log("req.headers is %o: ", req.headers);
   
   if (req.method === "GET") {
     // Determine if AJAX request or normal request, e.g., file.
@@ -309,14 +309,13 @@ http.createServer(function (req, res) { // Called with each request.
     connAndInsertToDb(connectionStr, req, res);
   } // End of: else if (req.method === "POST") {
   
-  /*** DELETE FROM todo_list **/
   else if (req.method === "DELETE") {
     connAndDeleteFromDb(connectionStr, req, res);
   } // End of: else if (req.method === "DELETE") {
   
 }).listen(port /*, serverIpAddress */); 
-// TCP port and server IP address - DON'T exclude 2nd param when
-// deploying to Heroku
+// TCP port and server IP address - DON'T exclude 2nd param when deploying 
+// to Heroku
 
-//console.log("Web Server running at localhost at http://localhost:3000");
+//console.log("TEST-Web Server running at localhost at http://localhost:3000");
 console.log("Starting web server at: " + port);
