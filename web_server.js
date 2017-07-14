@@ -188,44 +188,37 @@ function sendAjaxRequest(connectionStr, req, res) {
 } // End of: sendAjaxRequest()
 
 function connAndInsertToDb(connectionStr, req, res) {
-// app.post('buttonclicked/:id/:submit',function(req,res)
   // clearListButton
   // With changes on client-side, req.url will now have diff values depending on
   // if Submit or Delete button click
   
     console.log("Method is POST: ", req.method);
     
-    var body = ""; // String that will have POST JSON data added to it in chunks.
+    // body - variable is a JSON string
+    // String that will have POST JSON data added to it in chunks.
+    var body = ""; 
     
     req.on("data", function(chunk) {
       console.log("IN req.on - that passes data FOR body with chunks)");
-      // body variable - is a JSON string
-      // To manipulate it and prepare it for insertion into db: turn into object.
+      // To manipulate body and prepare it for insertion into db
+      // Later: Entire concatenated string turned into object
       
       body += chunk;
       console.log("body has: " + body);
     }); // End of req.on("data", function(chunk) {
      
     req.on("end", function() {
-      // ONLY web server knows how to talk to db - DO db stuff on node.js web server side.
-
-      // DO: Remove old HTML stuff and leave body - so just JSON      
-      // DO: parse(body), etc. here.
-      // DO: Use body var - since it is the data in JSON string format.
-      // Use parse() - to make it into an object. Need it in object form
-      // to use its object properties - to INSERT INTO the db.
+      // DO ALL db stuff on node.js web server side - since ONLY web server knows
+      // how to talk to db 
          
       // DO: For DATE: - might be a Date class in standard JavaScript library 
       // with parse date or date validation. Look up: JavaScript date class.
       // DO: Set status code to 400 - if the date format is NOT correct.
 
-      // HTTP header specifying the content type of the response
-      // Write the message - with res.write() 
-      // End the HTTP server response object - with res.end() - to send/render
-      // message to the browser 
       console.log("IN req.on - with end()" );
           
-      // Turn var body JSON string object - as prep before going to db.
+      // Convert body JSON string into object with properties - as prep for 
+      // INSERT to db
       var dataObj = JSON.parse(body);
       console.log("dataObj is: " + dataObj);
       
@@ -278,7 +271,11 @@ function connAndInsertToDb(connectionStr, req, res) {
         client.query(insertQueryStr);
       }); // End of pg.connect() {
       
-      // Confirmation that everything before this worked.
+      // Add to header - to confirm that all code before this point worked
+      // HTTP header - specifues the content type of the response
+      // Write the message - with res.write() 
+      // End the HTTP server response object - with res.end() - to send/render
+      // message to the browser 
       res.writeHead(200, {"Content-Type": "text/plain"});
       res.write(body);
       res.end(); // Tells HTTP Protocol - to end the response.
