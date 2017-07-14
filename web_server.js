@@ -152,95 +152,91 @@ function sendAjaxRequest(connectionStr, req, res) {
 } // End of: sendAjaxRequest()
 
 function connAndInsertToDb(connectionStr, req, res) {
-  // clearListButton
-  // With changes on client-side, req.url will now have diff values depending on
-  // if Submit or Delete button click
+  console.log("Method is POST: ", req.method);
   
-    console.log("Method is POST: ", req.method);
+  // body - variable is a JSON string
+  // String that will have POST JSON data added to it in chunks.
+  var body = ""; 
+  
+  req.on("data", function(chunk) {
+    console.log("IN req.on - that passes data FOR body with chunks)");
+    // To manipulate body and prepare it for insertion into db
+    // Later: Entire concatenated string turned into object
     
-    // body - variable is a JSON string
-    // String that will have POST JSON data added to it in chunks.
-    var body = ""; 
-    
-    req.on("data", function(chunk) {
-      console.log("IN req.on - that passes data FOR body with chunks)");
-      // To manipulate body and prepare it for insertion into db
-      // Later: Entire concatenated string turned into object
-      
-      body += chunk;
-      console.log("body has: " + body);
-    }); // End of req.on("data", function(chunk) {
-     
-    req.on("end", function() {
-      // DO ALL db stuff on node.js web server side - since ONLY web server knows
-      // how to talk to db 
-         
-      // DO: For DATE: - might be a Date class in standard JavaScript library 
-      // with parse date or date validation. Look up: JavaScript date class.
-      // DO: Set status code to 400 - if the date format is NOT correct.
-
-      console.log("IN req.on - with end()" );
-          
-      // Convert body JSON string into object with properties - as prep for 
-      // INSERT to db
-      var dataObj = JSON.parse(body);
-      console.log("dataObj is: " + dataObj);
-      
-      // DO: Do Validations - on resulting object BEFORE INSERT INTO db
-      
-      pg.defaults.ssl = false; // Note: Set to true to run on Heroku.
-      // Sort of like HTTPS - but for communication with your database
-      // Might be a standard on Heroku and most PROD environs.
-
-// Test db connection - after database created, run SELECT query
-/*      pg.connect(connectionStr, function(err, client) {
-        var selectQueryStr = 'SELECT * FROM todo_list_tb;'
-        
-        if (err) throw err;
-        console.log('Connected to Postgres.');
-
-        // Run a SQL query via the query() method
-        client
-          .query(selectQueryStr)
-          .on('row', function(row) {
-            console.log("IN POST " + JSON.stringify(row));
-          });
-      });  // End of: pg.connect(connectionStr, function(err, client) {     
-*/      
+    body += chunk;
+    console.log("body has: " + body);
+  }); // End of req.on("data", function(chunk) {
    
-      /*** INSERT ***/
-      // With Postgres server up and running on port 5000, make database
-      // connection with the pg library.
-      // Create a new instance of the database Client to interact with database.
-      // Establish communication it via the connect() method.
-      // Client is similar to:: dbConnection variable 
+  req.on("end", function() {
+    // DO ALL db stuff on node.js web server side - since ONLY web server knows
+    // how to talk to db 
+       
+    // DO: For DATE: - might be a Date class in standard JavaScript library 
+    // with parse date or date validation. Look up: JavaScript date class.
+    // DO: Set status code to 400 - if the date format is NOT correct.
 
-      pg.connect(connectionStr, function(err, client) {
-        var insertQueryStr = 
-        "INSERT INTO todo_list_tb (who_for, task, date_due) VALUES ('" + 
-         dataObj.whoFor + 
-         "', '" +
-         dataObj.task +
-         "', '" +
-         dataObj.dateDue +
-         "');"
-         
-        if (err) throw err;
-        console.log('Connected to Postgres.');
+    console.log("IN req.on - with end()" );
+        
+    // Convert body JSON string into object with properties - as prep for 
+    // INSERT to db
+    var dataObj = JSON.parse(body);
+    console.log("dataObj is: " + dataObj);
+    
+    // DO: Do Validations - on resulting object BEFORE INSERT INTO db
+    
+    pg.defaults.ssl = false; // Note: Set to true to run on Heroku.
+    // Sort of like HTTPS - but for communication with your database
+    // Might be a standard on Heroku and most PROD environs.
 
-        // Doing an INSERT
-        client.query(insertQueryStr);
-      }); // End of pg.connect() {
+// TEST db connection - after database created, run SELECT query
+/*      pg.connect(connectionStr, function(err, client) {
+      var selectQueryStr = 'SELECT * FROM todo_list_tb;'
       
-      // Add to header - to confirm that all code before this point worked
-      // HTTP header - specifies the content type of the response
-      // Write the message - with res.write() 
-      // End the HTTP server response object - with res.end() - to send/render
-      // message to the browser 
-      res.writeHead(200, {"Content-Type": "text/plain"});
-      res.write(body);
-      res.end(); // Tells HTTP Protocol - to end the response.
-    }); // End of req.on("end", function() { 
+      if (err) throw err;
+      console.log('Connected to Postgres.');
+
+      // Run a SQL query via the query() method
+      client
+        .query(selectQueryStr)
+        .on('row', function(row) {
+          console.log("IN POST " + JSON.stringify(row));
+        });
+    });  // End of: pg.connect(connectionStr, function(err, client) {     
+*/      
+ 
+    /*** INSERT ***/
+    // With Postgres server up and running on port 5000, make database
+    // connection with the pg library.
+    // Create a new instance of the database Client to interact with database.
+    // Establish communication it via the connect() method.
+    // Client is similar to:: dbConnection variable 
+
+    pg.connect(connectionStr, function(err, client) {
+      var insertQueryStr = 
+      "INSERT INTO todo_list_tb (who_for, task, date_due) VALUES ('" + 
+       dataObj.whoFor + 
+       "', '" +
+       dataObj.task +
+       "', '" +
+       dataObj.dateDue +
+       "');"
+       
+      if (err) throw err;
+      console.log('Connected to Postgres.');
+
+      // Doing an INSERT
+      client.query(insertQueryStr);
+    }); // End of pg.connect() {
+    
+    // Add to header - to confirm that all code before this point worked
+    // HTTP header - specifies the content type of the response
+    // Write the message - with res.write() 
+    // End the HTTP server response object - with res.end() - to send/render
+    // message to the browser 
+    res.writeHead(200, {"Content-Type": "text/plain"});
+    res.write(body);
+    res.end(); // Tells HTTP Protocol - to end the response.
+  }); // End of req.on("end", function() { 
 
 } // End of: connAndInsertToDb()
 
@@ -304,6 +300,8 @@ http.createServer(function (req, res) { // Called with each request.
     }   
   } // End of: if (req.method === "GET") {
   
+  // With changes on client-side, req.url will now have diff values depending on
+  // whether button click is: Submit (POST method) or Clear To Do List (DELETE) 
   else if (req.method === "POST") {
     connAndInsertToDb(connectionStr, req, res);
   } // End of: else if (req.method === "POST") {
