@@ -13,6 +13,8 @@
 //var ulResults;
 //var countFound = 0;
 
+var objectWithAllTodos; // Declare as a global object so accessible by any function.
+
 // Constructor - stores form data - Retrieves input data using constructor and 
 // puts in todoItemObj 
 // Note: data will be sent via node.js script to node.js server
@@ -126,8 +128,8 @@ function updateList(respTextFromGet) {
   
   var todoListUl = document.getElementById("todoList");
   
-  // Turn JSON into an array object.
-  var objectWithAllTodos = JSON.parse(respTextFromGet); 
+  // Turn JSON into an array-like object.
+  objectWithAllTodos = JSON.parse(respTextFromGet); 
   
   console.log("objectWithAllTodos: ", objectWithAllTodos);
   
