@@ -25,9 +25,7 @@ function TodoItem(whoFor, task, dateDue="") {
   //this.done = false;
 }
 
-//   ***** Functions *****
-
-
+/***** FUNCTIONS *****/
 function getFormData() {
   var whoFor = document.getElementById("whoFor").value,
     task = document.getElementById("task").value,
@@ -59,8 +57,10 @@ function getFormData() {
 } // End of: getFormData()
 
 function putFormDataInObj(whoFor, task, dateDue) {
-  var aTodoItem = new TodoItem(whoFor, task, dateDue); // Create object for form data.
-  // stringify - takes object and turns into string in JSON
+  // Create object for form data.
+  var aTodoItem = new TodoItem(whoFor, task, dateDue);
+  
+  // stringify() - takes object and turns into string in JSON
   var aTodoItemAsString = JSON.stringify(aTodoItem);
   
   //console.log("IN putFormDataInObj()");
@@ -119,18 +119,22 @@ function display_submitted_msg(respText) { //whoFor, task, dateDue) {
 
 function updateList(respTextFromGet) {      
   /* Take the data received back from XMLHttpRequest object (which is a JSON 
-     string) and convert it into a true JavaScript object. Loop through resulting
+     string) and convert it into a JavaScript object. Loop through resulting
      array and add new elements to the DOM, 1 per item in the array. */ 
   
   //console.log("respTextFromGet: ", respTextFromGet);
   
   var todoListUl = document.getElementById("todoList");
-  var todoListObj = JSON.parse(respTextFromGet); // Turns JSON into an array object.
   
-  console.log("todoListObj: ", todoListObj);
+  // Turn JSON into an array object.
+  var objectWithAllTodos = JSON.parse(respTextFromGet); 
   
-  for (var i = 0; i < todoListObj.length; i++) {
-    var todoItemFromArrObj = todoListObj[i];
+  console.log("objectWithAllTodos: ", objectWithAllTodos);
+  
+  for (var i = 0; i < objectWithAllTodos.length; i++) {
+    var todoItemFromArrObj = objectWithAllTodos[i];
+    
+    console.log("Todo item at " + i + " : " + objectWithAllTodosa[i]);
     var li = document.createElement("li");
     
     // Sets the value of todoItem to the li element.
