@@ -284,6 +284,7 @@ function addSearchResultToPage(aTodoItemFromObj) {
   
   createAndDisplaySingleToDo(aTodoItemFromObj, liSearchResult);
   searchListFrag.appendChild(liSearchResult);
+  searchResultsList.appendChild(searchListFrag);
 }
 
 function init() {
