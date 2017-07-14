@@ -251,7 +251,7 @@ function deleteList() {
 } // End of: function deleteList()
 
 function getSearchAndTrim() {
-  var searchTermToTrim = document.getElementById("searchTerm");
+  var searchTermToTrim = document.getElementById("searchTerm").value;
   var searchTerm = searchTermToTrim.trim();
   compareSearchTermToList();
 }
