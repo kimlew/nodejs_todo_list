@@ -263,7 +263,7 @@ function compareSearchTermToList(searchTerm) {
     // Create case INsensitive regex to use for comparison based on who_for & task
     var re = new RegExp(searchTerm, "i");
     
-    if (aTodoItemFromObj.who_for.match(re) || (aTodoItemFromObj.task.match(re)
+    if (aTodoItemFromObj.who_for.match(re) || aTodoItemFromObj.task.match(re)) {
       //addSearchResultToPage();
     }
     
