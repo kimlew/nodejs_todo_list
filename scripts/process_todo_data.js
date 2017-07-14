@@ -264,12 +264,16 @@ function compareSearchTermToList(searchTerm) {
     var re = new RegExp(searchTerm, "i");
     
     if (aTodoItemFromObj.who_for.match(re) || (aTodoItemFromObj.task.match(re)
-      //addSearchResultToPage()
+      //addSearchResultToPage();
     }
     
   } // End of: for()
     
 } // End of: compareSearchTermToList()
+
+function addSearchResultToPage() {
+  
+}
 
 function init() {
   var submitButton = document.getElementById("submitButton");
