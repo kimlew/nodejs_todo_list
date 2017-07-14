@@ -253,7 +253,15 @@ function getSearchAndTrim() {
 }
 
 function compareSearchTermToList(searchTerm) {
- // Check searchTerm against all items in objectWithAllTodos
+  // Empty the ul, searchResultsList - if it has contents, delete ALL li 
+  // elements so empty ul at start of comparison for search.
+  if ( !(searchResultsList == null) ) {
+    while (searchResultsList.firstChild) {
+      searchResultsList.removeChild(searchResultsList.firstChild);
+    }
+  }
+  
+  // Check searchTerm against all items in objectWithAllTodos
   for (var i = 0; i < objectWithAllTodos.length; i++) {
     var aTodoItemFromObj = objectWithAllTodos[i];
     
