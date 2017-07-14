@@ -153,12 +153,12 @@ console.log(d);
 // -> Wed Jun 09 2010 14:12:01 GMT+0100 (BST)
 */
     // 2017-07-12T06:00:00.000Z
-    var dateDue = todoItemFromArrObj.date_due;
+    var dateDue = aTodoItemFromObj.date_due;
     var dateDueSubstr = dateDue.substr(0,10); // +' '+ dateDue.substr(11,8);
 
     // Add todoItemFromArrObj somehow to li.
-    li.innerHTML = todoItemFromArrObj.who_for + " must " + 
-      todoItemFromArrObj.task + " - before the end of " + dateDueSubstr;
+    li.innerHTML = aTodoItemFromObj.who_for + " must " + 
+      aTodoItemFromObj.task + " - before the end of " + dateDueSubstr;
 
     todoListUl.appendChild(li);
     
@@ -261,6 +261,7 @@ function compareSearchTermToList(searchTerm) {
     console.log("Todo item at " + i + " : " + objectWithAllTodos[i]);
     
     // Create case INsensitive regex to use for comparison
+    var regexp = new RegExp(searchTerm, "i");
     
     
   } // End of: for()
