@@ -9,11 +9,10 @@
 
 "use strict"; // Tells js interpreter to use strict mode.
 
-//var todosFromDb = []; // Global permanent array var - for items from db.
-//var ulResults;
 //var countFound = 0;
 
 var objectWithAllTodos; // Declare as a global object so accessible by any function.
+var searchResultsList;
 
 // Constructor - stores form data - Retrieves input data using constructor and 
 // puts in todoItemObj 
@@ -264,6 +263,8 @@ function compareSearchTermToList(searchTerm) {
     var re = new RegExp(searchTerm, "i");
     
     if (aTodoItemFromObj.who_for.match(re) || aTodoItemFromObj.task.match(re)) {
+      console.log("aTodoItemFromObj.who_for is: " + aTodoItemFromObj.who_for);
+      console.log("aTodoItemFromObj.task is: " + aTodoItemFromObj.task);
       //addSearchResultToPage();
     }
     
@@ -272,7 +273,7 @@ function compareSearchTermToList(searchTerm) {
 } // End of: compareSearchTermToList()
 
 function addSearchResultToPage() {
-  
+  searchResultsList = document.getElementById("searchResultsList");
 }
 
 function init() {
