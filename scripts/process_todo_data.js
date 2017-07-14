@@ -136,7 +136,7 @@ function updateList(respTextFromGet) {
   for (var i = 0; i < objectWithAllTodos.length; i++) {
     var todoItemFromArrObj = objectWithAllTodos[i];
     
-    console.log("Todo item at " + i + " : " + objectWithAllTodosa[i]);
+    console.log("Todo item at " + i + " : " + objectWithAllTodos[i]);
     var li = document.createElement("li");
     
     // Sets the value of todoItem to the li element.
@@ -250,7 +250,16 @@ function deleteList() {
 function getSearchAndTrim() {
   var searchTermToTrim = getElementById("searchTerm");
   var searchTerm = searchTermToTrim.trim();
-  return searchTerm;
+  compareSearchTermToList();
+}
+/*
+  for (var i = 0; i < objectWithAllTodos.length; i++) {
+    var todoItemFromArrObj = objectWithAllTodos[i];
+    
+    console.log("Todo item at " + i + " : " + objectWithAllTodos[i]);
+    }
+    */
+function compareSearchTermToList() {
 }
 
 function init() {
