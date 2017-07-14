@@ -282,8 +282,7 @@ function addSearchResultToPage() {
   var searchListFrag = document.createDocumentFragment();
   var liSearchResult = document.createElement("li");
   
-  liSearchResult.innerHTML = aTodoItemFromObj.who_for +
-      console.log("aTodoItemFromObj.task is: " + aTodoItemFromObj.task);
+  createAndDisplaySingleToDo();
 }
 
 function init() {
