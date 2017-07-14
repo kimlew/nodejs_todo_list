@@ -250,6 +250,7 @@ function getSearchAndTrim() {
 function init() {
   var submitButton = document.getElementById("submitButton");
   var clearListButton = document.getElementById("clearListButton");
+  var searchButton = document.getElementById("searchButton");
   
   getAllTodoItems();
   submitButton.onclick = getFormData;
