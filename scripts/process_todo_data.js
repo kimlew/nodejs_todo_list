@@ -145,23 +145,7 @@ function updateList(respTextFromGet) {
     // Sets the value of todoItem to the li element.
     li.setAttribute("class", "todoItem");
     
-/*    
-    // Split timestamp into [ Y, M, D, h, m, s ]
-var t = "2010-06-09 13:12:01".split(/[- :]/);
-
-// Apply each element to the Date function
-var d = new Date(Date.UTC(t[0], t[1]-1, t[2], t[3], t[4], t[5]));
-
-console.log(d);
-// -> Wed Jun 09 2010 14:12:01 GMT+0100 (BST)
-*/
-    // 2017-07-12T06:00:00.000Z
-    var dateDue = aTodoItemFromObj.date_due;
-    var dateDueSubstr = dateDue.substr(0,10); // +' '+ dateDue.substr(11,8);
-
-    // Add todoItemFromArrObj somehow to li.
-    li.innerHTML = aTodoItemFromObj.who_for + " must " + 
-      aTodoItemFromObj.task + " - before the end of " + dateDueSubstr;
+    createAndDisplaySingleToDo();
 
     todoListUl.appendChild(li);
     
@@ -171,6 +155,18 @@ console.log(d);
   //console.log("IN updateList() ");
 }
  
+function createAndDisplaySingleToDo() {
+  // Format date. Was: 2017-07-12T06:00:00.000Z
+  var dateDue = aTodoItemFromObj.date_due;
+  var dateDueSubstr = dateDue.substr(0,10); // +' '+ dateDue.substr(11,8);
+
+  // Add todoItemFromArrObj somehow to li.
+  li.innerHTML = aTodoItemFromObj.who_for + " must " + 
+    aTodoItemFromObj.task + " - before the end of " + dateDueSubstr;
+    
+  return li.innerHTML;
+}
+
 function getAllTodoItems() {
     var xhr = new XMLHttpRequest();
     var url = "url"; // URL for web server to get data from.
@@ -286,6 +282,8 @@ function addSearchResultToPage() {
   var searchListFrag = document.createDocumentFragment();
   var liSearchResult = document.createElement("li");
   
+  liSearchResult.innerHTML = aTodoItemFromObj.who_for +
+      console.log("aTodoItemFromObj.task is: " + aTodoItemFromObj.task);
 }
 
 function init() {
