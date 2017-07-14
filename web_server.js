@@ -187,17 +187,12 @@ function connAndInsertToDb(connectionStr, req, res) {
       console.log("dataObj is: " + dataObj);
       
       // DO: Do Validations - on resulting object BEFORE INSERT INTO db
-      // DO: INSERT INTO db stuff here, i.e., Call insertFormDataToDb()
       
       pg.defaults.ssl = false; // Note: Set to true to run on Heroku.
-      // Sort of like HTTPS - but for your communication
-      // with your database. Might be a standard on Heroku and most PROD environs.
-      
-      // Create a new instance of the database Client to interact with the
-      // database. Establish communication with it via the connect() method.
-      // Client is sorta like - dbConnection variable 
+      // Sort of like HTTPS - but for communication with your database
+      // Might be a standard on Heroku and most PROD environs.
 
-// SELECT - To test db connection - after database created, run query
+// Test db connection - after database created, run SELECT query
 /*      pg.connect(connectionStr, function(err, client) {
         var selectQueryStr = 'SELECT * FROM todo_list_tb;'
         
@@ -213,8 +208,12 @@ function connAndInsertToDb(connectionStr, req, res) {
       });  // End of: pg.connect(connectionStr, function(err, client) {     
 */      
    
-      /*** INSERT - With Postgres server up and running on port 5000, make 
-      database connection with the pg library: ***/
+      /*** INSERT ***/
+      // With Postgres server up and running on port 5000, make database
+      // connection with the pg library.
+      // Create a new instance of the database Client to interact with database.
+      // Establish communication it via the connect() method.
+      // Client is similar to:: dbConnection variable 
 
       pg.connect(connectionStr, function(err, client) {
         var insertQueryStr = 
@@ -234,7 +233,7 @@ function connAndInsertToDb(connectionStr, req, res) {
       }); // End of pg.connect() {
       
       // Add to header - to confirm that all code before this point worked
-      // HTTP header - specifues the content type of the response
+      // HTTP header - specifies the content type of the response
       // Write the message - with res.write() 
       // End the HTTP server response object - with res.end() - to send/render
       // message to the browser 
