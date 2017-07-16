@@ -301,15 +301,11 @@ function init() {
   var searchButton = document.getElementById("searchButton");
   
   getAllTodoItems();
+  // Checks to see if these button clicks are defined and if so, reference the
+  // respective function.
   submitButton.onclick = getFormData;
   clearListButton.onclick = deleteList;
   searchButton.onclick = getSearchAndTrim;
-  
-  /*
-  if (submitButton.onclick || clearListButton.onclick || searchButton.onclick) {
-    location.reload();
-  }
-  */
 
 } // End of init()
 
