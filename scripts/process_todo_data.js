@@ -309,7 +309,7 @@ function init() {
   if (submitButton.onclick || clearListButton.onclick || searchButton.onclick) {
     location.reload();
   }
-  /*
+  */
 
 } // End of init()
 
