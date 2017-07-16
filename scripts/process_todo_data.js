@@ -96,6 +96,9 @@ function putFormDataInObj(whoFor, task, dateDue) {
   xhr.onload = function () {
     if (xhr.readyState === xhr.DONE && xhr.status === 200) {
         display_submitted_msg(xhr.responseText); //whoFor, task, dateDue);
+        location.reload(); // Reloads entire page - ideal for AJAX
+        // getAllTodoItems(); // Did NOT add to list and repeated list 
+        // Look up: JavaScript way - partial page reload
         //console.log("xhr response & responseText: ", xhr.response, xhr.responseText);
     }
   }; // End of: xhr.onload = function () {
