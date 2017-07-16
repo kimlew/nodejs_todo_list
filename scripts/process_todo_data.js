@@ -304,6 +304,12 @@ function init() {
   submitButton.onclick = getFormData;
   clearListButton.onclick = deleteList;
   searchButton.onclick = getSearchAndTrim;
+  
+  /*
+  if (submitButton.onclick || clearListButton.onclick || searchButton.onclick) {
+    location.reload();
+  }
+  /*
 
 } // End of init()
 
