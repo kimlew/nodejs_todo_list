@@ -25,7 +25,8 @@ var config = require('./config');
 */
 
 var pg = require("pg");
-pg.defaults.ssl = true;
+pg.defaults.ssl = false; // Set to false for local till I know how to configure
+// Postgres to use SSL locally.
 // Sort of like HTTPS - but for communication with your database
 // Might be a standard on Heroku and most PROD environs
 // Note: To run on Heroku, set to true for a secure
