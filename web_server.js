@@ -25,6 +25,13 @@ var config = require('./config');
 */
 
 var pg = require("pg");
+pg.defaults.ssl = true;
+// Sort of like HTTPS - but for communication with your database
+// Might be a standard on Heroku and most PROD environs
+// Note: To run on Heroku, set to true for a secure
+// way to communicate. Locally, it doesn't matter (and I didn't set up to use
+// SSL on my local - which depends on how my Postgres is installed & my web
+// server talks to Postgres, i.e., is the way it talks encrypted or not.
 
 // FROM: formServer.js - node.js Essent Train
 var http = require("http");
@@ -183,10 +190,6 @@ function connAndInsertToDb(connectionStr, req, res) {
     console.log("dataObj is: " + dataObj);
     
     // DO: Do Validations - on resulting object BEFORE INSERT INTO db
-    
-    pg.defaults.ssl = true; // Note: Set to true to run on Heroku.
-    // Sort of like HTTPS - but for communication with your database
-    // Might be a standard on Heroku and most PROD environs.
 
 // TEST db connection - after database created, run SELECT query
 /*      pg.connect(connectionStr, function(err, client) {
@@ -242,8 +245,6 @@ function connAndInsertToDb(connectionStr, req, res) {
 
 function connAndDeleteFromDb(connectionStr, req, res) {
     console.log("Method is DELETE: ", req.method);
-     
-    pg.defaults.ssl = false; // Note: To run on Heroku, set to true.
 
     pg.connect(connectionStr, function(err, client) {
       console.log("INSIDE pg.connect() of DELETE");
