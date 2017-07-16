@@ -249,7 +249,7 @@ function deleteList() {
 function getSearchAndTrim() {
   var searchTermToTrim = document.getElementById("searchTerm").value;
   var searchTerm = searchTermToTrim.trim();
-  compareSearchTermToList();
+  compareSearchTermToList(searchTerm);
 }
 
 function compareSearchTermToList(searchTerm) {
@@ -265,7 +265,7 @@ function compareSearchTermToList(searchTerm) {
   for (var i = 0; i < objectWithAllTodos.length; i++) {
     var aTodoItemFromObj = objectWithAllTodos[i];
     
-    console.log("Todo item at " + i + " : " + objectWithAllTodos[i]);
+    console.log("ITEM at " + i + " : " + objectWithAllTodos[i]);
     
     // Create case INsensitive regex to use for comparison based on who_for & task
     var re = new RegExp(searchTerm, "i");
