@@ -184,7 +184,7 @@ function connAndInsertToDb(connectionStr, req, res) {
     
     // DO: Do Validations - on resulting object BEFORE INSERT INTO db
     
-    pg.defaults.ssl = false; // Note: Set to true to run on Heroku.
+    pg.defaults.ssl = true; // Note: Set to true to run on Heroku.
     // Sort of like HTTPS - but for communication with your database
     // Might be a standard on Heroku and most PROD environs.
 
