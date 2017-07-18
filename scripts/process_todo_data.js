@@ -125,7 +125,7 @@ function display_general_msg(aMsg) {
   span.innerHTML = aMsg;
 }
 
-function createAndDisplaySingleToDo(aTodoItemFromObj, li) {
+function displaySingleToDo(aTodoItemFromObj, li) {
   // Format date. Was: 2017-07-12T06:00:00.000Z
   var dateDue = aTodoItemFromObj.date_due;
   var dateDueSubstr = dateDue.substr(0,10); // +' '+ dateDue.substr(11,8);
@@ -160,7 +160,7 @@ function updateList(respTextFromGet) {
     // Sets the value of todoItem to the li element.
     li.setAttribute("class", "todoItem");
     
-    createAndDisplaySingleToDo(aTodoItemFromObj, li);
+    displaySingleToDo(aTodoItemFromObj, li);
 
     todoListUl.appendChild(li);
     
@@ -293,7 +293,7 @@ function addSearchResultToPage(aTodoItemFromObj) {
   var searchListFrag = document.createDocumentFragment();
   var liSearchResult = document.createElement("li");
   
-  createAndDisplaySingleToDo(aTodoItemFromObj, liSearchResult);
+  displaySingleToDo(aTodoItemFromObj, liSearchResult);
   searchListFrag.appendChild(liSearchResult);
   searchResultsList.appendChild(searchListFrag);
 }
