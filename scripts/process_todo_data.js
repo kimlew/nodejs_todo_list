@@ -162,6 +162,17 @@ function updateList(respTextFromGet) {
     
     var spanDoneNotDone = document.createElement("span");
     
+    if (!(aTodoItemFromObj.done)) {
+      spanDoneNotDone.setAttribute("class", "notDone"); // Blank checkbox.
+      spanDoneNotDone = "&nbsp;&nbsp;&#x25a2;&nbsp;&nbsp;";
+      // Change done column in db to true
+    }
+    else {
+      spanDoneNotDone.setAttribute("class", "done"); // Checkmark.
+      spanDoneNotDone = "&nbsp;&#10004&nbsp;";
+      // Change done column in db to true
+    }
+    
     displaySingleToDo(aTodoItemFromObj, li);
 
     todoListUl.appendChild(li);
