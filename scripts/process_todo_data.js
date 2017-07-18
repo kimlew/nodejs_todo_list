@@ -163,15 +163,18 @@ function updateList(respTextFromGet) {
     
     var spanDoneNotDone = document.createElement("span");
     
+    
+    // If spanDoneNotDone is clicked and diff than db
+    
     if (!(aTodoItemFromObj.done)) {
       spanDoneNotDone.setAttribute("class", "notDone"); // Blank checkbox.
-      spanDoneNotDone = "&nbsp;&nbsp;&#x25a2;&nbsp;&nbsp;";
+      spanDoneNotDone.innerHTML = "&nbsp;&nbsp;&#x25a2;&nbsp;&nbsp;";
       // Change done column in db - to true
       done = true;
     }
     else {
       spanDoneNotDone.setAttribute("class", "done"); // Checkmark.
-      spanDoneNotDone = "&nbsp;&#10004&nbsp;";
+      spanDoneNotDone.innerHTML = "&nbsp;&#10004&nbsp;";
       // Change done column in db - to false
       done = false;
     }
