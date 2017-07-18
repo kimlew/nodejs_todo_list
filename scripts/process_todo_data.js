@@ -160,6 +160,8 @@ function updateList(respTextFromGet) {
     // Sets the value of todoItem to the li element.
     li.setAttribute("class", "todoItem");
     
+    var spanDoneNotDone = document.createElement("span");
+    
     displaySingleToDo(aTodoItemFromObj, li);
 
     todoListUl.appendChild(li);
