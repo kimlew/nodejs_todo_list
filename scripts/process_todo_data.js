@@ -152,6 +152,7 @@ function updateList(respTextFromGet) {
   console.log("objectWithAllTodos: ", objectWithAllTodos);
   
   for (var i = 0; i < objectWithAllTodos.length; i++) {
+    var done;
     var aTodoItemFromObj = objectWithAllTodos[i];
     
     console.log("Todo item at " + i + " : " + objectWithAllTodos[i]);
@@ -166,12 +167,15 @@ function updateList(respTextFromGet) {
       spanDoneNotDone.setAttribute("class", "notDone"); // Blank checkbox.
       spanDoneNotDone = "&nbsp;&nbsp;&#x25a2;&nbsp;&nbsp;";
       // Change done column in db - to true
+      done = true;
     }
     else {
       spanDoneNotDone.setAttribute("class", "done"); // Checkmark.
       spanDoneNotDone = "&nbsp;&#10004&nbsp;";
       // Change done column in db - to false
+      done = false;
     }
+    updateDb(done);
     
     displaySingleToDo(aTodoItemFromObj, li);
 
@@ -261,6 +265,35 @@ function deleteList() {
   console.log("AFTER: xhr.send()");
 
 } // End of: function deleteList()
+
+function updateDb(done) {
+  var xhr = new XMLHttpRequest();
+  var url = "url"; // URL for web server to get data from 
+  // url - a DOMString representing the URL to send the request to
+  
+  // Tells request object URL we want it to retrieve & request type to use
+  // open - ONLY sets up the request - still have to send()
+  // request type stated - so the XMLHttpRequest can verify the connection
+  xhr.open("UPDATE", url, true);
+  xhr.setRequestHeader("Content-type", "application/json");
+  
+  console.log("IN xhr.open(UPDATE, url, true) AND xhr is: " + xhr);
+  
+  // Set up an onload Handler - called when data arrives (vs waiting for data)
+  // responseText - property of request object - holds data from HTTP GET retrieval
+  xhr.onload = function () {
+    if (xhr.readyState === xhr.DONE && xhr.status === 200) {
+        display_submitted_msg(xhr.responseText);
+        console.log("xhr response & responseText: ", xhr.response, xhr.responseText);
+    }
+  }; // End of: xhr.onload = function () {
+
+  // send() - tell request to go out and get the data which sends request to web server.
+  // Pass null if not sending any data to remote service, i.e., request.send(null);
+  xhr.send();
+  console.log("AFTER: xhr.send()");
+
+} // End of: function updateDb()
 
 function getSearchAndTrim() {
   var searchTermToTrim = document.getElementById("searchTerm").value;
