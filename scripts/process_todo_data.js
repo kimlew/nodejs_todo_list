@@ -163,8 +163,8 @@ function updateList(respTextFromGet) {
     
     var spanDoneNotDone = document.createElement("span");
     
-    
-    // If spanDoneNotDone is clicked and diff than db
+    // Want: Clickable spanDoneNotDone - from blank to checkmark.
+    // If spanDoneNotDone is clicked and diff than db - updateDb()
     
     if (!(aTodoItemFromObj.done)) {
       spanDoneNotDone.setAttribute("class", "notDone"); // Blank checkbox.
