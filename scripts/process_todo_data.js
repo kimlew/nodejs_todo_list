@@ -96,9 +96,34 @@ function putFormDataInObj(whoFor, task, dateDue) {
   xhr.onload = function () {
     if (xhr.readyState === xhr.DONE && xhr.status === 200) {
         display_submitted_msg(xhr.responseText); //whoFor, task, dateDue);
-        location.reload(); // Reloads entire page - ideal for AJAX
-        // getAllTodoItems(); // Did NOT add to list and repeated list 
-        // Look up: JavaScript way - partial page reload
+        
+        window.location.reload(true); // Reloads entire page - ideal for AJAX
+        // set to 'true' reloads a fresh copy from the server
+        // otherwise, serves page from cache.
+        
+        //document.getElementById('searchResultsList') = req.responseText;
+        
+        /*
+        Pure JavaScript (not JQuery) solution: wrap your div in an iframe
+        - give it an id myFrame, then refresh it from the child like this:
+
+parent.document.getElementById("myFrame").reload();
+
+answered Jun 7 '13 at 15:00
+ 	
+I guess "wrap your div in an iframe" actually means - "create a new page with 
+just the div's content and load it via an iframe" – Felix Kling Jun 7 '13 
+        */
+        
+        //searchResultsList.reload(); // Did NOT work to reload <ul>
+        
+        // Look up: JavaScript way - partial page reload - jQuery - 
+        //searchResultsList.innerHTML = 
+        
+        // getAllTodoItems(); // Problem: Did NOT add to list and repeated list 
+        // Note: updateList(respTextFromGet) is called from getAllTodoItems();
+        
+        
         //console.log("xhr response & responseText: ", xhr.response, xhr.responseText);
     }
   }; // End of: xhr.onload = function () {
