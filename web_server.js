@@ -118,7 +118,7 @@ function sendAjaxRequest(connectionStr, req, res) {
   
   pg.connect(connectionStr, function(err, client) {
     var results = [];
-    var selectQueryStr = 'SELECT * FROM todo_list_tb ORDER BY date_due DESC;'
+    var selectQueryStr = 'SELECT * FROM todo_list_tb ORDER BY date_due DESC, who_for;'
 
     if (err) throw err;
     console.log('Connected to Postgres.');
