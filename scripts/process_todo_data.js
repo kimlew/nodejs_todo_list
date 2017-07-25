@@ -101,10 +101,6 @@ function putFormDataInObj(whoFor, task, dateDue) {
         // set to 'true' reloads a fresh copy from the server
         // otherwise, serves page from cache.
         
-        // getAllTodoItems(); // Problem: Did NOT add to list and repeated list 
-        // Note: updateList(respTextFromGet) is called from getAllTodoItems();
-        
-        
         //console.log("xhr response & responseText: ", xhr.response, xhr.responseText);
     }
   }; // End of: xhr.onload = function () {
