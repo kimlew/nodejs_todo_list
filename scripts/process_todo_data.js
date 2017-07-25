@@ -122,8 +122,8 @@ function display_submitted_msg(respText) { //whoFor, task, dateDue) {
       submitTodoObj.dateDue + " has been submitted.";
 }
 
-function display_general_msg(aMsg) {
-  var span = document.getElementById("general_msg");
+function display_search_msg(aMsg) {
+  var span = document.getElementById("search_msg");
   span.innerHTML = aMsg;
 }
 
@@ -333,6 +333,9 @@ function compareSearchTermToList(searchTerm) {
     
     if (searchCount == 0) {
       display_general_msg("No match found.");
+    }
+    else {
+      display_general_msg(searchCount + " matches found.");
     }
     
   } // End of: for()
