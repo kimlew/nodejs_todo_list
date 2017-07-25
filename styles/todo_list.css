@@ -48,6 +48,7 @@ ul {
   color: #000000; /* Black */
 }
 
+/* Note: submitted_item_msg created from submitTodoObj = JSON.parse(respText) */
 span#submitted_item_msg {
   color: #800080; /* purple */
   font-size: 9pt;
