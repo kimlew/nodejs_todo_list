@@ -122,8 +122,8 @@ function display_submitted_msg(respText) { //whoFor, task, dateDue) {
       submitTodoObj.dateDue + " has been submitted.";
 }
 
-function display_search_msg(aMsg) {
-  var span = document.getElementById("search_msg");
+function display_search_result_msg(aMsg) {
+  var span = document.getElementById("search_result_msg");
   span.innerHTML = aMsg;
 }
 
@@ -332,10 +332,10 @@ function compareSearchTermToList(searchTerm) {
     }
     
     if (searchCount == 0) {
-      display_search_msg("No match found.");
+      display_search_result_msg("No match found.");
     }
     else {
-      display_search_msg(searchCount + " matches found.");
+      display_search_result_msg(searchCount + " matches found.");
     }
     
   } // End of: for()
