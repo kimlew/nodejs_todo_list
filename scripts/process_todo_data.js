@@ -332,10 +332,10 @@ function compareSearchTermToList(searchTerm) {
     }
     
     if (searchCount == 0) {
-      display_general_msg("No match found.");
+      display_search_msg("No match found.");
     }
     else {
-      display_general_msg(searchCount + " matches found.");
+      display_search_msg(searchCount + " matches found.");
     }
     
   } // End of: for()
