@@ -115,7 +115,7 @@ function putFormDataInObj(whoFor, task, dateDue) {
 function display_submitted_msg(respText) { //whoFor, task, dateDue) {
   var submitTodoObj = JSON.parse(respText);
   
-  var span = document.getElementById("user_msg");
+  var span = document.getElementById("submitted_item_msg");
   span.innerHTML = " The To Do data for " + 
       submitTodoObj.whoFor + " to " + 
       submitTodoObj.task + " before " +
