@@ -55,6 +55,7 @@ span#submitted_item_msg {
   text-indent: 5px;
 }
 
+/* Note: This message just has a hard-coded string passed in. */
 span#search_result_msg {
   color: #800080; /* purple */
   font-size: 9pt;
