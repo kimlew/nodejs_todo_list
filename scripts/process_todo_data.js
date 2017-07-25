@@ -336,7 +336,7 @@ function compareSearchTermToList(searchTerm) {
     }
     
   } // End of: for()
-    
+  
 } // End of: compareSearchTermToList()
 
 function addSearchResultToPage(aTodoItemFromObj) {
@@ -355,7 +355,8 @@ function init() {
   var searchButton = document.getElementById("searchButton");
   
   getAllTodoItems();
-  // Checks to see if these button clicks are defined and if so, reference the
+  
+  // Check to see if these button clicks are defined and if so, reference the
   // respective function.
   submitButton.onclick = getFormData;
   clearListButton.onclick = deleteList;
