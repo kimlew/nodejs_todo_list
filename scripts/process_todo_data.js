@@ -160,7 +160,8 @@ function updateList(respTextFromGet) {
     var li = document.createElement("li");
     
     li.setAttribute("class", "todoItem"); // Set value of todoItem to li element.
-    li.setAttribute("id", "todoItem.id"); // Set todoItem.id to li's id.
+    li.setAttribute("id", "todoItem.id"); // Set todoItem.id to li's id. Needed
+    // since parent element for 3 spans: spanDone, spanNotDone, spanDelete
     
     var spanIsDone = document.createElement("span");
     
