@@ -162,20 +162,20 @@ function updateList(respTextFromGet) {
     li.setAttribute("class", "todoItem"); // Set value of todoItem to li element.
     li.setAttribute("id", "todoItem.id"); // Set todoItem.id to li's id.
     
-    var spanDoneNotDone = document.createElement("span");
+    var spanIsDone = document.createElement("span");
     
-    // Want: Clickable spanDoneNotDone - from blank to checkmark.
-    // If spanDoneNotDone is clicked and diff than db - updateDb()
+    // Want: Clickable spanIsDone - from blank to checkmark.
+    // If spanIsDone is clicked and diff than db - updateDb()
     
     if (!(aTodoItemFromObj.done)) {
-      spanDoneNotDone.setAttribute("class", "notDone"); // Blank checkbox.
-      spanDoneNotDone.innerHTML = "&nbsp;&nbsp;&#x25a2;&nbsp;&nbsp;";
+      spanIsDone.setAttribute("class", "notDone"); // Blank checkbox.
+      spanIsDone.innerHTML = "&nbsp;&nbsp;&#x25a2;&nbsp;&nbsp;";
       // Change done column in db - to true
       done = true;
     }
     else {
-      spanDoneNotDone.setAttribute("class", "done"); // Checkmark.
-      spanDoneNotDone.innerHTML = "&nbsp;&#10004&nbsp;";
+      spanIsDone.setAttribute("class", "done"); // Checkmark.
+      spanIsDone.innerHTML = "&nbsp;&#10004&nbsp;";
       // Change done column in db - to false
       done = false;
     }
