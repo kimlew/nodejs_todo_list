@@ -289,13 +289,13 @@ function updateDb(done) {
     if (xhr.readyState === xhr.DONE && xhr.status === 200) {
         display_submitted_msg(xhr.responseText);
         console.log("xhr response & responseText: ", xhr.response, xhr.responseText);
+        
+      // send() - tell request to go out and get the data which sends request to web server.
+      // Pass null if not sending any data to remote service, i.e., request.send(null);
+      xhr.send();
+      console.log("AFTER: xhr.send()");
     }
   }; // End of: xhr.onload = function () {
-
-  // send() - tell request to go out and get the data which sends request to web server.
-  // Pass null if not sending any data to remote service, i.e., request.send(null);
-  xhr.send();
-  console.log("AFTER: xhr.send()");
 
 } // End of: function updateDb()
 
