@@ -159,8 +159,8 @@ function updateList(respTextFromGet) {
     console.log("Todo item at " + i + " : " + objectWithAllTodos[i]);
     var li = document.createElement("li");
     
-    // Sets the value of todoItem to the li element.
-    li.setAttribute("class", "todoItem");
+    li.setAttribute("class", "todoItem"); // Set value of todoItem to li element.
+    li.setAttribute("id", "todoItem.id"); // Set todoItem.id to li's id.
     
     var spanDoneNotDone = document.createElement("span");
     
