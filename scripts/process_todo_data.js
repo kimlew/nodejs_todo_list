@@ -290,8 +290,8 @@ function updateDb(done) {
         display_submitted_msg(xhr.responseText);
         console.log("xhr response & responseText: ", xhr.response, xhr.responseText);
         
-      // send() - tell request to go out and get the data which sends request to web server.
-      // Pass null if not sending any data to remote service, i.e., request.send(null);
+      // send() - tell request to get the data which sends request to web server.
+      // Pass null-when not sending data to remote service, i.e., request.send(null);
       xhr.send();
       console.log("AFTER: xhr.send()");
     }
