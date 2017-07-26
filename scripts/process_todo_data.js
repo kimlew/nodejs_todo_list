@@ -11,7 +11,6 @@
 
 var objectWithAllTodos; // Declare as a global object so accessible by any function.
 var searchResultsList;
-var searchCount = 0;
 
 // Constructor - stores form data - Retrieves input data using constructor and 
 // puts in todoItemObj 
@@ -315,6 +314,7 @@ function compareSearchTermToList(searchTerm) {
     }
   }
   
+  var searchCount = 0; // Re-set (or Initialize) searchCount to 0.
   // Check searchTerm against all items in objectWithAllTodos
   for (var i = 0; i < objectWithAllTodos.length; i++) {
     var aTodoItemFromObj = objectWithAllTodos[i];
