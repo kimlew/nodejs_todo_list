@@ -244,6 +244,10 @@ function connAndInsertToDb(connectionStr, req, res) {
 
 } // End of: connAndInsertToDb()
 
+function connAndUpdateInDb(connectionStr, req, res) {
+  console.log("Method is UPDATE: ", req.method);
+}
+
 function connAndDeleteFromDb(connectionStr, req, res) {
     console.log("Method is DELETE: ", req.method);
 
@@ -306,6 +310,10 @@ http.createServer(function (req, res) { // Called with each request.
   // whether button click is: Submit (POST method) or Clear To Do List (DELETE) 
   else if (req.method === "POST") {
     connAndInsertToDb(connectionStr, req, res);
+  } // End of: else if (req.method === "POST") {
+  
+  else if (req.method === "UPDATE") {
+    connAndUpdateInDb(connectionStr, req, res);
   } // End of: else if (req.method === "POST") {
   
   else if (req.method === "DELETE") {
