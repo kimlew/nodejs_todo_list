@@ -60,7 +60,13 @@ span#spanIsDone {
   font-size: 9pt;
   text-indent: 5px;
 }
+span#notDone {
+  background-color: #FFFACD; /* light yellow for background */
+}
 
+span#delete {
+  background-color: #FFFACD;
+}
 
 /* Note: submitted_item_msg created from submitTodoObj = JSON.parse(respText) */
 span#submitted_item_msg {
@@ -91,11 +97,3 @@ input:valid {
   border: 1px solid green;
 }
 */
-
-span.notDone {
-  background-color: #FFFACD;
-}
-
-span.delete {
-  background-color: #FFFACD;
-}
