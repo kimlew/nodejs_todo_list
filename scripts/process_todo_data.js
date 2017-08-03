@@ -165,9 +165,6 @@ function updateList(respTextFromGet) {
     
     var spanIsDone = document.createElement("span");
     
-    // Want: Clickable spanIsDone - Starts blank. Can click to checkmark.
-    // If spanIsDone is clicked and diff than db - updateDb()
-    
     if (!(aTodoItemFromObj.done)) {
       spanIsDone.setAttribute("class", "notDone"); // Blank checkbox.
       spanIsDone.innerHTML = "&nbsp;&nbsp;&#x25a2;&nbsp; To Do: ";
@@ -179,14 +176,22 @@ function updateList(respTextFromGet) {
       spanIsDone.innerHTML = "&nbsp;&#9745;&nbsp;&#10004;&nbsp; Done: "; //&#9745;
       // Change done column in db - to false
       done = false;
-    }
-    updateDb(done);
-    
+    }   
+        
     displaySingleToDo(aTodoItemFromObj, li);
 
     todoListUl.appendChild(li);
     li.prepend(spanIsDone);
     
+    // Want: Clickable spanIsDone checkbox - starts blank
+    // If spanIsDone is clicked && current spanIsDone.done value !=
+    // done column value from db passed in as argument(aTodoItemFromObj.done)
+    // then execute updateDb()
+    
+    spanIsDone.onclick = updateIsDone;
+    
+    updateDb(done);
+
     //console.log("todoItemFromArrObj: ", todoItemFromArrObj);
     //console.log("li is: ", li.value);
   }
@@ -284,6 +289,7 @@ function updateDb(done) {
   xhr.setRequestHeader("Content-type", "application/json");
   
   console.log("IN xhr.open(UPDATE, url, true) AND xhr is: " + xhr);
+  //Should see: "done":1  i.e., True
   
   // Set up an onload Handler - called when data arrives (vs waiting for data)
   // responseText - property of request object - holds data from HTTP GET retrieval
@@ -294,7 +300,7 @@ function updateDb(done) {
         
       // send() - tell request to get the data which sends request to web server.
       // Pass null-when not sending data to remote service, i.e., request.send(null);
-      xhr.send();
+      xhr.send(done);
       console.log("AFTER: xhr.send()");
     }
   }; // End of: xhr.onload = function () {
