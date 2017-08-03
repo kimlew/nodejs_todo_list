@@ -198,6 +198,10 @@ function updateList(respTextFromGet) {
   //console.log("IN updateList() ");
 }
 
+function updateIsDone(clickEventDate) {
+  console.log("IN updateIsDone() function" );
+}
+
 function getAllTodoItems() {
     var xhr = new XMLHttpRequest();
     var url = "url"; // URL for web server to get data from.
