@@ -170,13 +170,13 @@ function updateList(respTextFromGet) {
     
     if (!(aTodoItemFromObj.done)) {
       spanIsDone.setAttribute("class", "notDone"); // Blank checkbox.
-      spanIsDone.innerHTML = "NOT Done &nbsp;&nbsp;&#x25a2;&nbsp;&nbsp;";
+      spanIsDone.innerHTML = "&nbsp;&nbsp;&#x25a2;&nbsp;&nbsp; To Do - ";
       // Change done column in db - to true
       done = true;
     }
     else {
       spanIsDone.setAttribute("class", "done"); // Checkmark.
-      spanIsDone.innerHTML = "&nbsp;&#10004&nbsp;";
+      spanIsDone.innerHTML = "&nbsp;&#9745&nbsp;&#10004&nbsp;Done - ";
       // Change done column in db - to false
       done = false;
     }
