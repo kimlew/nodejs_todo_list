@@ -185,6 +185,7 @@ function updateList(respTextFromGet) {
     displaySingleToDo(aTodoItemFromObj, li);
 
     todoListUl.appendChild(li);
+    li.appendChild(spanIsDone);
     
     //console.log("todoItemFromArrObj: ", todoItemFromArrObj);
     //console.log("li is: ", li.value);
