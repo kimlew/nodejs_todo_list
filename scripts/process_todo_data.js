@@ -21,7 +21,6 @@ function TodoItem(whoFor, task, dateDue="") {
   this.whoFor = whoFor;
   this.task = task;
   this.dateDue = dateDue;
-  //this.done = false;
 }
 
 /***** FUNCTIONS *****/
