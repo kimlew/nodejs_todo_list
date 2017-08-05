@@ -192,7 +192,7 @@ function updateList(respTextFromGet) {
     spanIsDone.onclick = function() {
       todo_id = aTodoItemFromObj.id;
       done = aTodoItemFromObj.done;
-      //updateIsDone(todoItem.id, aTodoItem.done);
+      updateIsDone(todo_id, done);
     };
     
     updateDb(done);
@@ -205,24 +205,17 @@ function updateList(respTextFromGet) {
 } // End of: updateList()
 
 //function updateIsDone(clickEventDate, aTodoItem.done) {
-function updateIsDone() {
+function updateIsDone(todo_id, done) {
 //function updateIsDone(todoItem.id, todoItem.done) {
   console.log("IN updateIsDone() function" );
   
   // NEED: Create JSON object with changed data sorta like: aTodoItem.done = true
   // to send with xhr request "body" not "header" - to be processed by web_server.js
-  
-  
   // stringify() - takes object and turns into string in JSON
-  var aTodoItemAsString = JSON.stringify(aTodoItem);
+  var doneToUpdateStr = JSON.stringify(todo_id, done);
   
-  //console.log("IN putFormDataInObj()");
-  //console.log("dateDue is: " + dateDue);
-  console.log("aTodoItem is: " + aTodoItem);
-  console.log("aTodoItemAsString is: " + aTodoItemAsString);
-
-  // Note: aTodoItem is: [object Object]
-  // process_todo_data.js:71 aTodoItemAsString is: {"whoFor":"Boris","task":"buy beer","dateDue":""}
+  console.log("IN updateIsDone()");
+  console.log("doneToUpdateStr is: " + doneToUpdateStr);
 
 /* Create an XMLHttpRequest object, load it with a URL and HTTP request type,
    along with a handler. Then send request and wait for data to arrive.
@@ -241,7 +234,7 @@ function updateIsDone() {
   xhr.open("UPDATE", url, true);
   xhr.setRequestHeader("Content-type", "application/json");
   
-  console.log('IN xhr.open(POST, url, true)');
+  console.log('IN xhr.open(UPDATE, url, true)');
   console.log("xhr is: " + xhr);
   
   // Set up an onload Handler - called when data arrives (vs waiting for data)
@@ -260,8 +253,8 @@ function updateIsDone() {
 
   // send() - tell request to go out and get the data which sends request to web server.
   // Pass null if not sending any data to remote service, i.e., request.send(null);
-  xhr.send(aTodoItemAsString);
-  console.log("AFTER: xhr.send(aTodoItemAsString)");
+  xhr.send(doneToUpdateStr);
+  console.log("AFTER: xhr.send(doneToUpdateStr)");
 }
 
 function getAllTodoItems() {
