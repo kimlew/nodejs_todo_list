@@ -166,7 +166,7 @@ function updateList(respTextFromGet) {
     var spanIsDone = document.createElement("span");
     
     if (!(aTodoItemFromObj.done)) {
-      spanIsDone.setAttribute("class", "notDone"); // Blank checkbox.
+      spanIsDone.setAttribute("class", "todo"); // Blank checkbox.
       spanIsDone.innerHTML = "&nbsp;&nbsp;&#x25a2;&nbsp; To Do: ";
       // Change done column in db - to true
       done = true;
@@ -188,7 +188,10 @@ function updateList(respTextFromGet) {
     // done column value from db passed in as argument(aTodoItemFromObj.done)
     // then execute updateDb()
     
-    spanIsDone.onclick = updateIsDone;
+    // Need: anonymous function to pass in changed done value upon spanIsDone.onclick
+    spanIsDone.onclick = function () {
+    };
+    //updateIsDone(todoItem.id, aTodoItem.done);
     
     updateDb(done);
 
@@ -198,8 +201,64 @@ function updateList(respTextFromGet) {
   //console.log("IN updateList() ");
 }
 
-function updateIsDone(clickEventDate) {
+//function updateIsDone(clickEventDate, aTodoItem.done) {
+
+function updateIsDone(todoItem.id, aTodoItem.done) {
   console.log("IN updateIsDone() function" );
+  
+  // NEED: Create JSON object with changed data sorta like: aTodoItem.done = true
+  // to send with xhr request "body" not "header" - to be processed by web_server.js
+  
+  
+  // stringify() - takes object and turns into string in JSON
+  var aTodoItemAsString = JSON.stringify(aTodoItem);
+  
+  //console.log("IN putFormDataInObj()");
+  //console.log("dateDue is: " + dateDue);
+  console.log("aTodoItem is: " + aTodoItem);
+  console.log("aTodoItemAsString is: " + aTodoItemAsString);
+
+  // Note: aTodoItem is: [object Object]
+  // process_todo_data.js:71 aTodoItemAsString is: {"whoFor":"Boris","task":"buy beer","dateDue":""}
+
+/* Create an XMLHttpRequest object, load it with a URL and HTTP request type,
+   along with a handler. Then send request and wait for data to arrive.
+   When it does, handler is called.
+*/
+  // XMLHttpRequest object - built into all modern browsers-to request data from a server
+  // Use XMLHttpRequest - to send string in JSON string format via POST to web server
+  // Use XMLHttpRequest constructor - to create new request object
+  var xhr = new XMLHttpRequest();
+  var url = "url"; // URL for web server to get data from 
+  // url - a DOMString representing the URL to send the request to.
+  
+  // Tells request object URL we want it to retrieve & request type to use
+  // open - ONLY sets up the request - still have to send()
+  // request type stated - so the XMLHttpRequest can verify the connection
+  xhr.open("UPDATE", url, true);
+  xhr.setRequestHeader("Content-type", "application/json");
+  
+  console.log('IN xhr.open(POST, url, true)');
+  console.log("xhr is: " + xhr);
+  
+  // Set up an onload Handler - called when data arrives (vs waiting for data)
+  // responseText - property of request object - holds data from HTTP GET retrieval
+  xhr.onload = function () {
+    if (xhr.readyState === xhr.DONE && xhr.status === 200) {
+        display_submitted_msg(xhr.responseText); //whoFor, task, dateDue);
+        
+        window.location.reload(true); // Reloads entire page - ideal for AJAX
+        // set to 'true' reloads a fresh copy from the server
+        // otherwise, serves page from cache.
+        
+        //console.log("xhr response & responseText: ", xhr.response, xhr.responseText);
+    }
+  }; // End of: xhr.onload = function () {
+
+  // send() - tell request to go out and get the data which sends request to web server.
+  // Pass null if not sending any data to remote service, i.e., request.send(null);
+  xhr.send(aTodoItemAsString);
+  console.log("AFTER: xhr.send(aTodoItemAsString)");
 }
 
 function getAllTodoItems() {
