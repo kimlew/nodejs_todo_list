@@ -189,8 +189,9 @@ function updateList(respTextFromGet) {
     
     // Need: anonymous function to pass in changed done value upon spanIsDone.onclick
     spanIsDone.onclick = function () {
+      updateIsDone();
+      //updateIsDone(todoItem.id, aTodoItem.done);
     };
-    //updateIsDone(todoItem.id, aTodoItem.done);
     
     updateDb(done);
 
@@ -202,7 +203,8 @@ function updateList(respTextFromGet) {
 
 //function updateIsDone(clickEventDate, aTodoItem.done) {
 
-function updateIsDone(todoItem.id, todoItem.done) {
+function updateIsDone() {
+//function updateIsDone(todoItem.id, todoItem.done) {
   console.log("IN updateIsDone() function" );
   
   // NEED: Create JSON object with changed data sorta like: aTodoItem.done = true
