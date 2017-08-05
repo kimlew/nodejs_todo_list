@@ -152,6 +152,7 @@ function updateList(respTextFromGet) {
   console.log("objectWithAllTodos: ", objectWithAllTodos);
   
   for (var i = 0; i < objectWithAllTodos.length; i++) {
+    var todo_id;
     var done;
     var aTodoItemFromObj = objectWithAllTodos[i];
     
@@ -188,21 +189,22 @@ function updateList(respTextFromGet) {
     // then execute updateDb()
     
     // Need: anonymous function to pass in changed done value upon spanIsDone.onclick
-    spanIsDone.onclick = function () {
-      updateIsDone();
+    spanIsDone.onclick = function() {
+      todo_id = aTodoItemFromObj.id;
+      done = aTodoItemFromObj.done;
       //updateIsDone(todoItem.id, aTodoItem.done);
     };
     
     updateDb(done);
-
     //console.log("todoItemFromArrObj: ", todoItemFromArrObj);
     //console.log("li is: ", li.value);
-  }
+    
+  } // End of: for loop
   //console.log("IN updateList() ");
-}
+  
+} // End of: updateList()
 
 //function updateIsDone(clickEventDate, aTodoItem.done) {
-
 function updateIsDone() {
 //function updateIsDone(todoItem.id, todoItem.done) {
   console.log("IN updateIsDone() function" );
