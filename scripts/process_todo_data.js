@@ -214,7 +214,6 @@ function updateIsDone(todo_id, done) {
   // stringify() - takes object and turns into string in JSON
   var doneToUpdateStr = JSON.stringify(todo_id, done);
   
-  console.log("IN updateIsDone()");
   console.log("doneToUpdateStr is: " + doneToUpdateStr);
 
 /* Create an XMLHttpRequest object, load it with a URL and HTTP request type,
@@ -234,7 +233,6 @@ function updateIsDone(todo_id, done) {
   xhr.open("UPDATE", url, true);
   xhr.setRequestHeader("Content-type", "application/json");
   
-  console.log('IN xhr.open(UPDATE, url, true)');
   console.log("xhr is: " + xhr);
   
   // Set up an onload Handler - called when data arrives (vs waiting for data)
