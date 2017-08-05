@@ -202,7 +202,7 @@ function updateList(respTextFromGet) {
 
 //function updateIsDone(clickEventDate, aTodoItem.done) {
 
-function updateIsDone(todoItem.id, aTodoItem.done) {
+function updateIsDone(todoItem.id, todoItem.done) {
   console.log("IN updateIsDone() function" );
   
   // NEED: Create JSON object with changed data sorta like: aTodoItem.done = true
