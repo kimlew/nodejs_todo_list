@@ -158,6 +158,8 @@ function updateList(respTextFromGet) {
     
     console.log("ITEM AT " + i + " : ");
     console.log(objectWithAllTodos[i]);
+    console.log("aTodoItemFromObj is: ");
+    console.log(aTodoItemFromObj);
     
     var li = document.createElement("li");  
     li.setAttribute("class", "todoItem"); // Set value of todoItem to li element.
@@ -168,6 +170,10 @@ function updateList(respTextFromGet) {
     // checkbox. Get current aTodoItemFromObj.done & display blank checkbox OR
     // checked checkbox depending on what it is.
     var spanIsDone = document.createElement("span");
+    
+    console.log("todo_id AND done are: ");
+    console.log(aTodoItemFromObj.todo_id);
+    console.log(aTodoItemFromObj.done);
     
     if (aTodoItemFromObj.done == 0) {
       spanIsDone.setAttribute("class", "todo"); // Set for styling of blank checkbox.
@@ -190,7 +196,7 @@ function updateList(respTextFromGet) {
     
     // Need: anonymous function to pass in changed done value upon spanIsDone.onclick
     spanIsDone.onclick = function() {
-      todo_id = aTodoItemFromObj.id;
+      todo_id = aTodoItemFromObj.todo_id;
       done = aTodoItemFromObj.done;
       updateIsDone(todo_id, done);
     };
@@ -213,6 +219,7 @@ function updateIsDone(todo_id, done) {
   // NEED: Create JSON object with changed data sorta like: aTodoItem.done = true
   // to send with xhr request "body" not "header" - to be processed by web_server.js
   // stringify() - takes object and turns into string in JSON
+  
   var doneToUpdateStr = JSON.stringify(todo_id, done);
   
   console.log("doneToUpdateStr is: " + doneToUpdateStr);
