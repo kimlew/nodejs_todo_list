@@ -128,12 +128,12 @@ function sendAjaxRequest(connectionStr, req, res) {
       .query(selectQueryStr)
     
       .on('row', function(row) { // Stream results back.  
-        console.log("IN GET " + JSON.stringify(row));
+        //console.log("IN GET " + JSON.stringify(row));
       
         results.push(row);
         //results += row;  // += is turning the result into a string DAMMIT!
         
-        console.log("RESULTS has: " + results);
+        //console.log("RESULTS has: " + results);
         return results; // Returns to client results array with data as JSON.
       
       })   
@@ -141,8 +141,8 @@ function sendAjaxRequest(connectionStr, req, res) {
       // Confirms everything before this worked.
       // After all data is returned, close connection.
       .on('end', () => {
-        console.log("Attempting to send results:", JSON.stringify(results));
-        console.log("About to write the head");
+        //console.log("Attempting to send results:", JSON.stringify(results));
+        //console.log("About to write the head");
       
         res.writeHead(200, {"Content-Type": "application/json"});
         console.log("Wrote the head");
@@ -257,11 +257,14 @@ function connAndUpdateInDb(connectionStr, req, res) {
     console.log("BODY has: " + body);
   }); // End of req.on("data", function(chunk) {
   
-  // Convert body JSON string into object with properties t0 prep for db UPDATE 
-  req.on("end", function() {
-    var dataObj = JSON.parse(body);
+  var dataObj = JSON.parse(body);
     console.log("DATA OBJECT is: ");
     console.log(dataObj);
+  // Convert body JSON string into object with properties t0 prep for db UPDATE 
+  req.on("end", function() {
+    /*var dataObj = JSON.parse(body);
+    console.log("DATA OBJECT is: ");
+    console.log(dataObj);*/
   
     pg.connect(connectionStr, function(err, client) {
       //var updateQueryStr = 
