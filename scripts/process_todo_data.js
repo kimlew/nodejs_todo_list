@@ -156,26 +156,26 @@ function updateList(respTextFromGet) {
     var done;
     var aTodoItemFromObj = objectWithAllTodos[i];
     
-    console.log("Todo item at " + i + " : " + objectWithAllTodos[i]);
-    var li = document.createElement("li");
+    console.log("ITEM AT " + i + " : ");
+    console.log(objectWithAllTodos[i]);
     
+    var li = document.createElement("li");  
     li.setAttribute("class", "todoItem"); // Set value of todoItem to li element.
     li.setAttribute("id", "todoItem.id"); // Set todoItem.id to li's id. Needed
     // since parent element for 3 spans: spanDone, spanNotDone, spanDelete
     
+    // Create spanIsDone to initially style the empty checkbox & checkmark in 
+    // checkbox. Get current aTodoItemFromObj.done & display blank checkbox OR
+    // checked checkbox depending on what it is.
     var spanIsDone = document.createElement("span");
     
-    if (!(aTodoItemFromObj.done)) {
-      spanIsDone.setAttribute("class", "todo"); // Blank checkbox.
+    if (aTodoItemFromObj.done == 0) {
+      spanIsDone.setAttribute("class", "todo"); // Set for styling of blank checkbox.
       spanIsDone.innerHTML = "&nbsp;&nbsp;&#x25a2;&nbsp; To Do: ";
-      // Change done column in db - to true
-      done = true;
     }
     else {
-      spanIsDone.setAttribute("class", "done"); // Checkmark.
+      spanIsDone.setAttribute("class", "done"); // Set for styling of checkmark.
       spanIsDone.innerHTML = "&nbsp;&#9745;&nbsp;&#10004;&nbsp; Done: "; //&#9745;
-      // Change done column in db - to false
-      done = false;
     }   
         
     displaySingleToDo(aTodoItemFromObj, li);
@@ -205,6 +205,7 @@ function updateList(respTextFromGet) {
 } // End of: updateList()
 
 //function updateIsDone(clickEventDate, aTodoItem.done) {
+// todoItem.id
 function updateIsDone(todo_id, done) {
 //function updateIsDone(todoItem.id, todoItem.done) {
   console.log("IN updateIsDone() function" );
