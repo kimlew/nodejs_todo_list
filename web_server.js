@@ -245,8 +245,40 @@ function connAndInsertToDb(connectionStr, req, res) {
 } // End of: connAndInsertToDb()
 
 function connAndUpdateInDb(connectionStr, req, res) {
-  console.log("Method is UPDATE: ", req.method);
-}
+  console.log("In UPDATE: ", req.method);
+    
+  var body = ""; 
+  
+  // Manipulate body and prepare it for insertion into db
+  // Passes data FOR body with chunks
+  // Later: Entire concatenated string - turned into object
+  req.on("data", function(chunk) {
+    body += chunk;
+    console.log("BODY has: " + body);
+  }); // End of req.on("data", function(chunk) {
+  
+  // Convert body JSON string into object with properties t0 prep for db UPDATE 
+  req.on("end", function() {
+    var dataObj = JSON.parse(body);
+    console.log("dataObj is: " + dataObj);
+  
+    pg.connect(connectionStr, function(err, client) {
+      var insertQueryStr = 
+      "UPDATE todo_list_tb (done) VALUES ('" + dataObj.done + "');"
+       
+      if (err) throw err;
+      console.log('Connected to Postgres.');
+
+      // Doing an INSERT
+      client.query(insertQueryStr);
+    }); // End of pg.connect() {
+    
+    res.writeHead(200, {"Content-Type": "text/plain"});
+    res.write(body);
+    res.end(); // Tells HTTP Protocol - to end the response.
+  }); // End of req.on("end", function() { 
+  
+} // End of: connAndUpdateInDb()
 
 function connAndDeleteFromDb(connectionStr, req, res) {
     console.log("Method is DELETE: ", req.method);
