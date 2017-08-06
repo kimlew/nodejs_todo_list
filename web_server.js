@@ -263,8 +263,9 @@ function connAndUpdateInDb(connectionStr, req, res) {
     console.log("dataObj is: " + dataObj);
   
     pg.connect(connectionStr, function(err, client) {
-      var insertQueryStr = 
-      "UPDATE todo_list_tb (done) VALUES ('" + dataObj.done + "');"
+      //var updateQueryStr = 
+      //"UPDATE todo_list_tb SET done="" VALUES WHERE todo_id="";"
+      //UPDATE films SET kind = 'Dramatic' WHERE kind = 'Drama';
        
       if (err) throw err;
       console.log('Connected to Postgres.');
