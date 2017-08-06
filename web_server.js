@@ -260,7 +260,8 @@ function connAndUpdateInDb(connectionStr, req, res) {
   // Convert body JSON string into object with properties t0 prep for db UPDATE 
   req.on("end", function() {
     var dataObj = JSON.parse(body);
-    console.log("dataObj is: " + dataObj);
+    console.log("DATA OBJECT is: ");
+    console.log(dataObj);
   
     pg.connect(connectionStr, function(err, client) {
       //var updateQueryStr = 
@@ -269,9 +270,8 @@ function connAndUpdateInDb(connectionStr, req, res) {
        
       if (err) throw err;
       console.log('Connected to Postgres.');
-
-      // Doing an INSERT
-      client.query(insertQueryStr);
+      
+      //client.query(updateQueryStr); // Does the UPDATE
     }); // End of pg.connect() {
     
     res.writeHead(200, {"Content-Type": "text/plain"});
