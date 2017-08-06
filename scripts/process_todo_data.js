@@ -158,8 +158,8 @@ function updateList(respTextFromGet) {
     
     console.log("ITEM AT " + i + " : ");
     console.log(objectWithAllTodos[i]);
-    console.log("aTodoItemFromObj is: ");
-    console.log(aTodoItemFromObj);
+    //console.log("aTodoItemFromObj is: ");
+    //console.log(aTodoItemFromObj);
     
     var li = document.createElement("li");  
     li.setAttribute("class", "todoItem"); // Set value of todoItem to li element.
@@ -306,7 +306,7 @@ function getAllTodoItems() {
         }
 
         //console.log("xhr response:", xhr.response);
-        console.log("xhr responseText:", xhr.responseText);
+        //console.log("xhr responseText:", xhr.responseText);
       }
     }; // End of: xhr.onreadystatechange = function () {
     
@@ -395,14 +395,15 @@ function compareSearchTermToList(searchTerm) {
   for (var i = 0; i < objectWithAllTodos.length; i++) {
     var aTodoItemFromObj = objectWithAllTodos[i];
     
-    console.log("ITEM at " + i + " : " + objectWithAllTodos[i]);
+    //console.log("ITEM at " + i + " : ");
+    //console.log(objectWithAllTodos[i]);
     
     // Create case INsensitive regex to use for comparison based on who_for & task
     var re = new RegExp(searchTerm, "i");
     
     if (aTodoItemFromObj.who_for.match(re) || aTodoItemFromObj.task.match(re)) {
-      console.log("aTodoItemFromObj.who_for is: " + aTodoItemFromObj.who_for);
-      console.log("aTodoItemFromObj.task is: " + aTodoItemFromObj.task);
+      //console.log("aTodoItemFromObj.who_for is: " + aTodoItemFromObj.who_for);
+      //console.log("aTodoItemFromObj.task is: " + aTodoItemFromObj.task);
       addSearchResultToPage(aTodoItemFromObj);
       searchCount++;
     }
