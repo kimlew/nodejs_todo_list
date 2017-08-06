@@ -241,7 +241,7 @@ function updateIsDone(todo_id, done) {
   // Tells request object URL we want it to retrieve & request type to use
   // open - ONLY sets up the request - still have to send()
   // request type stated - so the XMLHttpRequest can verify the connection
-  xhr.open("UPDATE", url, true);
+  xhr.open("PUT", url, true); // Note: For UPDATE, use PUT.
   xhr.setRequestHeader("Content-type", "application/json");
   
   console.log("xhr is: " + xhr);

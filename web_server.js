@@ -245,7 +245,7 @@ function connAndInsertToDb(connectionStr, req, res) {
 } // End of: connAndInsertToDb()
 
 function connAndUpdateInDb(connectionStr, req, res) {
-  console.log("In UPDATE: ", req.method);
+  console.log("In UPDATE WITH BODY: ", req.method);
     
   var body = ""; 
   
@@ -344,7 +344,7 @@ http.createServer(function (req, res) { // Called with each request.
     connAndInsertToDb(connectionStr, req, res);
   } // End of: else if (req.method === "POST") {
   
-  else if (req.method === "UPDATE") {
+  else if (req.method === "PUT") { // Note: For UPDATE, use PUT.
     connAndUpdateInDb(connectionStr, req, res);
   } // End of: else if (req.method === "POST") {
   
