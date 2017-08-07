@@ -276,7 +276,7 @@ function connAndUpdateInDb(connectionStr, req, res) {
       if (err) throw err;
       console.log('Connected to Postgres.');
       
-      client.query(updateQueryStr); // Does the UPDATE
+      client.query(updateQueryStr); // Does the UPDATE to the db table.
     }); // End of pg.connect() {
     
     res.writeHead(200, {"Content-Type": "text/plain"});
