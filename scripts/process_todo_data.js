@@ -120,6 +120,14 @@ function display_submitted_msg(respText) { //whoFor, task, dateDue) {
       submitTodoObj.dateDue + " has been submitted.";
 }
 
+function display_updated_msg(respText) { //whoFor, task, done) {
+  var submitTodoObj = JSON.parse(respText);
+  
+  var span = document.getElementById("updated_item_msg");
+  span.innerHTML = " The To Do data for " + 
+      submitTodoObj.whoFor + " to " + 
+      submitTodoObj.task + " has been updated.";
+}
 function display_search_result_msg(aMsg) {
   var span = document.getElementById("search_result_msg");
   span.innerHTML = aMsg;
@@ -250,7 +258,7 @@ function updateIsDone(todo_id, done) {
   // responseText - property of request object - holds data from HTTP GET retrieval
   xhr.onload = function () {
     if (xhr.readyState === xhr.DONE && xhr.status === 200) {
-        display_submitted_msg(xhr.responseText); //whoFor, task, dateDue);
+        display_submitted_msg(xhr.responseText); //whoFor, task, dateDue, done);
         
         window.location.reload(true); // Reloads entire page - ideal for AJAX
         // set to 'true' reloads a fresh copy from the server
@@ -363,7 +371,7 @@ function updateDb(done) {
   // responseText - property of request object - holds data from HTTP GET retrieval
   xhr.onload = function () {
     if (xhr.readyState === xhr.DONE && xhr.status === 200) {
-        display_submitted_msg(xhr.responseText);
+        display_updated_msg(xhr.responseText);
         console.log("xhr response & responseText: ", xhr.response, xhr.responseText);
         
       // send() - tell request to get the data which sends request to web server.
