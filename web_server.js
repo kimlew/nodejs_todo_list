@@ -268,7 +268,7 @@ function connAndUpdateInDb(connectionStr, req, res) {
     pg.connect(connectionStr, function(err, client) {
       var updateQueryStr = 
       "UPDATE todo_list_tb SET done=" + dataObj.done + " " + 
-      "WHERE todo_id=" + dataObj.id + ";"
+      "WHERE todo_id=" + dataObj.todo_id + ";"
       
      console.log("updateQueryStr IS -- ");
      console.log(updateQueryStr);
