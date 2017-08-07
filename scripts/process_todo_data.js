@@ -354,7 +354,7 @@ function deleteList() {
 
 } // End of: function deleteList()
 
-
+/*
 function updateDb() {
   var xhr = new XMLHttpRequest();
   var url = "url"; // URL for web server to get data from 
@@ -384,7 +384,7 @@ function updateDb() {
   }; // End of: xhr.onload = function () {
 
 } // End of: function updateDb()
-
+*/
 
 function getSearchAndTrim() {
   var searchTermToTrim = document.getElementById("searchTerm").value;
