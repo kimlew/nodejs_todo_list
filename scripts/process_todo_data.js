@@ -259,7 +259,7 @@ function updateIsDone(todo_id, done) {
   // responseText - property of request object - holds data from HTTP GET retrieval
   xhr.onload = function () {
     if (xhr.readyState === xhr.DONE && xhr.status === 200) {
-        display_submitted_msg(xhr.responseText); //whoFor, task, dateDue, done);
+        display_updated_msg(xhr.responseText); //whoFor, task, dateDue, done);
         
         window.location.reload(true); // Reloads entire page - ideal for AJAX
         // set to 'true' reloads a fresh copy from the server
