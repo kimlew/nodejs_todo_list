@@ -280,7 +280,7 @@ function connAndUpdateInDb(connectionStr, req, res) {
     }); // End of pg.connect() {
     
     res.writeHead(200, {"Content-Type": "text/plain"});
-    res.write(updateQueryStr);
+    res.write(body);
     res.end(); // Tells HTTP Protocol - to end the response.
   }); // End of req.on("end", function() { 
   
