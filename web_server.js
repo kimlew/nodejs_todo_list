@@ -260,6 +260,7 @@ function connAndUpdateInDb(connectionStr, req, res) {
   var dataObj = JSON.parse(body);
     console.log("DATA OBJECT is: ");
     console.log(dataObj);
+    
   // Convert body JSON string into object with properties t0 prep for db UPDATE 
   req.on("end", function() {
     /*var dataObj = JSON.parse(body);
@@ -267,9 +268,10 @@ function connAndUpdateInDb(connectionStr, req, res) {
     console.log(dataObj);*/
   
     pg.connect(connectionStr, function(err, client) {
-      //var updateQueryStr = 
-      //"UPDATE todo_list_tb SET done="" VALUES WHERE todo_id="";"
-      //UPDATE films SET kind = 'Dramatic' WHERE kind = 'Drama';
+      var updateQueryStr = 
+      "UPDATE todo_list_tb SET done=" + dataObj.done + "' '" + 
+      "WHERE todo_id=" + dataObj.id + ";"
+//UPDATE weather SET temp_lo = temp_lo+1 WHERE date = '2003-07-03';
        
       if (err) throw err;
       console.log('Connected to Postgres.');
