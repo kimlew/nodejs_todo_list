@@ -245,9 +245,11 @@ function connAndInsertToDb(connectionStr, req, res) {
 } // End of: connAndInsertToDb()
 
 function connAndUpdateInDb(connectionStr, req, res) {
-  console.log("In UPDATE WITH BODY: ", req.method);
+  console.log("IN UPDATE WITH BODY: ", req.method);
     
-  var body = ""; 
+  var body = "";
+  console.log("BODY IN UPDATE IS empty string: ");
+  console.log(body);
   
   // Manipulate body and prepare it for insertion into db
   // Passes data FOR body with chunks
@@ -256,21 +258,20 @@ function connAndUpdateInDb(connectionStr, req, res) {
     body += chunk;
     console.log("BODY has: " + body);
   }); // End of req.on("data", function(chunk) {
-  
-  var dataObj = JSON.parse(body);
-    console.log("DATA OBJECT is: ");
-    console.log(dataObj);
     
   // Convert body JSON string into object with properties t0 prep for db UPDATE 
   req.on("end", function() {
-    /*var dataObj = JSON.parse(body);
+    var dataObj = JSON.parse(body);
     console.log("DATA OBJECT is: ");
-    console.log(dataObj);*/
+    console.log(dataObj);
   
     pg.connect(connectionStr, function(err, client) {
       var updateQueryStr = 
-      "UPDATE todo_list_tb SET done=" + dataObj.done + "' '" + 
+      "UPDATE todo_list_tb SET done=" + dataObj.done + " " + 
       "WHERE todo_id=" + dataObj.id + ";"
+      
+     console.log("updateQueryStr IS -- ");
+     console.log(updateQueryStr);
 //UPDATE weather SET temp_lo = temp_lo+1 WHERE date = '2003-07-03';
        
       if (err) throw err;
