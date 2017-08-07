@@ -271,8 +271,7 @@ function connAndUpdateInDb(connectionStr, req, res) {
       "WHERE todo_id=" + dataObj.todo_id + ";"
       
      console.log("updateQueryStr IS -- ");
-     console.log(updateQueryStr);
-//UPDATE weather SET temp_lo = temp_lo+1 WHERE date = '2003-07-03';
+     console.log(updateQueryStr); // UPDATE todo_list_tb SET done=0 WHERE todo_id=24;
        
       if (err) throw err;
       console.log('Connected to Postgres.');
@@ -281,7 +280,7 @@ function connAndUpdateInDb(connectionStr, req, res) {
     }); // End of pg.connect() {
     
     res.writeHead(200, {"Content-Type": "text/plain"});
-    res.write(body);
+    res.write(updateQueryStr);
     res.end(); // Tells HTTP Protocol - to end the response.
   }); // End of req.on("end", function() { 
   
