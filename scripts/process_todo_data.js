@@ -209,7 +209,8 @@ function updateList(respTextFromGet) {
       updateIsDone(todo_id, done);
     };
     
-    updateDb(done);
+    //updateDb(todo_id, done);
+    
     //console.log("todoItemFromArrObj: ", todoItemFromArrObj);
     //console.log("li is: ", li.value);
     
@@ -336,12 +337,12 @@ function deleteList() {
   xhr.setRequestHeader("Content-type", "application/json");
   
   console.log("IN xhr.open(DELETE, url, true) AND xhr is: " + xhr);
-  
+      
   // Set up an onload Handler - called when data arrives (vs waiting for data)
   // responseText - property of request object - holds data from HTTP GET retrieval
   xhr.onload = function () {
     if (xhr.readyState === xhr.DONE && xhr.status === 200) {
-        display_submitted_msg(xhr.responseText);
+        display_updated_msg(xhr.responseText);
         console.log("xhr response & responseText: ", xhr.response, xhr.responseText);
     }
   }; // End of: xhr.onload = function () {
@@ -353,7 +354,8 @@ function deleteList() {
 
 } // End of: function deleteList()
 
-function updateDb(done) {
+
+function updateDb() {
   var xhr = new XMLHttpRequest();
   var url = "url"; // URL for web server to get data from 
   // url - a DOMString representing the URL to send the request to
@@ -364,24 +366,25 @@ function updateDb(done) {
   xhr.open("UPDATE", url, true);
   xhr.setRequestHeader("Content-type", "application/json");
   
-  console.log("IN xhr.open(UPDATE, url, true) AND xhr is: " + xhr);
-  //Should see: "done":1  i.e., True
+  console.log("IN xhr.open(UPDATE, url, true) AND xhr is: ", xhr);
+  //Should see: "done":1 (True)
   
+  console.log("xhr.responseText: ", xhr.responseText);
   // Set up an onload Handler - called when data arrives (vs waiting for data)
   // responseText - property of request object - holds data from HTTP GET retrieval
   xhr.onload = function () {
     if (xhr.readyState === xhr.DONE && xhr.status === 200) {
-        display_updated_msg(xhr.responseText);
-        console.log("xhr response & responseText: ", xhr.response, xhr.responseText);
-        
+      display_updated_msg(xhr.responseText);
+         
       // send() - tell request to get the data which sends request to web server.
       // Pass null-when not sending data to remote service, i.e., request.send(null);
-      xhr.send(done);
+      xhr.send();
       console.log("AFTER: xhr.send()");
     }
   }; // End of: xhr.onload = function () {
 
 } // End of: function updateDb()
+
 
 function getSearchAndTrim() {
   var searchTermToTrim = document.getElementById("searchTerm").value;
