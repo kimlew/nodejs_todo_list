@@ -220,12 +220,12 @@ function updateIsDone(todo_id, done) {
   // to send with xhr request "body" not "header" - to be processed by web_server.js
   // stringify() - takes object and turns into string in JSON
   
-  var doneToUpdateStr = "todo_id: " + todo_id + ", " + "done: " + done;
-  console.log("doneToUpdateStr is: ");
-  console.log(doneToUpdateStr);
-  doneToUpdateStr = JSON.stringify(doneToUpdateStr);
+  var doneToUpdateObj = {todo_id: todo_id, done: done};
+  console.log("doneToUpdateObj is: ");
+  console.log(doneToUpdateObj);
+  doneToUpdateObj = JSON.stringify(doneToUpdateObj);
   
-  console.log("doneToUpdateStr is: " + doneToUpdateStr);
+  console.log("doneToUpdateObj is: " + doneToUpdateObj);
 
 /* Create an XMLHttpRequest object, load it with a URL and HTTP request type,
    along with a handler. Then send request and wait for data to arrive.
@@ -262,8 +262,8 @@ function updateIsDone(todo_id, done) {
 
   // send() - tell request to go out and get the data which sends request to web server.
   // Pass null if not sending any data to remote service, i.e., request.send(null);
-  xhr.send(doneToUpdateStr);
-  console.log("AFTER: xhr.send(doneToUpdateStr)");
+  xhr.send(doneToUpdateObj);
+  console.log("AFTER: xhr.send(doneToUpdateObj)");
 }
 
 function getAllTodoItems() {
