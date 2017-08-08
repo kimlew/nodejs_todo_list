@@ -127,15 +127,16 @@ function display_updated_msg(respText) {
   var doneStatus = "";
   
   if (respText.done == 0) {
-    doneStatus = " - To Do";
+    doneStatus = "To Do";
   }
   else { // respText.done == 1
-    doneStatus = " - Done";
+    doneStatus = "Done";
   }
+  console.log("doneStatus is: ", doneStatus);
   
-  var updateTodoObj = JSON.parse(respText);
+  //var updateTodoObj = JSON.parse(respText);
   var span = document.getElementById("updated_item_msg");
-  span.innerHTML = " The done status has changed to " + doneStatus;
+  span.innerHTML = " The Done status has changed to: " + doneStatus;
 }
 function display_search_result_msg(aMsg) {
   var span = document.getElementById("search_result_msg");
