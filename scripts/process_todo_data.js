@@ -137,7 +137,8 @@ function display_updated_msg(respText) {
   
   var span = document.getElementById("updated_item_msg");
   span.innerHTML = " The Done status has changed to: " + doneStatus;
-}
+} // End of: display_updated_msg()
+
 function display_search_result_msg(aMsg) {
   var span = document.getElementById("search_result_msg");
   span.innerHTML = aMsg;
