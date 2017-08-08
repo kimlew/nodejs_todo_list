@@ -120,14 +120,22 @@ function display_submitted_msg(respText) { //whoFor, task, dateDue) {
       submitTodoObj.dateDue + " has been submitted.";
 }
 
-function display_updated_msg(respText) { //whoFor, task, done) {
-  console.log("respText HAS: ", respText);
-  var updateTodoObj = JSON.parse(respText);
+function display_updated_msg(respText) {
+  console.log("respText HAS: ", respText); 
+  // respText HAS:  {"todo_id":24,"done":0}
   
+  var doneStatus = "";
+  
+  if (respText.done == 0) {
+    doneStatus = " - To Do";
+  }
+  else { // respText.done == 1
+    doneStatus = " - Done";
+  }
+  
+  var updateTodoObj = JSON.parse(respText);
   var span = document.getElementById("updated_item_msg");
-  span.innerHTML = " The To Do data for " + 
-      updateTodoObj.whoFor + " to " + 
-      updateTodoObj.task + " has been updated.";
+  span.innerHTML = " The done status has changed to " + doneStatus;
 }
 function display_search_result_msg(aMsg) {
   var span = document.getElementById("search_result_msg");
