@@ -125,6 +125,7 @@ function display_updated_msg(respText) {
   // respText HAS:  {"todo_id":24,"done":0}
   
   var doneStatus = "";
+  var updateTodoObj = JSON.parse(respText);
   
   if (respText.done == 0) {
     doneStatus = "To Do";
@@ -134,7 +135,6 @@ function display_updated_msg(respText) {
   }
   console.log("doneStatus is: ", doneStatus);
   
-  //var updateTodoObj = JSON.parse(respText);
   var span = document.getElementById("updated_item_msg");
   span.innerHTML = " The Done status has changed to: " + doneStatus;
 }
