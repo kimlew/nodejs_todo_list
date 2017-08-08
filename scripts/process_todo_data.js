@@ -121,12 +121,13 @@ function display_submitted_msg(respText) { //whoFor, task, dateDue) {
 }
 
 function display_updated_msg(respText) { //whoFor, task, done) {
-  var submitTodoObj = JSON.parse(respText);
+  console.log("respText HAS: ", respText);
+  var updateTodoObj = JSON.parse(respText);
   
   var span = document.getElementById("updated_item_msg");
   span.innerHTML = " The To Do data for " + 
-      submitTodoObj.whoFor + " to " + 
-      submitTodoObj.task + " has been updated.";
+      updateTodoObj.whoFor + " to " + 
+      updateTodoObj.task + " has been updated.";
 }
 function display_search_result_msg(aMsg) {
   var span = document.getElementById("search_result_msg");
@@ -342,7 +343,7 @@ function deleteList() {
   // responseText - property of request object - holds data from HTTP GET retrieval
   xhr.onload = function () {
     if (xhr.readyState === xhr.DONE && xhr.status === 200) {
-        display_updated_msg(xhr.responseText);
+        //display_deleted_msg(xhr.responseText);
         console.log("xhr response & responseText: ", xhr.response, xhr.responseText);
     }
   }; // End of: xhr.onload = function () {
