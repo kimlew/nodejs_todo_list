@@ -126,8 +126,9 @@ function display_updated_msg(respText) {
   
   var doneStatus = "";
   var updateTodoObj = JSON.parse(respText);
+  console.log("updateTodoObj CONTAINS: ", updateTodoObj);
   
-  if (respText.done == 0) {
+  if (updateTodoObj.done == 0) {
     doneStatus = "To Do";
   }
   else { // respText.done == 1
