@@ -219,6 +219,15 @@ function updateList(respTextFromGet) {
       todo_id = aTodoItemFromObj.todo_id;
       done = aTodoItemFromObj.done;
       updateIsDone(todo_id, done);
+      
+      if (done == 0) {
+        spanIsDone.setAttribute("class", "todo"); // Set for styling of blank checkbox.
+        spanIsDone.innerHTML = "&nbsp;&nbsp;&#x25a2;&nbsp; To Do: ";
+      }
+      else {
+        spanIsDone.setAttribute("class", "done"); // Set for styling of checkmark.
+        spanIsDone.innerHTML = "&nbsp;&#9745;&nbsp;&#10004;&nbsp; Done: "; //&#9745;
+      }
     };
     
     //updateDb(todo_id, done);
