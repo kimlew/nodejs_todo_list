@@ -126,7 +126,7 @@ function display_updated_msg(respText) {
   
   var doneStatus = "";
   var updateTodoObj = JSON.parse(respText);
-  console.log("updateTodoObj CONTAINS: ", updateTodoObj);
+  console.log("CONTAINED IN updateTodoObj: ", updateTodoObj);
   
   if (updateTodoObj.done == 0) {
     doneStatus = "To Do";
@@ -214,7 +214,7 @@ function updateList(respTextFromGet) {
     // done column value from db passed in as argument(aTodoItemFromObj.done)
     // then execute updateDb()
     
-    // Need: anonymous function to pass in changed done value upon spanIsDone.onclick
+    // Need: Anonymous function to pass in changed done value upon spanIsDone.onclick
     spanIsDone.onclick = function() {
       todo_id = aTodoItemFromObj.todo_id;
       done = aTodoItemFromObj.done;
@@ -241,7 +241,8 @@ function updateIsDone(todo_id, done) {
   // to send with xhr request "body" not "header" - to be processed by web_server.js
   // stringify() - takes object and turns into string in JSON
   
-  var doneToUpdateObj = {todo_id: todo_id, done: done};
+  var doneToUpdateObj = { todo_id: todo_id, done: done ? 1 : 0 };
+  
   console.log("doneToUpdateObj is: ");
   console.log(doneToUpdateObj);
   doneToUpdateObj = JSON.stringify(doneToUpdateObj);
@@ -271,11 +272,12 @@ function updateIsDone(todo_id, done) {
   // responseText - property of request object - holds data from HTTP GET retrieval
   xhr.onload = function () {
     if (xhr.readyState === xhr.DONE && xhr.status === 200) {
-        display_updated_msg(xhr.responseText); //whoFor, task, dateDue, done);
-        
-        window.location.reload(true); // Reloads entire page - ideal for AJAX
+        // BUSTER COMMENTED THIS OUT; RESTORE IT
+        //window.location.reload(true); // Reloads entire page - ideal for AJAX
         // set to 'true' reloads a fresh copy from the server
         // otherwise, serves page from cache.
+        
+        display_updated_msg(xhr.responseText); // todo.id, done
         
         //console.log("xhr response & responseText: ", xhr.response, xhr.responseText);
     }
