@@ -241,6 +241,9 @@ function updateIsDone(todo_id, done) {
   // to send with xhr request "body" not "header" - to be processed by web_server.js
   // stringify() - takes object and turns into string in JSON
   
+  // condition ? exprTrue : exprFalse
+  // If condition true, ternary operator evaluates exprTrue. 
+  // Otherwise evaluates to exprFalse.
   var doneToUpdateObj = { todo_id: todo_id, done: done ? 0 : 1 };
   
   console.log("doneToUpdateObj is: ");
