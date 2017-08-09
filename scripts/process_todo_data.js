@@ -201,7 +201,7 @@ function updateList(respTextFromGet) {
     }
     else {
       spanIsDone.setAttribute("class", "done"); // Set for styling of checkmark.
-      spanIsDone.innerHTML = "&nbsp;&#9745;&nbsp;&#10004;&nbsp; Done: "; //&#9745;
+      spanIsDone.innerHTML = "&nbsp;&nbsp;&#10004;&nbsp; Done: "; //&#9745;
     }   
         
     displaySingleToDo(aTodoItemFromObj, li);
@@ -226,7 +226,7 @@ function updateList(respTextFromGet) {
       }
       else {
         spanIsDone.setAttribute("class", "done"); // Set for styling of checkmark.
-        spanIsDone.innerHTML = "&nbsp;&#9745;&nbsp;&#10004;&nbsp; Done: "; //&#9745;
+        spanIsDone.innerHTML = "&nbsp;&nbsp;&#10004;&nbsp; Done: "; //&#9745;
       }
     };
     
