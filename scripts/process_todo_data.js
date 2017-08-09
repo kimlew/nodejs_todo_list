@@ -137,7 +137,7 @@ function display_updated_msg(respText) {
   console.log("doneStatus is: ", doneStatus);
   
   var span = document.getElementById("updated_item_msg");
-  span.innerHTML = " The Done status has changed to: " + doneStatus;
+  alert(" The Done status has changed to: " + doneStatus);
 } // End of: display_updated_msg()
 
 function display_search_result_msg(aMsg) {
@@ -246,8 +246,7 @@ function updateIsDone(todo_id, done) {
   // Otherwise evaluates to exprFalse.
   var doneToUpdateObj = { todo_id: todo_id, done: done ? 0 : 1 };
   
-  console.log("doneToUpdateObj is: ");
-  console.log(doneToUpdateObj);
+  console.log("doneToUpdateObj is: ", doneToUpdateObj);
   doneToUpdateObj = JSON.stringify(doneToUpdateObj);
   
   console.log("doneToUpdateObj is: " + doneToUpdateObj);
@@ -275,8 +274,8 @@ function updateIsDone(todo_id, done) {
   // responseText - property of request object - holds data from HTTP GET retrieval
   xhr.onload = function () {
     if (xhr.readyState === xhr.DONE && xhr.status === 200) {
-        // BUSTER COMMENTED THIS OUT; RESTORE IT
-        //window.location.reload(true); // Reloads entire page - ideal for AJAX
+        // TEMPORARILY COMMENTED OUT - RESTORE LATER
+        window.location.reload(true); // Reloads entire page - ideal for AJAX
         // set to 'true' reloads a fresh copy from the server
         // otherwise, serves page from cache.
         
