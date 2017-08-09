@@ -241,7 +241,7 @@ function updateIsDone(todo_id, done) {
   // to send with xhr request "body" not "header" - to be processed by web_server.js
   // stringify() - takes object and turns into string in JSON
   
-  var doneToUpdateObj = { todo_id: todo_id, done: done ? 1 : 0 };
+  var doneToUpdateObj = { todo_id: todo_id, done: done ? 0 : 1 };
   
   console.log("doneToUpdateObj is: ");
   console.log(doneToUpdateObj);
