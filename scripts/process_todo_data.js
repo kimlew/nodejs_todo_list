@@ -268,19 +268,17 @@ function updateIsDone(todo_id, done) {
   xhr.open("PUT", url, true); // Note: For UPDATE, use PUT.
   xhr.setRequestHeader("Content-type", "application/json");
   
-  console.log("xhr is: " + xhr);
+  // console.log("xhr is: " + xhr);
   
   // Set up an onload Handler - called when data arrives (vs waiting for data)
   // responseText - property of request object - holds data from HTTP GET retrieval
   xhr.onload = function () {
     if (xhr.readyState === xhr.DONE && xhr.status === 200) {
-        // TEMPORARILY COMMENTED OUT - RESTORE LATER
         window.location.reload(true); // Reloads entire page - ideal for AJAX
         // set to 'true' reloads a fresh copy from the server
         // otherwise, serves page from cache.
         
-        display_updated_msg(xhr.responseText); // todo.id, done
-        
+        display_updated_msg(xhr.responseText); // User message of Done status
         //console.log("xhr response & responseText: ", xhr.response, xhr.responseText);
     }
   }; // End of: xhr.onload = function () {
