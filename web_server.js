@@ -248,8 +248,7 @@ function connAndUpdateInDb(connectionStr, req, res) {
   console.log("IN UPDATE WITH BODY: ", req.method);
     
   var body = "";
-  console.log("BODY IN UPDATE IS empty string: ");
-  console.log(body);
+  //console.log("BODY IN UPDATE IS empty string: ", body);
   
   // Manipulate body and prepare it for insertion into db
   // Passes data FOR body with chunks
@@ -262,16 +261,14 @@ function connAndUpdateInDb(connectionStr, req, res) {
   // Convert body JSON string into object with properties t0 prep for db UPDATE 
   req.on("end", function() {
     var dataObj = JSON.parse(body);
-    console.log("DATA OBJECT is: ");
-    console.log(dataObj);
+    console.log("DATA OBJECT is: ", dataObj);
   
     pg.connect(connectionStr, function(err, client) {
       var updateQueryStr = 
       "UPDATE todo_list_tb SET done=" + dataObj.done + " " + 
       "WHERE todo_id=" + dataObj.todo_id + ";"
       
-     console.log("updateQueryStr IS -- ");
-     console.log(updateQueryStr); // UPDATE todo_list_tb SET done=0 WHERE todo_id=24;
+     console.log("updateQueryStr IS -- ", updateQueryStr); // UPDATE todo_list_tb SET done=0 WHERE todo_id=24;
        
       if (err) throw err;
       console.log('Connected to Postgres.');
@@ -297,7 +294,7 @@ function connAndDeleteFromDb(connectionStr, req, res) {
     }); // End of pg.connect() {
 
     req.on("end", function() {
-      console.log("INSIDE req.on() of DELETE"); 
+      //console.log("INSIDE req.on() of DELETE"); 
       
       // Add to header - to confirm that all code before this point worked
       res.writeHead(200, {"Content-Type": "text/plain"});
