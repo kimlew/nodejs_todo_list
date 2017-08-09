@@ -55,8 +55,13 @@ li {
   color: #0E6B01; /* Dark green */
 }
 
-span.spanIsDone {
-  color: #800080; /* purple */
+spanIsDone#todo {
+  background-color: #FFFACD; /* light yellow for background */
+  font-size: 9pt;
+  text-indent: 5px;
+}
+spanIsDone#done {
+  background-color: #FFFACD; /* light yellow for background */
   font-size: 9pt;
   text-indent: 5px;
 }
