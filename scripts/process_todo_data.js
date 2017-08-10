@@ -183,7 +183,9 @@ function updateList(respTextFromGet) {
     
     var li = document.createElement("li");  
     li.setAttribute("class", "todoItem"); // Set value of todoItem to li element.
-    li.setAttribute("id", "todoItem.id"); // Set todoItem.id to li's id. Needed
+    
+    //li.setAttribute("id", "todoItem.id"); // Set todoItem.id to li's id. Needed
+    li.setAttribute("id", aTodoItemFromObj.todo_id);
     // since parent element for 3 spans: spanDone, spanNotDone, spanDelete
     
     // Create spanIsDone to initially style the empty checkbox & checkmark in 
@@ -215,20 +217,27 @@ function updateList(respTextFromGet) {
     // then execute updateDb()
     
     // Need: Anonymous function to pass in changed done value upon spanIsDone.onclick
+    // Need: These local variables in a "private" way - for use with inside
+    // anonymous function - so can't be accessed anywhere else
     spanIsDone.onclick = function() {
+       // Re-assign spanIsDone to local var & preserve spanIsDone, which changes
+       // Create a var that doesn't change, spanToUpdate
+      
+      //var spanToUpdate = spanIsDone;
       var todo_id = aTodoItemFromObj.todo_id;
       var done = aTodoItemFromObj.done;
-      updateIsDone(todo_id, done);
       
+      updateIsDone(todo_id, done);
+    
       if (done == 0) {
-        spanIsDone.setAttribute("class", "todo"); // Set for styling of blank checkbox.
-        spanIsDone.innerHTML = "&nbsp;&nbsp;&#x25a2;&nbsp; To Do: ";
+        spanToUpdate.setAttribute("class", "todo"); // Set for styling of blank checkbox.
+        spanToUpdate.innerHTML = "&nbsp;&nbsp;&#x25a2;&nbsp; To Do: ";
       }
       else {
-        spanIsDone.setAttribute("class", "done"); // Set for styling of checkmark.
-        spanIsDone.innerHTML = "&nbsp;&nbsp;&#10004;&nbsp; Done: "; //&#9745;
+        spanToUpdate.setAttribute("class", "done"); // Set for styling of checkmark.
+        spanToUpdate.innerHTML = "&nbsp;&nbsp;&#10004;&nbsp; Done: "; //&#9745;
       }
-    };
+    }; // End of: spanIsDone.onclick = function() {
     
     //updateDb(todo_id, done);
     
