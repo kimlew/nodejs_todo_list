@@ -211,6 +211,8 @@ function updateList(respTextFromGet) {
     todoListUl.appendChild(li);
     li.prepend(spanIsDone);
     
+    console.log("li is: ", li.value);
+    
     // Want: Clickable spanIsDone checkbox - starts blank
     // If spanIsDone is clicked && current spanIsDone.done value !=
     // done column value from db passed in as argument(aTodoItemFromObj.done)
@@ -219,13 +221,15 @@ function updateList(respTextFromGet) {
     // Need: Anonymous function to pass in changed done value upon spanIsDone.onclick
     // Need: These local variables in a "private" way - for use with inside
     // anonymous function - so can't be accessed anywhere else
-    spanIsDone.onclick = function() {
-       
+    spanIsDone.onclick = function() {  
       // Create local var, spanToUpdate - which does NOT change - & assign 
       // spanIsDone value - so spanIsDone is dynamic var - which changes
       var spanToUpdate = spanIsDone;
       var todo_id = aTodoItemFromObj.todo_id;
       var done = aTodoItemFromObj.done;
+      
+      console.log("spanToUpdate: ", spanToUpdate);
+      console.log("todoItemFromArrObj: ", todoItemFromArrObj);
       
       updateIsDone(todo_id, done);
     
@@ -240,12 +244,7 @@ function updateList(respTextFromGet) {
     }; // End of: spanIsDone.onclick = function() {
     
     //updateDb(todo_id, done);
-    
-    //console.log("todoItemFromArrObj: ", todoItemFromArrObj);
-    //console.log("li is: ", li.value);
-    
   } // End of: for loop
-  //console.log("IN updateList() ");
   
 } // End of: updateList()
 
