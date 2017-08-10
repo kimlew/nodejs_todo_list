@@ -177,12 +177,12 @@ function updateList(respTextFromGet) {
     var aTodoItemFromObj = objectWithAllTodos[i]; // Is specific todo_id from db.
     
     console.log("ITEM AT " + i + " : ", objectWithAllTodos[i]);
-    console.log("aTodoItemFromObj is: "), aTodoItemFromObj);
+    console.log("aTodoItemFromObj is: ", aTodoItemFromObj);
     
     var li = document.createElement("li");  
     
     // Set value of todoItem to li element
-    li.setAttribute("class", "todoItem");
+    li.setAttribute("class", "todoLi");
     
     // Set todoItem.id to li's id. 
     // Needed to correctly identify individual list item
@@ -210,9 +210,9 @@ function updateList(respTextFromGet) {
     displaySingleToDo(aTodoItemFromObj, li);
 
     todoListUl.appendChild(li);
-    li.prepend(spanIsDone);
+    li.prepend(spanIsDone); // Creates spanIsDone span & links it to li
     
-    console.log("li after PREPEND HAS: ", li.value);
+    console.log("li after PREPEND HAS: ", li);
     
     // Want: Clickable spanIsDone checkbox - starts blank
     // If spanIsDone is clicked && current spanIsDone.done value !=
@@ -225,6 +225,8 @@ function updateList(respTextFromGet) {
     spanIsDone.onclick = function() {  
       // Create local var, spanToUpdate - which does NOT change - & assign 
       // spanIsDone value - so spanIsDone is dynamic var - which changes
+      // Upon a click, get li by id - getElementAtId(id)
+      // Based on id, get .done status - todoItem.done
       var spanToUpdate = spanIsDone;
       var todo_id = aTodoItemFromObj.todo_id;
       var done = aTodoItemFromObj.done;
