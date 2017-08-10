@@ -174,19 +174,20 @@ function updateList(respTextFromGet) {
   for (var i = 0; i < objectWithAllTodos.length; i++) {
     var todo_id;
     var done;
-    var aTodoItemFromObj = objectWithAllTodos[i];
+    var aTodoItemFromObj = objectWithAllTodos[i]; // Is specific todo_id from db.
     
-    console.log("ITEM AT " + i + " : ");
-    console.log(objectWithAllTodos[i]);
-    //console.log("aTodoItemFromObj is: ");
-    //console.log(aTodoItemFromObj);
+    console.log("ITEM AT " + i + " : ", objectWithAllTodos[i]);
+    console.log("aTodoItemFromObj is: "), aTodoItemFromObj);
     
     var li = document.createElement("li");  
-    li.setAttribute("class", "todoItem"); // Set value of todoItem to li element.
     
-    //li.setAttribute("id", "todoItem.id"); // Set todoItem.id to li's id. Needed
+    // Set value of todoItem to li element
+    li.setAttribute("class", "todoItem");
+    
+    // Set todoItem.id to li's id. 
+    // Needed to correctly identify individual list item
+    // li - is parent element for spanIsDone
     li.setAttribute("id", aTodoItemFromObj.todo_id);
-    // since parent element for 3 spans: spanDone, spanNotDone, spanDelete
     
     // Create spanIsDone to initially style the empty checkbox & checkmark in 
     // checkbox. Get current aTodoItemFromObj.done & display blank checkbox OR
