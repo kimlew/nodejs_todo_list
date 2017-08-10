@@ -194,9 +194,9 @@ function updateList(respTextFromGet) {
     // checked checkbox depending on what it is.
     var spanIsDone = document.createElement("span");
     
-    console.log("todo_id AND done are: ");
-    console.log(aTodoItemFromObj.todo_id);
-    console.log(aTodoItemFromObj.done);
+    console.log("li HAS: ", li);
+    console.log("aTodoItemFromObj.todo_id HAS: ", aTodoItemFromObj.todo_id);
+    console.log("aTodoItemFromObj.done HAS:", aTodoItemFromObj.done);
     
     if (aTodoItemFromObj.done == 0) {
       spanIsDone.setAttribute("class", "todo"); // Set for styling of blank checkbox.
@@ -212,7 +212,7 @@ function updateList(respTextFromGet) {
     todoListUl.appendChild(li);
     li.prepend(spanIsDone);
     
-    console.log("li is: ", li.value);
+    console.log("li after PREPEND HAS: ", li.value);
     
     // Want: Clickable spanIsDone checkbox - starts blank
     // If spanIsDone is clicked && current spanIsDone.done value !=
