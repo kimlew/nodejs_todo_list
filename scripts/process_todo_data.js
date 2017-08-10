@@ -196,11 +196,11 @@ function updateList(respTextFromGet) {
     console.log(aTodoItemFromObj.done);
     
     if (aTodoItemFromObj.done == 0) {
-      spanIsDone.setAttribute("id", "todo"); // Set for styling of blank checkbox.
+      spanIsDone.setAttribute("class", "todo"); // Set for styling of blank checkbox.
       spanIsDone.innerHTML = "&nbsp;&nbsp;&#x25a2;&nbsp; To Do: ";
     }
     else {
-      spanIsDone.setAttribute("id", "done"); // Set for styling of checkmark.
+      spanIsDone.setAttribute("class", "done"); // Set for styling of checkmark.
       spanIsDone.innerHTML = "&nbsp;&nbsp;&#10004;&nbsp; Done: "; //&#9745;
     }   
         
@@ -216,8 +216,8 @@ function updateList(respTextFromGet) {
     
     // Need: Anonymous function to pass in changed done value upon spanIsDone.onclick
     spanIsDone.onclick = function() {
-      todo_id = aTodoItemFromObj.todo_id;
-      done = aTodoItemFromObj.done;
+      var todo_id = aTodoItemFromObj.todo_id;
+      var done = aTodoItemFromObj.done;
       updateIsDone(todo_id, done);
       
       if (done == 0) {
