@@ -220,10 +220,10 @@ function updateList(respTextFromGet) {
     // Need: These local variables in a "private" way - for use with inside
     // anonymous function - so can't be accessed anywhere else
     spanIsDone.onclick = function() {
-       // Re-assign spanIsDone to local var & preserve spanIsDone, which changes
-       // Create a var that doesn't change, spanToUpdate
-      
-      //var spanToUpdate = spanIsDone;
+       
+      // Create local var, spanToUpdate - which does NOT change - & assign 
+      // spanIsDone value - so spanIsDone is dynamic var - which changes
+      var spanToUpdate = spanIsDone;
       var todo_id = aTodoItemFromObj.todo_id;
       var done = aTodoItemFromObj.done;
       
