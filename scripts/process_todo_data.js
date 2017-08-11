@@ -225,7 +225,6 @@ function updateList(respTextFromGet) {
     spanIsDone.onclick = function() {  
       // Create local var, spanToUpdate - which does NOT change - & assign 
       // spanIsDone value - so spanIsDone is dynamic var - which changes
-      
 
       var spanToUpdate = spanIsDone;
       var todo_id = aTodoItemFromObj.todo_id;
@@ -238,10 +237,10 @@ function updateList(respTextFromGet) {
     
       // Upon a click, get li by id - var liId = document.getElementById(id);
       // Based on id, get .done status - var liDoneStatus = liId.done;
-      var liId = document.getElementById("todo_id");
-       console.log("todoLi's id PROPERTY HAS: ", liId);
+      var liElem = document.getElementById("todo_id");
+      console.log("liElem GOTTEN with ID HAS: ", liElem); /*** is null ***/
       
-      var liDoneStatus = liId.done;
+      var liDoneStatus = liElem.done;
       console.log("liDoneStatus HAS", liDoneStatus);
       
       if (done == 0) {
