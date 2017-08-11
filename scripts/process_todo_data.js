@@ -238,7 +238,7 @@ function updateList(respTextFromGet) {
     
       // Upon a click, get li by id - var liId = document.getElementById(id);
       // Based on id, get .done status - var liDoneStatus = liId.done;
-      var liId = document.getElementById("todoLi").todo_id;
+      var liId = document.getElementById("todo_id");
        console.log("todoLi's id PROPERTY HAS: ", liId);
       
       var liDoneStatus = liId.done;
