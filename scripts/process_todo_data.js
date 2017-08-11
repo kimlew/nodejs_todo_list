@@ -213,6 +213,7 @@ function updateList(respTextFromGet) {
     li.prepend(spanIsDone); // Creates spanIsDone span & links it to li
     
     console.log("li after PREPEND HAS: ", li);
+    console.log("CHILD: ", li.firstElementChild);
     
     // Want: Clickable spanIsDone checkbox - starts blank
     // If spanIsDone is clicked && current spanIsDone.done value !=
