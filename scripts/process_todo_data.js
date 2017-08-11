@@ -225,19 +225,27 @@ function updateList(respTextFromGet) {
     spanIsDone.onclick = function() {  
       // Create local var, spanToUpdate - which does NOT change - & assign 
       // spanIsDone value - so spanIsDone is dynamic var - which changes
-      // Upon a click, get li by id - getElementAtId(id)
-      // Based on id, get .done status - todoItem.done
+      
+
       var spanToUpdate = spanIsDone;
       var todo_id = aTodoItemFromObj.todo_id;
       var done = aTodoItemFromObj.done;
       
       console.log("spanToUpdate: ", spanToUpdate);
-      console.log("todoItemFromArrObj: ", todoItemFromArrObj);
+      console.log("aTodoItemFromObj: ", aTodoItemFromObj);
       
       updateIsDone(todo_id, done);
     
+      // Upon a click, get li by id - var liId = document.getElementById(id);
+      // Based on id, get .done status - var liDoneStatus = liId.done;
+      var liId = document.getElementById("todoLi").todo_id;
+       console.log("todoLi's id PROPERTY HAS: ", liId);
+      
+      var liDoneStatus = liId.done;
+      console.log("liDoneStatus HAS", liDoneStatus);
+      
       if (done == 0) {
-        spanToUpdate.setAttribute("class", "todo"); // Set for styling of blank checkbox.
+        lispanToUpdate.setAttribute("class", "todo"); // Set for styling of blank checkbox.
         spanToUpdate.innerHTML = "&nbsp;&nbsp;&#x25a2;&nbsp; To Do: ";
       }
       else {
