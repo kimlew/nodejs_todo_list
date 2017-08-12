@@ -215,6 +215,9 @@ function updateList(respTextFromGet) {
     console.log("li after PREPEND HAS: ", li);
     console.log("CHILD: ", li.firstElementChild);
     
+    // AT this pt: spanIsDone's value - is currently whatever it is partially thru loop
+    
+    
     // Want: Clickable spanIsDone checkbox - starts blank
     // If spanIsDone is clicked && current spanIsDone.done value !=
     // done column value from db passed in as argument(aTodoItemFromObj.done)
@@ -223,28 +226,32 @@ function updateList(respTextFromGet) {
     // Need: Anonymous function to pass in changed done value upon spanIsDone.onclick
     // Need: These local variables in a "private" way - for use with inside
     // anonymous function - so can't be accessed anywhere else
-    spanIsDone.onclick = function() {  
+    spanIsDone.onclick = function(clickEventData) {  
       // Create local var, spanToUpdate - which does NOT change - & assign 
       // spanIsDone value - so spanIsDone is dynamic var - which changes
 
-      var spanToUpdate = spanIsDone;
-      var todo_id = aTodoItemFromObj.todo_id;
-      var done = aTodoItemFromObj.done;
+alert("spanIsDone inside CLICK part: " + JSON.stringify(spanIsDone));
+      //var spanToUpdate = spanIsDone;
+      var spanIsDone = clickEventData.target;
+      var spanIsDoneId = spanIsDone.parentElement.id; // id here is a DOM id
       
-      console.log("spanToUpdate: ", spanToUpdate);
-      console.log("aTodoItemFromObj: ", aTodoItemFromObj);
+      //var todo_id = aTodoItemFromObj.todo_id;
+      //var done = aTodoItemFromObj.done;
+      // do NOT reference aTodoItemFromObj - since it data from db
       
       updateIsDone(todo_id, done);
     
       // Upon a click, get li by id - var liId = document.getElementById(id);
       // Based on id, get .done status - var liDoneStatus = liId.done;
-      var liElem = document.getElementById("todo_id");
-      console.log("liElem GOTTEN with ID HAS: ", liElem); /*** is null ***/
       
-      var liDoneStatus = liElem.done;
-      console.log("liDoneStatus HAS", liDoneStatus);
+      //var liElem = document.getElementById("todo_id");
+      //console.log("liElem GOTTEN with ID HAS: ", liElem); /*** is null ***/
       
-      if (done == 0) {
+      var spanIsDoneNewDoneStatus = spanIsDone.done;
+      console.log("spanIsDoneNewDoneStatus HAS", spanIsDoneNewDoneStatus);
+            
+      // CHECK what spanIsDone NOW from the most recent CLICK has
+      if (spanIsDoneNewDoneStatus == 0) {
         lispanToUpdate.setAttribute("class", "todo"); // Set for styling of blank checkbox.
         spanToUpdate.innerHTML = "&nbsp;&nbsp;&#x25a2;&nbsp; To Do: ";
       }
