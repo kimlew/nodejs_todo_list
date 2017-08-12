@@ -221,21 +221,19 @@ function updateList(respTextFromGet) {
     // done column value from db passed in as argument(aTodoItemFromObj.done)
     // then execute updateDb()
     
-    // Need: Anonymous function to pass in changed done value upon spanIsDone.onclick
-    // Need: These local variables in a "private" way - for use with inside
-    // anonymous function - so can't be accessed anywhere else
-    // Do NOT reference aTodoItemFromObj - since it has done status from db
-    // Want: clicked doen status
+    // spanIsDone.onclick - with anonymous function to pass in click event data 
+    // with changed done value 
     spanIsDone.onclick = function(clickEventData) {  
-      // Create local var, clickedSpanIsDone from click event & target
-      // Then get id associated to parent element, li. Use that id - to get
-      // new done status. Change spanIdDone based on that status.
+      // Create 3 local variables from click event & target - for use ONLY inside 
+      // this anonymous function - for the clicked span - to get clicked done status
+      // Do NOT reference aTodoItemFromObj inside this anonymous function 
+      // - since it has done status from db
+      // Then get id associated to parent element, li. Use that id - for new
+      // done status. Change spanIdDone based on that status.
 
       var clickedSpanIsDone = clickEventData.target;
       var clickedSpanIsDoneId = clickedSpanIsDone.parentElement.id; // id here is a DOM id
       var clickedSpanIsDoneStatus = clickedSpanIsDone.parentElement.done;
-      
-      prepAndSendToWebServerForDb(clickedSpanIsDoneId, clickedSpanIsDoneStatus);
 
       console.log("clickedSpanIsDone ID & done status:", clickedSpanIsDoneId, clickedSpanIsDoneStatus);
             
@@ -248,6 +246,8 @@ function updateList(respTextFromGet) {
         spanToUpdate.setAttribute("class", "done"); // Set for styling of checkmark.
         spanToUpdate.innerHTML = "&nbsp;&nbsp;&#10004;&nbsp; Done: "; //&#9745;
       }
+      
+       prepAndSendToWebServerForDb(clickedSpanIsDoneId, clickedSpanIsDoneStatus);
     }; // End of: spanIsDone.onclick = function() {
     
     //updateDb(todo_id, done);
