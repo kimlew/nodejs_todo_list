@@ -239,7 +239,7 @@ alert("spanIsDone inside CLICK part: " + JSON.stringify(spanIsDone));
       //var done = aTodoItemFromObj.done;
       // do NOT reference aTodoItemFromObj - since it data from db
       
-      updateIsDone(todo_id, done);
+      prepAndSendToWebServerForDb(todo_id, done);
     
       // Upon a click, get li by id - var liId = document.getElementById(id);
       // Based on id, get .done status - var liDoneStatus = liId.done;
@@ -266,11 +266,11 @@ alert("spanIsDone inside CLICK part: " + JSON.stringify(spanIsDone));
   
 } // End of: updateList()
 
-//function updateIsDone(clickEventDate, aTodoItem.done) {
+//function prepAndSendToWebServerForDb(clickEventDate, aTodoItem.done) {
 // todoItem.id
-function updateIsDone(todo_id, done) {
-//function updateIsDone(todoItem.id, todoItem.done) {
-  console.log("IN updateIsDone() function" );
+function prepAndSendToWebServerForDb(todo_id, done) {
+//function prepAndSendToWebServerForDb(todoItem.id, todoItem.done) {
+  console.log("IN prepAndSendToWebServerForDb()" );
   
   // NEED: Create JSON object with changed data sorta like: aTodoItem.done = true
   // to send with xhr request "body" not "header" - to be processed by web_server.js
