@@ -239,12 +239,12 @@ function updateList(respTextFromGet) {
             
       // CHECK what spanIsDone NOW from the most recent CLICK has
       if (clickedSpanIsDoneStatus == 0) {
-        lispanToUpdate.setAttribute("class", "todo"); // Set for styling of blank checkbox.
-        spanToUpdate.innerHTML = "&nbsp;&nbsp;&#x25a2;&nbsp; To Do: ";
+        clickedSpanIsDone.setAttribute("class", "todo"); // Set for styling of blank checkbox.
+        clickedSpanIsDone.innerHTML = "&nbsp;&nbsp;&#x25a2;&nbsp; To Do: ";
       }
       else {
-        spanToUpdate.setAttribute("class", "done"); // Set for styling of checkmark.
-        spanToUpdate.innerHTML = "&nbsp;&nbsp;&#10004;&nbsp; Done: "; //&#9745;
+        clickedSpanIsDone.setAttribute("class", "done"); // Set for styling of checkmark.
+        clickedSpanIsDone.innerHTML = "&nbsp;&nbsp;&#10004;&nbsp; Done: "; //&#9745;
       }
       
        prepAndSendToWebServerForDb(clickedSpanIsDoneId, clickedSpanIsDoneStatus);
