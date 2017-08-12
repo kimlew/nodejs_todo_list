@@ -280,8 +280,6 @@ function prepAndSendToWebServerForDb(todo_id, done) {
   // If condition true, ternary operator evaluates exprTrue. 
   // Otherwise evaluates to exprFalse.
   var doneToUpdateObj = { todo_id: todo_id, done: done ? 0 : 1 };
-  
-  console.log("doneToUpdateObj is: ", doneToUpdateObj);
   doneToUpdateObj = JSON.stringify(doneToUpdateObj);
   
   console.log("doneToUpdateObj is: " + doneToUpdateObj);
