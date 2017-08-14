@@ -67,13 +67,6 @@ li {
   font-size: 11pt;
   text-indent: 5px;
 }
-/*Might ONLY need to reference spanIsDone as class
- - might NOT need specific span ids for #spanIsDone & #notDone  */
-span#spanIsDone {
-  color: #FFA500; /* medium orange */
-  font-size: 9pt;
-  text-indent: 5px;
-}
 
 span#notDone {
   background-color: #FFFACD; /* light yellow for background */
