@@ -55,14 +55,16 @@ li {
   color: #0E6B01; /* Dark green */
 }
 
-spanIsDone#todo {
-  background-color: #FFFACD; /* light yellow for background */
-  font-size: 9pt;
+.todo {
+  color: #FFA500; /* medium orange */
+  /* background-color: #FFFACD; light yellow for background */
+  font-size: 11pt;
   text-indent: 5px;
 }
-spanIsDone#done {
-  background-color: #FFFACD; /* light yellow for background */
-  font-size: 9pt;
+.done {
+  color: #2F4F4F; /* dark slate grey */
+  /* background-color: #FFFACD; light yellow for background */
+  font-size: 11pt;
   text-indent: 5px;
 }
 /*Might ONLY need to reference spanIsDone as class
@@ -72,6 +74,7 @@ span#spanIsDone {
   font-size: 9pt;
   text-indent: 5px;
 }
+
 span#notDone {
   background-color: #FFFACD; /* light yellow for background */
 }
