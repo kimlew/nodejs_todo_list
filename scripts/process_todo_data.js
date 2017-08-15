@@ -237,23 +237,23 @@ function updateList(respTextFromGet) {
  // Want: span attribute of "class" to see if value is "todo" or "done" 
  // Goal: toggle back to To Do status
      
-      var clickedSpanIsDoneStatus = clickedSpanIsDone.getAttribute("class");
+      var clickedSpanAttribVal = clickedSpanIsDone.getAttribute("class");
       //B4: var clickedSpanIsDoneStatus = clickedSpanIsDone.parentElement.done;
 
-      console.log("CLICKED span ID & done status:", clickedSpanIsDoneId, clickedSpanIsDoneStatus);
+      console.log("CLICKED span ID & done status:", clickedSpanIsDoneId, clickedSpanAttribVal);
             
       // CHECK what spanIsDone NOW from the most recent CLICK has
-      // Then convert clickedSpanIsDoneStatus value of "todo", "done" TO 0, 1 
+      // Then convert clickedSpanAttribVal value of "todo", "done" TO 0, 1 
       // so in correct form for db.
       var convertedSpanAttribValue;
       
-      if (clickedSpanIsDoneStatus == "done") { //- change it to "todo"
+      if (clickedSpanAttribVal == "done") { // So change it to "todo"
       // B4: if (clickedSpanIsDoneStatus == 0) {
         clickedSpanIsDone.setAttribute("class", "todo"); // Set for styling of blank checkbox.
         clickedSpanIsDone.innerHTML = "&nbsp;&nbsp;&#x25a2;&nbsp; To Do: ";
         convertedSpanAttribValue = 0;
       }
-      else { // == "todo" - change it to "done"
+      else { // == "todo" So change it to "done"
         clickedSpanIsDone.setAttribute("class", "done"); // Set for styling of checkmark.
         clickedSpanIsDone.innerHTML = "&nbsp;&nbsp;&#10004;&nbsp; Done: "; //#9745;
         convertedSpanAttribValue = 1;
@@ -281,7 +281,7 @@ function prepAndSendToWebServerForDb(clickedSpanIsDoneId, convertedSpanAttribVal
   var doneToUpdateObj = { todo_id: clickedSpanIsDoneId, done: convertedSpanAttribValue ? 0 : 1 };
   doneToUpdateObj = JSON.stringify(doneToUpdateObj);
   
-  console.log("doneToUpdateObj is: " + doneToUpdateObj);
+  console.log("OBJ for DB is: " + doneToUpdateObj);
 
 /* Create an XMLHttpRequest object, load it with a URL and HTTP request type,
    along with a handler. Then send request and wait for data to arrive.
