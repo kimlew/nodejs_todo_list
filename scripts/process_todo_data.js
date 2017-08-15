@@ -267,10 +267,7 @@ function updateList(respTextFromGet) {
   
 } // End of: updateList()
 
-//function prepAndSendToWebServerForDb(clickEventDate, aTodoItem.done) {
-// todoItem.id
-function prepAndSendToWebServerForDb(todo_id, done) {
-//function prepAndSendToWebServerForDb(todoItem.id, todoItem.done) {
+function prepAndSendToWebServerForDb(clickedSpanIsDoneId, convertedSpanAttribValue) {
   console.log("IN prepAndSendToWebServerForDb()" );
   
   // NEED: Create JSON object with changed data sorta like: aTodoItem.done = true
