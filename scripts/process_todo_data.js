@@ -231,16 +231,16 @@ function updateList(respTextFromGet) {
       // Then get id associated to parent element, li. Use that id - for new
       // done status. Change spanIdDone based on that status.
 
-      var clickedSpanIsDone = clickEventData.target;
-      var clickedSpanParentId = clickedSpanIsDone.parentElement.id; // id here is a DOM id
+      var clickedSpan = clickEventData.target;
+      var clickedSpanParentId = clickedSpan.parentElement.id; // id here is a DOM id
       
  // Want: span attribute of "class" to see if value is "todo" or "done" 
  // Goal: toggle back to To Do status
      
-      var clickedSpanAttribVal = clickedSpanIsDone.getAttribute("class");
+      var clickedSpanAttribVal = clickedSpan.getAttribute("class");
       //B4: var clickedSpanIsDoneStatus = clickedSpanIsDone.parentElement.done;
 
-      console.log("CLICKED span ID & done status:", clickedSpanParentId, clickedSpanAttribVal);
+      console.log("CLICKED span ID & CLASS ATTR:", clickedSpanParentId, clickedSpanAttribVal);
             
       // CHECK what spanIsDone NOW from the most recent CLICK has
       // Then convert clickedSpanAttribVal value of "todo", "done" TO 0, 1 
@@ -249,15 +249,17 @@ function updateList(respTextFromGet) {
       
       if (clickedSpanAttribVal == "done") { // So change it to "todo"
       // B4: if (clickedSpanIsDoneStatus == 0) {
-        clickedSpanIsDone.setAttribute("class", "todo"); // Set for styling of blank checkbox.
-        clickedSpanIsDone.innerHTML = "&nbsp;&nbsp;&#x25a2;&nbsp; To Do: ";
+        clickedSpan.setAttribute("class", "todo"); // Set for styling of blank checkbox.
+        clickedSpan.innerHTML = "&nbsp;&nbsp;&#x25a2;&nbsp; To Do: ";
         convertedSpanAttribValue = 0;
       }
       else { // == "todo" So change it to "done"
-        clickedSpanIsDone.setAttribute("class", "done"); // Set for styling of checkmark.
-        clickedSpanIsDone.innerHTML = "&nbsp;&nbsp;&#10004;&nbsp; Done: "; //#9745;
+        clickedSpan.setAttribute("class", "done"); // Set for styling of checkmark.
+        clickedSpan.innerHTML = "&nbsp;&nbsp;&#10004;&nbsp; Done: "; //#9745;
         convertedSpanAttribValue = 1;
       }
+      
+      console.log("VALUE OF span ID & CLASS ATTR:", clickedSpanParentId, clickedSpanAttribVal);
       
       prepAndSendToWebServerForDb(clickedSpanParentId, convertedSpanAttribValue);
     }; // End of: spanIsDone.onclick = function() {
