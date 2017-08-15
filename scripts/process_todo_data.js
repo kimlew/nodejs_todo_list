@@ -290,16 +290,16 @@ function prepAndSendToWebServerForDb(clickedSpanParentId, convertedSpanAttribVal
    along with a handler. Then send request and wait for data to arrive.
    When it does, handler is called.
 */
-  // XMLHttpRequest object - built into all modern browsers-to request data from a server
+  // XMLHttpRequest obj - built into all modern browsers-to request data from a server
   // Use XMLHttpRequest - to send string in JSON string format via POST to web server
   // Use XMLHttpRequest constructor - to create new request object
   var xhr = new XMLHttpRequest();
-  var url = "url"; // URL for web server to get data from 
-  // url - a DOMString representing the URL to send the request to.
+  var url = "url"; // a DOMString representing the URL - to send data to & get 
+  // data from web server
   
-  // Tells request object URL we want it to retrieve & request type to use
-  // open - ONLY sets up the request - still have to send()
-  // request type stated - so the XMLHttpRequest can verify the connection
+  // State request type - so the XMLHttpRequest can verify the connection
+  // Tells request object URL what retrieve & request type to use
+  // open - ONLY sets up the request - still MUST use send()
   xhr.open("PUT", url, true); // Note: For UPDATE, use PUT.
   xhr.setRequestHeader("Content-type", "application/json");
   
