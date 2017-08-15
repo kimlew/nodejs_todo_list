@@ -243,17 +243,23 @@ function updateList(respTextFromGet) {
       console.log("CLICKED span ID & done status:", clickedSpanIsDoneId, clickedSpanIsDoneStatus);
             
       // CHECK what spanIsDone NOW from the most recent CLICK has
+      // Then convert clickedSpanIsDoneStatus value of "todo", "done" TO 0, 1 
+      // so in correct form for db.
+      var convertedSpanAttribValue;
+      
       if (clickedSpanIsDoneStatus == "done") { //- change it to "todo"
       // B4: if (clickedSpanIsDoneStatus == 0) {
         clickedSpanIsDone.setAttribute("class", "todo"); // Set for styling of blank checkbox.
         clickedSpanIsDone.innerHTML = "&nbsp;&nbsp;&#x25a2;&nbsp; To Do: ";
+        convertedSpanAttribValue = 0;
       }
       else { // == "todo" - change it to "done"
         clickedSpanIsDone.setAttribute("class", "done"); // Set for styling of checkmark.
-        clickedSpanIsDone.innerHTML = "&nbsp;&nbsp;&#10004;&nbsp; Done: "; //&#9745;
+        clickedSpanIsDone.innerHTML = "&nbsp;&nbsp;&#10004;&nbsp; Done: "; //#9745;
+        convertedSpanAttribValue = 1;
       }
       
-       prepAndSendToWebServerForDb(clickedSpanIsDoneId, clickedSpanIsDoneStatus);
+      prepAndSendToWebServerForDb(clickedSpanIsDoneId, convertedSpanAttribValue);
     }; // End of: spanIsDone.onclick = function() {
     
     //updateDb(todo_id, done);
