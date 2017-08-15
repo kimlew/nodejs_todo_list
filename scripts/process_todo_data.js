@@ -137,7 +137,7 @@ function display_updated_msg(respText) {
   console.log("doneStatus is: ", doneStatus);
   
   var span = document.getElementById("updated_item_msg");
-  alert(" The Done status has changed to: " + doneStatus);
+  alert(" The status has changed to: " + doneStatus);
 } // End of: display_updated_msg()
 
 function display_search_result_msg(aMsg) {
@@ -280,7 +280,7 @@ function prepAndSendToWebServerForDb(clickedSpanParentId, convertedSpanAttribVal
   // If condition true, ternary operator evaluates exprTrue. 
   // Otherwise evaluates to exprFalse.
   // Note: If done is undefined - interpreted as 0
-  var doneToUpdateObj = { todo_id: clickedSpanParentId, done: convertedSpanAttribValue ? 0 : 1 };
+  var doneToUpdateObj = { todo_id: clickedSpanParentId, done: convertedSpanAttribValue };
   doneToUpdateObj = JSON.stringify(doneToUpdateObj);
   
   console.log("OBJ for DB is: " + doneToUpdateObj);
