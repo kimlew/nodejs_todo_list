@@ -232,7 +232,7 @@ function updateList(respTextFromGet) {
       // done status. Change spanIdDone based on that status.
 
       var clickedSpanIsDone = clickEventData.target;
-      var clickedSpanIsDoneId = clickedSpanIsDone.parentElement.id; // id here is a DOM id
+      var clickedSpanParentId = clickedSpanIsDone.parentElement.id; // id here is a DOM id
       
  // Want: span attribute of "class" to see if value is "todo" or "done" 
  // Goal: toggle back to To Do status
@@ -240,7 +240,7 @@ function updateList(respTextFromGet) {
       var clickedSpanAttribVal = clickedSpanIsDone.getAttribute("class");
       //B4: var clickedSpanIsDoneStatus = clickedSpanIsDone.parentElement.done;
 
-      console.log("CLICKED span ID & done status:", clickedSpanIsDoneId, clickedSpanAttribVal);
+      console.log("CLICKED span ID & done status:", clickedSpanParentId, clickedSpanAttribVal);
             
       // CHECK what spanIsDone NOW from the most recent CLICK has
       // Then convert clickedSpanAttribVal value of "todo", "done" TO 0, 1 
@@ -259,7 +259,7 @@ function updateList(respTextFromGet) {
         convertedSpanAttribValue = 1;
       }
       
-      prepAndSendToWebServerForDb(clickedSpanIsDoneId, convertedSpanAttribValue);
+      prepAndSendToWebServerForDb(clickedSpanParentId, convertedSpanAttribValue);
     }; // End of: spanIsDone.onclick = function() {
     
     //updateDb(todo_id, done);
@@ -267,7 +267,7 @@ function updateList(respTextFromGet) {
   
 } // End of: updateList()
 
-function prepAndSendToWebServerForDb(clickedSpanIsDoneId, convertedSpanAttribValue) {
+function prepAndSendToWebServerForDb(clickedSpanParentId, convertedSpanAttribValue) {
   console.log("IN prepAndSendToWebServerForDb()" );
   
   // NEED: Create JSON object with changed data sorta like: aTodoItem.done = true
@@ -278,7 +278,7 @@ function prepAndSendToWebServerForDb(clickedSpanIsDoneId, convertedSpanAttribVal
   // If condition true, ternary operator evaluates exprTrue. 
   // Otherwise evaluates to exprFalse.
   // Note: If done is undefined - interpreted as 0
-  var doneToUpdateObj = { todo_id: clickedSpanIsDoneId, done: convertedSpanAttribValue ? 0 : 1 };
+  var doneToUpdateObj = { todo_id: clickedSpanParentId, done: convertedSpanAttribValue ? 0 : 1 };
   doneToUpdateObj = JSON.stringify(doneToUpdateObj);
   
   console.log("OBJ for DB is: " + doneToUpdateObj);
