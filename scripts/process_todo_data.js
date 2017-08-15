@@ -318,8 +318,8 @@ function prepAndSendToWebServerForDb(clickedSpanParentId, convertedSpanAttribVal
     }
   }; // End of: xhr.onload = function () {
 
-  // send() - tell request to go out and get the data which sends request to web server.
-  // Pass null if not sending any data to remote service, i.e., request.send(null);
+  // send() - tells request to go & get the data that sends request to web server
+  // Pass null - if not sending any data to remote service, e.g., request.send(null); 
   xhr.send(doneToUpdateObj);
   console.log("AFTER: xhr.send(doneToUpdateObj)");
 }
