@@ -233,16 +233,22 @@ function updateList(respTextFromGet) {
 
       var clickedSpanIsDone = clickEventData.target;
       var clickedSpanIsDoneId = clickedSpanIsDone.parentElement.id; // id here is a DOM id
-      var clickedSpanIsDoneStatus = clickedSpanIsDone.parentElement.done;
+      
+ // Want: span attribute of "class" to see if value is "todo" or "done" 
+ // Goal: toggle back to To Do status
+     
+      var clickedSpanIsDoneStatus = clickedSpanIsDone.getAttribute("class");
+      //B4: var clickedSpanIsDoneStatus = clickedSpanIsDone.parentElement.done;
 
-      console.log("clickedSpanIsDone ID & done status:", clickedSpanIsDoneId, clickedSpanIsDoneStatus);
+      console.log("CLICKED span ID & done status:", clickedSpanIsDoneId, clickedSpanIsDoneStatus);
             
       // CHECK what spanIsDone NOW from the most recent CLICK has
-      if (clickedSpanIsDoneStatus == 0) {
+      if (clickedSpanIsDoneStatus == "done") { //- change it to "todo"
+      // B4: if (clickedSpanIsDoneStatus == 0) {
         clickedSpanIsDone.setAttribute("class", "todo"); // Set for styling of blank checkbox.
         clickedSpanIsDone.innerHTML = "&nbsp;&nbsp;&#x25a2;&nbsp; To Do: ";
       }
-      else {
+      else { // == "todo" - change it to "done"
         clickedSpanIsDone.setAttribute("class", "done"); // Set for styling of checkmark.
         clickedSpanIsDone.innerHTML = "&nbsp;&nbsp;&#10004;&nbsp; Done: "; //&#9745;
       }
@@ -268,6 +274,7 @@ function prepAndSendToWebServerForDb(todo_id, done) {
   // condition ? exprTrue : exprFalse
   // If condition true, ternary operator evaluates exprTrue. 
   // Otherwise evaluates to exprFalse.
+  // Note: If done is undefined - interpreted as 0
   var doneToUpdateObj = { todo_id: todo_id, done: done ? 0 : 1 };
   doneToUpdateObj = JSON.stringify(doneToUpdateObj);
   
