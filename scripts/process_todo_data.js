@@ -276,9 +276,10 @@ function prepAndSendToWebServerForDb(clickedSpanParentId, convertedSpanAttribVal
   // to send with xhr request "body" not "header" - to be processed by web_server.js
   // stringify() - takes object and turns into string in JSON
   
-  // condition ? exprTrue : exprFalse
-  // If condition true, ternary operator evaluates exprTrue. 
-  // Otherwise evaluates to exprFalse.
+  // Now: Using convertedSpanAttribValue with value of "todo" or "done" vs 0 or 1
+  // B4: condition ? exprTrue : exprFalse
+  // B4: If condition true, ternary operator evaluates exprTrue. 
+  // B4: Otherwise evaluates to exprFalse.
   // Note: If done is undefined - interpreted as 0
   var doneToUpdateObj = { todo_id: clickedSpanParentId, done: convertedSpanAttribValue };
   doneToUpdateObj = JSON.stringify(doneToUpdateObj);
