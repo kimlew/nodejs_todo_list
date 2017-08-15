@@ -259,7 +259,7 @@ function updateList(respTextFromGet) {
         convertedSpanAttribValue = 1;
       }
       
-      console.log("VALUE OF span ID & CLASS ATTR:", clickedSpanParentId, clickedSpanAttribVal);
+      console.log("VALUE OF span ID & CONVERTED CLASS ATTR:", clickedSpanParentId, convertedSpanAttribValue);
       
       prepAndSendToWebServerForDb(clickedSpanParentId, convertedSpanAttribValue);
     }; // End of: spanIsDone.onclick = function() {
