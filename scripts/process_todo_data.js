@@ -278,7 +278,7 @@ function prepAndSendToWebServerForDb(clickedSpanIsDoneId, convertedSpanAttribVal
   // If condition true, ternary operator evaluates exprTrue. 
   // Otherwise evaluates to exprFalse.
   // Note: If done is undefined - interpreted as 0
-  var doneToUpdateObj = { todo_id: todo_id, done: done ? 0 : 1 };
+  var doneToUpdateObj = { todo_id: clickedSpanIsDoneId, done: convertedSpanAttribValue ? 0 : 1 };
   doneToUpdateObj = JSON.stringify(doneToUpdateObj);
   
   console.log("doneToUpdateObj is: " + doneToUpdateObj);
