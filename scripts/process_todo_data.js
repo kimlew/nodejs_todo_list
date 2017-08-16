@@ -250,12 +250,12 @@ function updateList(respTextFromGet) {
       if (clickedSpanAttribVal == "done") { // So change it to "todo"
       // B4: if (clickedSpanIsDoneStatus == 0) {
         clickedSpan.setAttribute("class", "todo"); // Set for styling of blank checkbox.
-        clickedSpan.innerHTML = "&nbsp;&nbsp;&#x25a2;&nbsp; To Do: ";
+        clickedSpan.innerHTML = "&#x25a2;To Do: ";
         convertedSpanAttribValue = 0;
       }
       else { // == "todo" So change it to "done"
         clickedSpan.setAttribute("class", "done"); // Set for styling of checkmark.
-        clickedSpan.innerHTML = "&nbsp;&nbsp;&#10004;&nbsp; Done: "; //#9745;
+        clickedSpan.innerHTML = "&nbsp;&nbsp;&#10004;&nbsp; &nbsp;Done: "; //#9745;
         convertedSpanAttribValue = 1;
       }
       
