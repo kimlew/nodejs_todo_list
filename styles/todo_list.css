@@ -60,12 +60,14 @@ li {
   /* background-color: #FFFACD; light yellow for background */
   font-size: 11pt;
   text-indent: 5px;
+  padding-right: 0px;
 }
 .done {
   color: #2F4F4F; /* dark slate grey */
   /* background-color: #FFFACD; light yellow for background */
   font-size: 11pt;
   text-indent: 5px;
+  padding-right: 5px;
 }
 
 span#notDone {
