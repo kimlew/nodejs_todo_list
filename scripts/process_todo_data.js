@@ -403,38 +403,6 @@ function deleteList() {
 
 } // End of: function deleteList()
 
-/*
-function updateDb() {
-  var xhr = new XMLHttpRequest();
-  var url = "url"; // URL for web server to get data from 
-  // url - a DOMString representing the URL to send the request to
-  
-  // Tells request object URL we want it to retrieve & request type to use
-  // open - ONLY sets up the request - still have to send()
-  // request type stated - so the XMLHttpRequest can verify the connection
-  xhr.open("UPDATE", url, true);
-  xhr.setRequestHeader("Content-type", "application/json");
-  
-  console.log("IN xhr.open(UPDATE, url, true) AND xhr is: ", xhr);
-  //Should see: "done":1 (True)
-  
-  console.log("xhr.responseText: ", xhr.responseText);
-  // Set up an onload Handler - called when data arrives (vs waiting for data)
-  // responseText - property of request object - holds data from HTTP GET retrieval
-  xhr.onload = function () {
-    if (xhr.readyState === xhr.DONE && xhr.status === 200) {
-      display_updated_msg(xhr.responseText);
-         
-      // send() - tell request to get the data which sends request to web server.
-      // Pass null-when not sending data to remote service, i.e., request.send(null);
-      xhr.send();
-      console.log("AFTER: xhr.send()");
-    }
-  }; // End of: xhr.onload = function () {
-
-} // End of: function updateDb()
-*/
-
 function getSearchAndTrim() {
   var searchTermToTrim = document.getElementById("searchTerm").value;
   var searchTerm = searchTermToTrim.trim();
