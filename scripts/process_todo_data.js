@@ -255,7 +255,7 @@ function updateList(respTextFromGet) {
       }
       else { // == "todo" So change it to "done"
         clickedSpan.setAttribute("class", "done"); // Set for styling of checkmark.
-        clickedSpan.innerHTML = "&nbsp;&nbsp;&#10004;&nbsp; &nbsp;Done: "; //#9745;
+        clickedSpan.innerHTML = "&#10004;Done: "; //#9745; Note: Removed all &nbsp;
         convertedSpanAttribValue = 1;
       }
       
