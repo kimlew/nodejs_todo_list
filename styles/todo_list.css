@@ -56,24 +56,21 @@ li {
   padding-bottom: 3px;
   padding-right: 5px;
 }
-/*
-li:nth-child(odd) { 
-  color: #808080;  HTML grey - Medium grey 
+li.done {
+  color: #808080;  HTML grey - Medium grey
 }
-*/  
+
 span.todo {
   color: #FFA500; /* medium orange */
   /* background-color: #FFFACD; light yellow for background */
   font-size: 11pt;
   text-indent: 5px;
-  
 }
 span.done {
   color: #2F4F4F; /* dark slate grey */
   /* background-color: #FFFACD; light yellow for background */
   font-size: 11pt;
   text-indent: 5px;
-
 }
 
 span#notDone {
