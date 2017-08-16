@@ -35,7 +35,6 @@ form {
   margin: 0;
   padding: 0 5px;
 }
-
 label {
   font-family: sans-serif;
   font-size: 13pt;
@@ -47,27 +46,29 @@ ul {
   font-size: 12pt;
   color: #000000; /* Black */
 }
-
 li {
+  list-style: none;
   font-family: sans-serif;
   font-size: 11pt;
-  list-style: none;
   color: #0E6B01; /* Dark green */
-}
-
+  
+  padding-top: 3px
+  padding-bottom: 3px;
+  padding-right: 5px;
+}            
 .todo {
   color: #FFA500; /* medium orange */
   /* background-color: #FFFACD; light yellow for background */
   font-size: 11pt;
   text-indent: 5px;
-  padding-right: 0px;
+  
 }
 .done {
   color: #2F4F4F; /* dark slate grey */
   /* background-color: #FFFACD; light yellow for background */
   font-size: 11pt;
   text-indent: 5px;
-  padding-right: 5px;
+
 }
 
 span#notDone {
