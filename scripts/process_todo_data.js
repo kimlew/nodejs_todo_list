@@ -234,8 +234,6 @@ function updateList(respTextFromGet) {
 
       var clickedSpan = clickEventData.target;
       var clickedSpanParentId = clickedSpan.parentElement.id; // id here is a DOM id
-      console.log("ID -- ", clickedSpanParentId);
-      var clickedLiElem = document.getElementAtId("li");
       
  // Want: span attribute of "class" to see if value is "todo" or "done" 
  // Goal: toggle back to To Do status
