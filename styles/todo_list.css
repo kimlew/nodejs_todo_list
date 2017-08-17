@@ -52,12 +52,12 @@ li {
   font-size: 11pt;
   color: #0E6B01; /* Dark green */
   
-  padding-top: 3px
-  padding-bottom: 3px;
+  padding-top: 10px
+  padding-bottom: 10px;
   padding-right: 5px;
 }
-li.done {
-  color: #808080;  HTML grey - Medium grey
+li.done_li {
+  color: #808080;  /* a medium grey */
 }
 
 span.todo {
@@ -67,7 +67,7 @@ span.todo {
   text-indent: 5px;
 }
 span.done {
-  color: #2F4F4F; /* dark slate grey */
+  color: #808080; /* a medium grey */
   /* background-color: #FFFACD; light yellow for background */
   font-size: 11pt;
   text-indent: 5px;

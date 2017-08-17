@@ -181,9 +181,6 @@ function updateList(respTextFromGet) {
     
     var li = document.createElement("li");  
     
-    // Set value of todoItem to li element
-    li.setAttribute("class", "todoLi");
-    
     // Set todoItem.id to li's id. 
     // Needed to correctly identify individual list item
     // li - is parent element for spanIsDone
@@ -201,10 +198,14 @@ function updateList(respTextFromGet) {
     if (aTodoItemFromObj.done == 0) {
       spanIsDone.setAttribute("class", "todo"); // Set for styling of blank checkbox.
       spanIsDone.innerHTML = "&nbsp;&nbsp;&#x25a2;&nbsp; To Do: ";
+      // Leave text colour as li colour
+      // li.setAttribute("class", "todoLi");
     }
-    else {
+    else { // == 1
       spanIsDone.setAttribute("class", "done"); // Set for styling of checkmark.
       spanIsDone.innerHTML = "&nbsp;&nbsp;&#10004;&nbsp; Done: "; //&#9745;
+      // Set li class to grey - to de-emphasize in list
+      li.setAttribute("class", "done_li");
     }   
         
     displaySingleToDo(aTodoItemFromObj, li);
@@ -233,7 +234,8 @@ function updateList(respTextFromGet) {
 
       var clickedSpan = clickEventData.target;
       var clickedSpanParentId = clickedSpan.parentElement.id; // id here is a DOM id
-      var clickedLiElem = document.getElementAtId(clickedSpanParentId);
+      console.log("ID -- ", clickedSpanParentId);
+      var clickedLiElem = document.getElementAtId("li");
       
  // Want: span attribute of "class" to see if value is "todo" or "done" 
  // Goal: toggle back to To Do status
@@ -252,6 +254,10 @@ function updateList(respTextFromGet) {
       // B4: if (clickedSpanIsDoneStatus == 0) {
         clickedSpan.setAttribute("class", "todo"); // Set for styling of blank checkbox.
         clickedSpan.innerHTML = "&#x25a2;To Do: ";
+        
+        // Set class to li.done - to change text to Med Grey
+        // clickedLiElem.setAttribute("class", "done");
+        
         convertedSpanAttribValue = 0;
       }
       else { // == "todo" So change it to "done"
@@ -266,6 +272,7 @@ function updateList(respTextFromGet) {
     }; // End of: spanIsDone.onclick = function() {
     
     //updateDb(todo_id, done);
+    
   } // End of: for loop
   
 } // End of: updateList()
