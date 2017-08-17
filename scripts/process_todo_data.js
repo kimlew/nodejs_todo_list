@@ -197,13 +197,13 @@ function updateList(respTextFromGet) {
     
     if (aTodoItemFromObj.done == 0) {
       spanIsDone.setAttribute("class", "todo"); // Set for styling of blank checkbox.
-      spanIsDone.innerHTML = "&#x25a2;&nbsp;To Do: ";
+      spanIsDone.innerHTML = "&#x25a2;&nbsp;To Do:&nbsp;";
       // Leave text colour as li colour
       // li.setAttribute("class", "todoLi");
     }
     else { // == 1
       spanIsDone.setAttribute("class", "done"); // Set for styling of checkmark.
-      spanIsDone.innerHTML = "&#10004;&nbsp;&nbsp;Done: &nbsp;"; //&#9745;
+      spanIsDone.innerHTML = "&#10004;&nbsp;&nbsp;Done:&nbsp;"; //&#9745;
       // Set li class to grey - to de-emphasize in list
       li.setAttribute("class", "done_li");
     }   
