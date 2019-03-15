@@ -4,6 +4,7 @@
     "start": "node web_server.js"
   },
   "dependencies": {
+    "npm-check-updates": "^3.0.8",
     "pg": "6.x"
   },
   "name": "nodejs-todo-list",
