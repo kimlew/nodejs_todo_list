@@ -4,8 +4,8 @@
     "start": "node web_server.js"
   },
   "dependencies": {
-		"js-yaml": ">=3.13.1"
-		"lodash": ">=4.17.13"
+		"js-yaml": ">=3.13.1",
+		"lodash": ">=4.17.13",
     "npm-check-updates": "^3.0.8",
     "pg": "7.x"
   },
