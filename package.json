@@ -4,12 +4,12 @@
     "start": "node web_server.js"
   },
   "dependencies": {
-		"https-proxy-agent": ">=2.2.3",
+    "https-proxy-agent": ">=5.0.0",
     "js-yaml": ">=3.14.0",
     "lodash": ">=4.17.19",
-		"minimist": ">=0.2.1",
+    "minimist": ">=1.2.5",
     "npm-check-updates": "^7.0.1",
-		"npm-registry-fetch": ">=4.0.5",
+    "npm-registry-fetch": ">=8.1.1",
     "pg": "^8.3.0"
   },
   "name": "nodejs-todo-list",
